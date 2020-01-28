@@ -1,4 +1,5 @@
-<!-- Page Header--><a class="banner banner-top" href="https://www.templatemonster.com/website-templates/monstroid2.html" target="_blank"><img src="/images/monstroid.jpg" alt="" height="0"/></a>
+<!-- Page Header-->
+<a class="banner banner-top" href="https://www.templatemonster.com/website-templates/monstroid2.html" target="_blank"><img src="/images/monstroid.jpg" alt="" height="0"/></a>
 <header class="section page-header">
 <!-- RD Navbar-->
 <div class="rd-navbar-wrap">
@@ -9,7 +10,7 @@
         <!-- RD Navbar Toggle-->
         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
         <!-- RD Navbar Brand-->
-        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><img src="/images/logo-default-399x82.png" alt="" width="199" height="41"/></a></div>
+        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a></div>
         </div>
         <div class="rd-navbar-nav-wrap">
         <!-- RD Navbar Nav-->

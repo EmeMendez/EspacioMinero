@@ -4,7 +4,7 @@
   <div class="footer-classic-main">
     <div class="container">
       <div class="row row-50 justify-content-lg-between">
-        <div class="col-sm-7 col-lg-3 col-xl-2"><a class="brand" href="index.html"><img src="/images/logo-default-399x82.png" alt="" width="199" height="41"/></a>
+        <div class="col-sm-7 col-lg-3 col-xl-2"><a class="brand" href="index.html"><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a>
           <p><span style="max-width: 250px;">Our agency provides quality digital marketing services.</span></p><a class="button button-sm button-default-outline button-winona" href="#">Get in Touch</a>
         </div>
         <div class="col-sm-5 col-lg-3 col-xl-2">
