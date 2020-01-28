@@ -10,7 +10,7 @@
         <!-- RD Navbar Toggle-->
         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
         <!-- RD Navbar Brand-->
-        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><br><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a></div>
+        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a></div>
         </div>
         <div class="rd-navbar-nav-wrap">
         <!-- RD Navbar Nav-->
@@ -25,7 +25,7 @@
             </li>
         </ul>
         <div class="rd-navbar-tel">
-            <a class="rd-nav-link" href="{{route('home')}}">Iniciar Sesión</a>
+            <a class="rd-nav-link" href="{{route('session')}}">Iniciar Sesión</a>
                
         </div>
             <a class="rd-nav-link" href="{{route('home')}}">Registrarse</a>  

@@ -15,6 +15,8 @@
 //     return view('home');
 // });
 Route::view('/','home')->name("home");
-Route::view('/about','about')->name("about");
+Route::view('/acerca-de','about')->name("about");
 Route::view('/typography','typography')->name('typo');
-Route::view('/contact','contact')->name('contact');
+Route::view('/contacto','contact')->name('contact');
+
+Route::view('/iniciar-sesion','session')->name('session');
