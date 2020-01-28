@@ -10,26 +10,25 @@
         <!-- RD Navbar Toggle-->
         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
         <!-- RD Navbar Brand-->
-        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a></div>
+        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><br><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a></div>
         </div>
         <div class="rd-navbar-nav-wrap">
         <!-- RD Navbar Nav-->
         <ul class="rd-navbar-nav">
-        <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('home')}}">Home</a>
+        <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('home')}}">Inicio</a>
             </li>
-            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('about')}}">About Us</a>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('about')}}">Acerca de</a>
             </li>
             <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('typo')}}">Typography</a>
             </li>
-            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contact')}}">Contacts</a>
+            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contact')}}">Contacto</a>
             </li>
         </ul>
         <div class="rd-navbar-tel">
-            <p>Call Now</p><a href="tel:#">+1-800-555-0148</a>
+            <a class="rd-nav-link" href="{{route('home')}}">Iniciar Sesión</a>
+               
         </div>
-        </div>
-        <div class="rd-navbar-element"><a class="button button-sm button-default-outline button-winona" href="#">Get a Quote</a>
-        </div>
+            <a class="rd-nav-link" href="{{route('home')}}">Registrarse</a>  
         <div class="rd-navbar-dummy"></div>
     </div>
     </nav>

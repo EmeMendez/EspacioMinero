@@ -228,15 +228,19 @@
 <!-- Our Clients-->
 <section class="section section-xxl text-center bg-white" id="clients">
 <div class="container">
-    <h3>Our Clients</h3>
+    <h3>Participan</h3>
     <!-- Owl Carousel-->
-    <div class="owl-carousel owl-carousel-centered" data-items="2" data-sm-items="3" data-md-items="4" data-lg-items="5" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="true" data-margin="30" data-mouse-drag="false">
-    <div class="wow clipInLeft"><a class="link-image-1" href="#"><img src="/images/investor-1-88x77.png" alt="" width="88" height="77"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/investor-2-73x78.png" alt="" width="73" height="78"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".2s"><a class="link-image-1" href="#"><img src="/images/investor-3-96x62.png" alt="" width="96" height="62"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".3s"><a class="link-image-1" href="#"><img src="/images/investor-4-78x80.png" alt="" width="78" height="80"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".4s"><a class="link-image-1" href="#"><img src="/images/investor-5-87x76.png" alt="" width="87" height="76"/></a></div>
+    <div class="owl-carousel owl-carousel-centered" data-items="2" data-sm-items="3" data-md-items="4" data-lg-items="4" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="true" data-margin="30" data-mouse-drag="true">
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_cidere.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_adp.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_cap.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_corfo.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_crdp.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_mlp.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_sg.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/carousel/eim_teck.png" alt="" width="200" height="200"/></a></div>
     </div>
+
 </div>
 </section>
 

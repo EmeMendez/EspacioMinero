@@ -16,14 +16,14 @@
           </ul>
         </div>
         <div class="col-sm-7 col-lg-5 col-xl-3">
-          <h4 class="footer-classic-title">Quick Links</h4>
+          <h4 class="footer-classic-title">Enlaces rápidos</h4>
           <ul class="list footer-classic-list footer-classic-list_2-cols">
-            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Iniciar Sesión</a></li>
             <li><a href="#">Our Team</a></li>
-            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Registrarse</a></li>
             <li><a href="#">Pricing</a></li>
             <li><a href="#">Testimonials</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Preguntas Frecuentes</a></li>
             <li><a href="#">Services</a></li>
           </ul>
         </div>
@@ -46,7 +46,7 @@
   </div>
   <div class="footer-classic-aside">
     <div class="container">
-      <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span>. All Rights Reserved. Design by <a href="https://www.templatemonster.com">TemplateMonster</a></p>
+      <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Espacio Industrial Minero. Todos los Derechos Reservados</p>
     </div>
   </div>
 </footer>
