@@ -20,3 +20,4 @@ Route::view('/typography','typography')->name('typo');
 Route::view('/contacto','contact')->name('contact');
 
 Route::view('/iniciar-sesion','session')->name('session');
+Route::view('/registrarse','sing-up')->name('sing-up');
