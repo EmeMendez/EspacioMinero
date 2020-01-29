@@ -15,21 +15,24 @@
         <div class="rd-navbar-nav-wrap">
         <!-- RD Navbar Nav-->
         <ul class="rd-navbar-nav">
-        <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('home')}}">Inicio</a>
+        <li class="rd-nav-item {{setActive('home')}}"><a class="rd-nav-link" href="{{route('home')}}">Inicio</a>
             </li>
-            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('about')}}">Acerca de</a>
+            <li class="rd-nav-item {{setActive('about')}}"><a class="rd-nav-link" href="{{route('about')}}">Acerca de</a>
             </li>
-            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('typo')}}">Typography</a>
+            <li class="rd-nav-item {{setActive('typo')}}"><a class="rd-nav-link" href="{{route('typo')}}">Typography</a>
             </li>
-            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contact')}}">Contacto</a>
+            <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">Contacto</a>
             </li>
         </ul>
         <div class="rd-navbar-tel">
-            <a class="rd-nav-link" href="{{route('session')}}">Iniciar Sesión</a>
-               
-        </div>
-            <a class="rd-nav-link" href="{{route('home')}}">Registrarse</a>  
-        <div class="rd-navbar-dummy"></div>
+            <ul class="rd-navbar-nav">
+                <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}">Iniciar Sesión</a>
+                    </li>
+                    <li class="rd-nav-item {{setActive('sing-up')}}"><a class="rd-nav-link" href="{{route('sing-up')}}">Registrarse</a>
+                    </li>
+                </ul>
+        </div>          
+            <div class="rd-navbar-dummy"></div>
     </div>
     </nav>
 </div>
