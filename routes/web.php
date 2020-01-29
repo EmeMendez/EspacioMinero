@@ -21,3 +21,5 @@ Route::view('/contacto','contact')->name('contact');
 
 Route::view('/iniciar-sesion','session')->name('session');
 Route::view('/registrarse','sing-up')->name('sing-up');
+
+Route::view('/proveedores','list-provider')->name('list-provider');
