@@ -75,6 +75,13 @@
                 <button type="button" class="btn btn-success btn-circle"><label class="plus" >+</label></b>
                 </button>             
             </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="form-wrap form-button">
+                  <button class="button button-block button-primary" type="submit">Registrarse</button>
+                </div>
+              </div>
 
           </div>
         </form>
