@@ -74,7 +74,7 @@
 <!-- Get in Touch-->
 <section class="section section-md bg-gray-100">
   <div class="container">
-    <h3 class="text-center">Get in Touch</h3>
+    <h3 class="text-center">Contáctanos</h3>
     <div class="row justify-content-center">
       <div class="col-lg-11 col-xl-9">
         <!-- RD Mailform-->

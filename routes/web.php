@@ -23,3 +23,4 @@ Route::view('/iniciar-sesion','session')->name('session');
 Route::view('/registrarse','sing-up')->name('sing-up');
 
 Route::view('/proveedores','list-provider')->name('list-provider');
+Route::view('/proveedores-perfil','show-provider')->name('show-provider');
