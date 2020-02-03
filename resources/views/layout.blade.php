@@ -14,9 +14,9 @@
       </div>
     </div>
     <div class="page">
-     @include('partials.header');
+     @include('partials.header')
       @yield('content')
-      @include('partials.footer');
+      @include('partials.footer')
 
     </div>
     <div class="snackbars" id="form-output-global"></div>
