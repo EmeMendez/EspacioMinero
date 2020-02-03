@@ -11427,8 +11427,8 @@ html.tablet .ui-to-top {
 	line-height: 1.2;
 	transition: .25s;
 	font-weight: 600;
-	letter-spacing: 0.09em;
-	font-size: 13px;
+	letter-spacing: 0.20em;
+	font-size: 12px;
 	font-family: "Lato";
 }
 
