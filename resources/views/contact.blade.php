@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <section class="breadcrumbs-custom">
-  <section class="section parallax-container breadcrumbs-custom-main context-dark" data-parallax-img="images/img/contact.jpg">
+  <img src="images/img/contact.jpg">
     <div class="parallax-content">
       <div class="container">
         <div class="row justify-content-center">
