@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-11 col-xl-9">
         <!-- RD Mailform-->
-        <form class="rd-mailform rd-form" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+        <form class="rd-mailform rd-form ses" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
           <div class="row row-x-16 row-20"  >
             <div class="col-7">
                 <div class="form-wrap">
@@ -38,5 +38,7 @@
 
     
   </div>
+
 </section>
+
 @endsection

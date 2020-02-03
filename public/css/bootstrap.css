@@ -3872,6 +3872,7 @@ input[type="button"].btn-block {
 	.navbar-expand-md .navbar-toggler {
 		display: none;
 	}
+	
 }
 
 @media (max-width: 991.98px) {
@@ -4092,7 +4093,7 @@ input[type="button"].btn-block {
 .navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .nav-link.active {
-	color: #fff;
+	color: #f5a800;
 }
 
 .navbar-dark .navbar-toggler {

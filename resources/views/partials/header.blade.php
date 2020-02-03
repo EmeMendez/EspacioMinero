@@ -1,5 +1,5 @@
 <!-- Page Header-->
-<a class="banner banner-top" href="https://www.templatemonster.com/website-templates/monstroid2.html" target="_blank"><img src="/images/monstroid.jpg" alt="" height="0"/></a>
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 <header class="section page-header">
 <!-- RD Navbar-->
 <div class="rd-navbar-wrap">
@@ -10,25 +10,25 @@
         <!-- RD Navbar Toggle-->
         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
         <!-- RD Navbar Brand-->
-        <div class="rd-navbar-brand"> <a class="brand" href="index.html"><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a></div>
+        <div class="rd-navbar-brand logo-espacio"> <a class="brand" href="{{route('home')}}"><img class="logoE" src="/images/logo_blanco.png" alt=""/></a></div>
         </div>
         <div class="rd-navbar-nav-wrap">
         <!-- RD Navbar Nav-->
         <ul class="rd-navbar-nav">
-        <li class="rd-nav-item {{setActive('home')}}"><a class="rd-nav-link" href="{{route('home')}}">Inicio</a>
+        <li class="rd-nav-item {{setActive('home')}}"><a class="rd-nav-link" href="{{route('home')}}" >INICIO</a>
             </li>
-            <li class="rd-nav-item {{setActive('about')}}"><a class="rd-nav-link" href="{{route('about')}}">Acerca de</a>
+            <li class="rd-nav-item {{setActive('about')}}"><a class="rd-nav-link" href="{{route('about')}}" style="color:#fff;">NOSOTROS</a>
             </li>
-            <li class="rd-nav-item {{setActive('typo')}}"><a class="rd-nav-link" href="{{route('typo')}}">Typography</a>
+            <li class="rd-nav-item {{setActive('typo')}}"><a class="rd-nav-link" href="{{route('typo')}}" style="color:#fff;">TYPOGRAPHY</a>
             </li>
-            <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">Contacto</a>
+            <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}" style="color:#fff;">CONTÁCTANOS</a>
             </li>
         </ul>
         <div class="rd-navbar-tel">
             <ul class="rd-navbar-nav">
-                <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}">Iniciar Sesión</a>
+                <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}" style="color:#fff;">INICIAR SESIÓN</a>
                     </li>
-                    <li class="rd-nav-item {{setActive('sing-up')}}"><a class="rd-nav-link" href="{{route('sing-up')}}">Registrarse</a>
+                    <li class="rd-nav-item {{setActive('sing-up')}}"><a class="rd-nav-link" href="{{route('sing-up')}}" style="color:#fff;">REGISTRARSE</a>
                     </li>
                 </ul>
         </div>          
