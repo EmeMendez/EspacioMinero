@@ -15,7 +15,7 @@
   <div class="breadcrumbs-custom-aside">
     <div class="container">
       <ul class="breadcrumbs-custom-path">
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="{{route('home')}}">Inicio</a></li>
         <li class="active">Nosotros</li>
       </ul>
     </div>
