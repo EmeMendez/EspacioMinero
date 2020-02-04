@@ -22,7 +22,7 @@
   </div>
 </section>
 <section class="section section-md">
-  <div class="container">
+  <div class="container tituloAbout">
     <div class="row row-50">
       <div class="col-xl-5">
 

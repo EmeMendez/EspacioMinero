@@ -16,6 +16,42 @@
 	color: #ffffff;
 }
 
+.tituloAbout{
+	margin-left: 15%;
+}
+
+@media (min-width: 360px) and (max-width: 572px) {
+	.tituloAbout{
+		margin-left: 1%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 787px) {
+	.tituloAbout{
+		margin-left: 3%;
+	}
+}
+@media (min-width: 790px) and (max-width: 835px) {
+	.tituloAbout{
+		margin-left: 4%;
+	}
+}
+
+@media (min-width: 835px) and (max-width: 849px) {
+	.tituloAbout{
+		margin-left: 6%;
+	}
+}
+@media (min-width: 850px) and (max-width: 890px) {
+	.tituloAbout{
+		margin-left: 7%;
+	}
+}
+@media (min-width: 1024px) and (max-width: 1050px) {
+	.tituloAbout{
+		margin-left: 1%;
+	}
+}
 
 form.ses{
 	margin: 0 auto;
@@ -12125,7 +12161,7 @@ html.rd-navbar-fixed-linked .page {
 .rd-navbar-modern {
 	position: relative;
 	background-color: #101820;
-	font-family: Loto;
+	font-family: Lato;
 	
 }
 
