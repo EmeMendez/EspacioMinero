@@ -16,9 +16,14 @@ class CreateProveedorContactoTable extends Migration
         Schema::create('proveedor_contacto', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_contacto');
-            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
+            $table->string('proveedor_rut')->unique();
             $table->timestamps();
         });
+
+        Schema::table('proveedor_contacto', function($table) {
+            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
+            
+        }); 
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCetificacionTable extends Migration
+class CreateCertificacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCetificacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('cetificacion', function (Blueprint $table) {
+        Schema::create('certificacion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateCetificacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cetificacion');
+        Schema::dropIfExists('certificacion');
     }
 }

@@ -18,11 +18,18 @@ class CreateProveedorTable extends Migration
             $table->string('nombre');
             $table->string('sitio_web');
             $table->string('direccion');
+            $table->unsignedBigInteger('categoria_id')->unsigned();
+            $table->unsignedBigInteger('ciudad_id')->unsigned();
+            $table->unsignedBigInteger('tamanio_empresa_id')->unsigned();
+            $table->unsignedBigInteger('estado_id')->unsigned();
+            $table->timestamps();
+        });
+        Schema::table('proveedor', function($table) {
             $table->foreign('categoria_id')->references('id')->on('categoria');
             $table->foreign('ciudad_id')->references('id')->on('ciudad');
             $table->foreign('tamanio_empresa_id')->references('id')->on('tamanio_empresa');
             $table->foreign('estado_id')->references('id')->on('estado');
-            $table->timestamps();
+      
         });
     }
 
@@ -34,5 +41,6 @@ class CreateProveedorTable extends Migration
     public function down()
     {
         Schema::dropIfExists('proveedor');
+
     }
 }

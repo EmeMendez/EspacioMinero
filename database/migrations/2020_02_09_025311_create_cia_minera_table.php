@@ -16,9 +16,13 @@ class CreateCiaMineraTable extends Migration
         Schema::create('cia_minera', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->foreign('estado_id')->references('id')->on('estado');
+            $table->unsignedBigInteger('estado_id')->unsigned();
             $table->timestamps();
         });
+        Schema::table('cia_minera', function($table) {
+            $table->foreign('estado_id')->references('id')->on('estado');
+        }); 
+
     }
 
     /**

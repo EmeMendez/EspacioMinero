@@ -14,10 +14,16 @@ class CreateProveedorCertificacionTable extends Migration
     public function up()
     {
         Schema::create('proveedor_certificacion', function (Blueprint $table) {
-            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
-            $table->foreign('certificacion_id')->references('id')->on('certificacion');
+            $table->string('proveedor_rut')->unique();
+            $table->unsignedBigInteger('certificacion_id')->unsigned();
             $table->timestamps();
         });
+
+        Schema::table('proveedor_certificacion', function($table) {
+            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
+            $table->foreign('certificacion_id')->references('id')->on('certificacion');
+        }); 
+
     }
 
     /**

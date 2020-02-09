@@ -16,9 +16,13 @@ class CreateProveedorTelefonoTable extends Migration
         Schema::create('proveedor_telefono', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('telefono');
-            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
+            $table->string('proveedor_rut')->unique();
             $table->timestamps();
         });
+        Schema::table('proveedor_telefono', function($table) {
+            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
+            
+        });        
     }
 
     /**

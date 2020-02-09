@@ -18,12 +18,19 @@ class CreateCiaMineraUsuarioTable extends Migration
             $table->string('nombre_usuario');
             $table->string('telefono');
             $table->string('correo');
-            $table->foreign('cia_minera_id')->references('id')->on('cia_minera');
-            $table->foreign('estado_id')->references('id')->on('estado');
-            $table->foreign('usuario_tipo')->references('id')->on('usuario_tipo');
+            $table->unsignedBigInteger('cia_minera_id')->unsigned();
+            $table->unsignedBigInteger('estado_id')->unsigned();
+            $table->unsignedBigInteger('usuario_tipo')->unsigned();
 
             $table->timestamps();
         });
+
+        
+        Schema::table('cia_minera_usuario', function($table) {
+            $table->foreign('cia_minera_id')->references('id')->on('cia_minera');
+            $table->foreign('estado_id')->references('id')->on('estado');
+            $table->foreign('usuario_tipo')->references('id')->on('usuario_tipo');            
+        }); 
     }
 
     /**

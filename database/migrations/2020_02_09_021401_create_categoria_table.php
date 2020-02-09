@@ -18,6 +18,7 @@ class CreateCategoriaTable extends Migration
             $table->string('nombre');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -28,5 +29,6 @@ class CreateCategoriaTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categoria');
+
     }
 }
