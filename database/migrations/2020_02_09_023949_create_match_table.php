@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCiaMineraTable extends Migration
+class CreateMatchTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCiaMineraTable extends Migration
      */
     public function up()
     {
-        Schema::create('cia_minera', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre');
+        Schema::create('match', function (Blueprint $table) {
+            $table->foreign('proveedor_rut')->references('rut')->on('proveedor');
+            $table->foreign('cia_minera_usuario_rut')->references('rut')->on('cia_minera_usuario');
             $table->foreign('estado_id')->references('id')->on('estado');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateCiaMineraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cia_minera');
+        Schema::dropIfExists('match');
     }
 }
