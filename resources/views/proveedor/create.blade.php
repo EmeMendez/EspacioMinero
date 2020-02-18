@@ -7,43 +7,44 @@
     <div class="row justify-content-center">
       <div class="col-lg-11 col-xl-9">
         <!-- RD Mailform-->
-        <form class="rd-mailform rd-form sig" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+        <form class="rd-mailform rd-form sig" method="POST" action="{{ route('proveedor.store') }}">
+          @csrf
           <div class="row row-x-16 row-20"  >
             <div class="col-7">
                 <div class="form-wrap">
-                    <input class="form-input" id="contact-rut" type="text" name="user-name" data-constraints="@Required @Email">
+                    <input class="form-input" id="contact-rut" type="text" name="user-rut">
                     <label class="form-label" for="contact-rut">Rut</label>
                   </div>
                 </div>
                 <div class="col-7">
                     <div class="form-wrap">
-                        <input class="form-input" id="contact-name" type="text" name="user-name" data-constraints="@Required @Email">
+                        <input class="form-input" id="contact-name" type="text" name="user-name" >
                         <label class="form-label" for="contact-name">Nombre</label>
                       </div>
                     </div> 
                     <div class="col-7">
                         <div class="form-wrap">
-                            <input class="form-input" id="contact-address" type="text" name="user-name" data-constraints="@Required @Email">
+                            <input class="form-input" id="contact-address" type="text" name="user-address" >
                             <label class="form-label" for="contact-address">Dirección</label>
                           </div>
                         </div>                                     
                 <div class="col-7">
                     <div class="form-wrap">
-                        <input class="form-input" id="contact-pass" type="password" name="user-pass" data-constraints="@Required @Email">
+                        <input class="form-input" id="contact-pass" type="password" name="user-pass" >
                         <label class="form-label" for="contact-pass">Contraseña</label>
                     </div>
                 </div>
                 <div class="col-7">
                     <div class="form-wrap">
-                        <input class="form-input" id="contact-repass" type="password" name="user-pass" data-constraints="@Required @Email">
+                        <input class="form-input" id="contact-repass" type="password" name="user-pass-confirm">
                         <label class="form-label" for="contact-repass">Confirmar Contraseña</label>
                     </div>
                 </div>
                 <div class="col-7">
                     <div class="form-wrap">
-                        <select id="inputState" class="form-input">
+                        <select id="inputState" class="form-input" name="user-city">
                             @foreach ($ciudad as $ciu)
-                              <option>{{$ciu['nombre']}}</option>
+                              <option value="{{$ciu['id']}}">{{$ciu['nombre']}}</option>
                             @endforeach            
                           </select>
                      <i></i>     
@@ -51,9 +52,9 @@
                 </div>
                 <div class="col-7">
                     <div class="form-wrap">
-                        <select id="inputState" class="form-input">
+                        <select id="inputState" class="form-input" name="user-tamanio">
                           @foreach ($tamanioempresa as $te)
-                            <option>{{$te['nombre']}}</option>
+                            <option value="{{$te['id']}}">{{$te['nombre']}}</option>
                           @endforeach                        
                           </select>
                      <i></i>     
@@ -61,9 +62,9 @@
                 </div>
                 <div class="col-7">
                     <div class="form-wrap">
-                        <select id="inputState" class="form-input">
+                        <select id="inputState" class="form-input" name="user-cat">
                           @foreach ($categoria as $cat)
-                            <option>{{$cat['nombre']}}</option>
+                            <option value="{{$cat['id']}}">{{$cat['nombre']}}</option>
                           @endforeach                         
                           </select>
                      <i></i>     
