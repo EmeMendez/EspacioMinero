@@ -28,7 +28,7 @@
             <ul class="rd-navbar-nav">
                 <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}" >INICIAR SESIÓN</a>
                     </li>
-                    <li class="rd-nav-item {{setActive('sing-up')}}"><a class="rd-nav-link" href="{{route('sing-up')}}" >REGISTRARSE</a>
+                    <li class="rd-nav-item {{setActive('sing-up')}}"><a class="rd-nav-link" href="{{route('proveedor.create')}}" >REGISTRARSE</a>
                     </li>
                 </ul>
         </div>          
