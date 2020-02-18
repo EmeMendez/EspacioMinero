@@ -5,7 +5,7 @@
         <div class="col-sm-2">               
         </div>        <div class="col-sm-7">
           <div class="form-wrap">
-            <input placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
+            <input @keyup="getProveedoresByName" v-model="parametro" placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
           </div>
         </div>
           <div class="col-sm-3">
@@ -18,14 +18,14 @@
      <!-- inicio de la lista -->
     <p class="h5">[Resultados {{proveedores.length}}]</p>
     
-    <div class="card mb-3">
+    <div class="card mb-3" v-for="p in proveedores" v-bind:key="p.rut">
       <div class="row no-gutters">
         <div class="col-md-2">
           <img src="https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png" class="card-img" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Nombre del Proveedor</h5>
+            <h5 class="card-title" v-text="p.nombre"></h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <a class="button button-sm button-default-outline button-winona" href="#"> Más Información</a>            
           </div>
@@ -45,30 +45,34 @@
     export default {
         data(){
             return {
-                proveedores: []
+                proveedores: [],
+                parametro: ''
             }
         },
-        mounted(){
-                    axios.get('/proveedor/proveedores').then(res =>{
-                    this.proveedores = res.data;
-                    console.log(this.proveedores);
-
-                    })        
-        },
-        computed:{
-            getProveedoresNow(){
+        methods:{
+          getProveedoresByName(){
                 try{
-                    axios.get('/proveedor/proveedores').then(res =>{
+                    axios.get('/proveedor/proveedores/' + this.parametro).then(res =>{
                     this.proveedores = res.data;
-                    console.log("llegue al catch");
+                    // console.log(this.proveedores);
 
                     })               
                 }catch(error){
                     console.log("llegue al catch");
                 }
                 return this.proveedores;
-            }           
-        }
+            }  
+        },
+        mounted(){
+                    axios.get('/proveedor/proveedores').then(res =>{
+                    this.proveedores = res.data;
+                    //console.log(this.proveedores);
+
+                    })        
+        },
+        // computed:{
+         
+        // }
 
     }
 </script>

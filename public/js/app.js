@@ -1987,25 +1987,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      proveedores: []
+      proveedores: [],
+      parametro: ''
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/proveedor/proveedores').then(function (res) {
-      _this.proveedores = res.data;
-      console.log(_this.proveedores);
-    });
-  },
-  computed: {
-    getProveedoresNow: function getProveedoresNow() {
-      var _this2 = this;
+  methods: {
+    getProveedoresByName: function getProveedoresByName() {
+      var _this = this;
 
       try {
-        axios.get('/proveedor/proveedores').then(function (res) {
-          _this2.proveedores = res.data;
-          console.log("llegue al catch");
+        axios.get('/proveedor/proveedores/' + this.parametro).then(function (res) {
+          _this.proveedores = res.data; // console.log(this.proveedores);
         });
       } catch (error) {
         console.log("llegue al catch");
@@ -2013,7 +2005,16 @@ __webpack_require__.r(__webpack_exports__);
 
       return this.proveedores;
     }
-  }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    axios.get('/proveedor/proveedores').then(function (res) {
+      _this2.proveedores = res.data; //console.log(this.proveedores);
+    });
+  } // computed:{
+  // }
+
 });
 
 /***/ }),
@@ -19668,15 +19669,78 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "form-group row" }, [
+        _c("div", { staticClass: "col-sm-2" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-7" }, [
+          _c("div", { staticClass: "form-wrap" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.parametro,
+                  expression: "parametro"
+                }
+              ],
+              staticClass: "form-input",
+              attrs: {
+                placeholder: "Nombre",
+                id: "provider-name",
+                type: "text",
+                name: "user-name"
+              },
+              domProps: { value: _vm.parametro },
+              on: {
+                keyup: _vm.getProveedoresByName,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.parametro = $event.target.value
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "h5" }, [
         _vm._v("[Resultados " + _vm._s(_vm.proveedores.length) + "]")
       ]),
       _vm._v(" "),
-      _vm._l(_vm.proveedores, function(proveedor) {
-        return _c("div", { key: _vm.proveedores, staticClass: "card mb-3" }, [
-          _vm._m(1, true)
+      _vm._l(_vm.proveedores, function(p) {
+        return _c("div", { key: p.rut, staticClass: "card mb-3" }, [
+          _c("div", { staticClass: "row no-gutters" }, [
+            _vm._m(1, true),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", {
+                  staticClass: "card-title",
+                  domProps: { textContent: _vm._s(p.nombre) }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(
+                    "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "button button-sm button-default-outline button-winona",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v(" Más Información")]
+                )
+              ])
+            ])
+          ])
         ])
       })
     ],
@@ -19688,35 +19752,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-sm-2" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-7" }, [
-        _c("div", { staticClass: "form-wrap" }, [
-          _c("input", {
-            staticClass: "form-input",
-            attrs: {
-              placeholder: "Nombre",
-              id: "provider-name",
-              type: "text",
-              name: "user-name"
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-3" }, [
-        _c("div", { staticClass: "form-wrap" }, [
-          _c(
-            "a",
-            {
-              staticClass:
-                "button button-sm button-default-outline button-winona",
-              attrs: { href: "#" }
-            },
-            [_vm._v(" Buscar Proveedor")]
-          )
-        ])
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("div", { staticClass: "form-wrap" }, [
+        _c(
+          "a",
+          {
+            staticClass:
+              "button button-sm button-default-outline button-winona",
+            attrs: { href: "#" }
+          },
+          [_vm._v(" Buscar Proveedor")]
+        )
       ])
     ])
   },
@@ -19724,41 +19770,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row no-gutters" }, [
-      _c("div", { staticClass: "col-md-2" }, [
-        _c("img", {
-          staticClass: "card-img",
-          attrs: {
-            src:
-              "https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png",
-            alt: "..."
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [
-            _vm._v("Nombre del Proveedor")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "card-text" }, [
-            _vm._v(
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "button button-sm button-default-outline button-winona",
-              attrs: { href: "#" }
-            },
-            [_vm._v(" Más Información")]
-          )
-        ])
-      ])
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("img", {
+        staticClass: "card-img",
+        attrs: {
+          src:
+            "https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png",
+          alt: "..."
+        }
+      })
     ])
   }
 ]

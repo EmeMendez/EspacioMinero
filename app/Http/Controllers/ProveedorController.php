@@ -23,6 +23,15 @@ class ProveedorController extends Controller
         return view('proveedor.index',compact('proveedor'));
     }
 
+    public function getProveedoresByName($parameter)
+    {
+
+        $proveedor = Proveedor::where('nombre','LIKE', '%' . $parameter . '%')->get();
+        if(request()->ajax()){
+            return $proveedor;
+        }
+        return view('proveedor.index',compact('proveedor'));
+    }
     /**
      * Mostrar el formulario para crear un nuevo proveedor 
      *

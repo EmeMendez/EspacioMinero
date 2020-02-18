@@ -8,6 +8,9 @@
     <div id="app">
         <proveedores-component></proveedores-component> 
     </div>
+    {{-- @foreach ($proveedor as $p)
+        <p>{{$p['nombre']}}</p>
+    @endforeach --}}
    
    </div>
 </section>
