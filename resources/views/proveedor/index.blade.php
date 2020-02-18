@@ -22,7 +22,6 @@
       </div>
     </div>
     <!-- Fin Buscador -->
-    @foreach ($proveedor as $pro)
     <!-- inicio de la lista -->
     <div class="card mb-3">
       <div class="row no-gutters">
@@ -39,7 +38,6 @@
       </div>
     </div>
     <!-- fin de la lista -->        
-    @endforeach
 
 
   </div>
