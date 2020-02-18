@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-
+    @foreach ($proveedor as $pro)
     <div class="card mb-3">
       <div class="row no-gutters">
         <div class="col-md-2">
@@ -79,48 +79,16 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Nombre del Proveedor</h5>
+          <h5 class="card-title">{{$pro['nombre']}}</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <a class="button button-sm button-default-outline button-winona" href="{{route('show-provider')}}"> Más Información</a>            
           </div>
         </div>
       </div>
     </div>
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-2">
-          <img src="https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png" class="card-img" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Nombre del Proveedor</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a class="button button-sm button-default-outline button-winona" href="{{route('show-provider')}}"> Más Información</a>            
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card mb-3">
-      <div class="row no-gutters">
-        <div class="col-md-2">
-          <img src="https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png" class="card-img" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Nombre del Proveedor</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a class="button button-sm button-default-outline button-winona" href="{{route('show-provider')}}"> Más Información</a>            
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- fin de la lista -->
-
+    <!-- fin de la lista -->        
+    @endforeach
+    
 
   </div>
 </section>
