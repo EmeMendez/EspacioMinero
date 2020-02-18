@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Proveedor;
+use App\Ciudad;
+use App\TamanioEmpresa;
+use App\Categoria;
 class ProveedorController extends Controller
 {
     
@@ -23,9 +26,10 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-    
-        $proveedor = Proveedor::get();
-        return view('proveedor.create');
+        $ciudad = Ciudad::get();
+        $tamanioempresa = TamanioEmpresa::get();
+        $categoria = Categoria::get();
+        return view('proveedor.create',compact('ciudad','tamanioempresa','categoria'));
 
     }
 

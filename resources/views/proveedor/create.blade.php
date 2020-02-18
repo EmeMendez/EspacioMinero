@@ -42,8 +42,9 @@
                 <div class="col-7">
                     <div class="form-wrap">
                         <select id="inputState" class="form-input">
-                            <option selected >Ciudad...</option>
-                            <option>...</option>
+                            @foreach ($ciudad as $ciu)
+                              <option>{{$ciu['nombre']}}</option>
+                            @endforeach            
                           </select>
                      <i></i>     
                     </div>
@@ -51,10 +52,9 @@
                 <div class="col-7">
                     <div class="form-wrap">
                         <select id="inputState" class="form-input">
-                            <option selected >Tamaño Empresa</option>
-                            <option>PYME</option>
-                            <option>Gran Empresa</option>
-                            <option>Micro Empresa</option>                         
+                          @foreach ($tamanioempresa as $te)
+                            <option>{{$te['nombre']}}</option>
+                          @endforeach                        
                           </select>
                      <i></i>     
                     </div>
@@ -62,10 +62,9 @@
                 <div class="col-7">
                     <div class="form-wrap">
                         <select id="inputState" class="form-input">
-                            <option selected >Categoría</option>
-                            <option>Contratista</option>
-                            <option>Servicio de Soporte</option>
-                            <option>Equipos y Porvisiones</option>                         
+                          @foreach ($categoria as $cat)
+                            <option>{{$cat['nombre']}}</option>
+                          @endforeach                         
                           </select>
                      <i></i>     
                     </div>
