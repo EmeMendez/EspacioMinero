@@ -22,6 +22,7 @@
       </div>
     </div>
     <!-- Fin Buscador -->
+    
     <!-- inicio de la lista -->
     <div class="card mb-3">
       <div class="row no-gutters">
