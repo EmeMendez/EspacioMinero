@@ -19723,11 +19723,10 @@ var render = function() {
                   domProps: { textContent: _vm._s(p.nombre) }
                 }),
                 _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v(
-                    "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                  )
-                ]),
+                _c("p", {
+                  staticClass: "card-text",
+                  domProps: { textContent: _vm._s(p.descripcion) }
+                }),
                 _vm._v(" "),
                 _c(
                   "a",
@@ -32172,7 +32171,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Can't find stylesheet to import.\n  ╷\n8 │ @import '~bootstrap/scss/bootstrap';\r\n  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  ╵\n  C:\\laragon\\www\\EspacioMinero\\resources\\sass\\app.scss 8:9  root stylesheet\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\laragon\\www\\EspacioMinero\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\sass-loader\\dist\\index.js:73:7\n    at Function.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:56230:16)\n    at _render_closure1.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:34691:12)\n    at _RootZone.runBinary$3$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3500:88)\n    at _Future._completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18219:12)\n    at Object._asyncRethrow (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3256:17)\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:10615:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3500:88)\n    at _Future._completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18219:12)\n    at Object._asyncRethrow (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3256:17)\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:12510:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3500:88)");
 
 /***/ }),
 
@@ -32183,8 +32182,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

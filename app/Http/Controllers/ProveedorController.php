@@ -61,6 +61,7 @@ class ProveedorController extends Controller
         $p->rut = request('user-rut');
         $p->nombre = request('user-name');
         $p->sitio_web = request('user-sitio');
+        $p->descripcion = request('user-descripcion');
         $p->direccion = request('user-address');
         $p->password = request('user-pass');
         $p->categoria_id = request('user-cat');
@@ -69,7 +70,7 @@ class ProveedorController extends Controller
         $p->estado_id = request('user-status');
     
         $p->save();
-        return redirect()->route('proveedor.index');
+        return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
 
 
 

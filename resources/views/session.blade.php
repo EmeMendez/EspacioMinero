@@ -6,6 +6,23 @@
     <h3 class="text-center">Iniciar Sesión</h3>
     <div class="row justify-content-center">
       <div class="col-lg-11 col-xl-9">
+
+        @if(count($errors)> 0)
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{$error}}</li>
+                
+            @endforeach
+          </ul>
+        </div>
+        @endif
+        @if (\Session::has('success'))
+        <div class="alert alert-success">
+          <p>{{\Session::get('success')}}</p>
+        </div>
+        @endif
+
         <!-- RD Mailform-->
         <form class="rd-mailform rd-form ses" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
           <div class="row row-x-16 row-20"  >

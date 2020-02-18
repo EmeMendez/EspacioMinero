@@ -34,7 +34,7 @@
                     <input class="form-input" id="contact-web" type="text" name="user-sitio" >
                     <label class="form-label" for="contact-web">Sitio Web</label>
                   </div>
-                </div>                                                 
+                </div>                                               
                 <div class="col-7">
                     <div class="form-wrap">
                         <input class="form-input" id="contact-pass" type="password" name="user-pass" >
@@ -77,6 +77,12 @@
                      <i></i>     
                     </div>
                 </div>
+                <div class="col-7">
+                  <div class="form-wrap">
+                    <textarea id="contact-description" name="user-descripcion"></textarea>
+                    <label class="form-label" for="contact-description">Descripción de su empresa</label>
+                  </div>
+                </div>   
             <div class="col-md-7">
               <div class="form-wrap form-button">
                 <button type="button" class="btn btn-success btn-circle"><label class="plus" >+</label></b>

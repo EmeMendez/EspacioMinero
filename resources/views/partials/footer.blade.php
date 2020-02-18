@@ -1,5 +1,5 @@
 <!-- Page Footer-->
-<a class="banner" href="https://www.templatemonster.com/website-templates/monstroid2.html" target="_blank"><img src="/images/img/aso.png" alt="" height="0"/></a>
+<a class="banner" href="http://www.cidere.cl" target="_blank"><img src="/images/img/aso.png" alt="" height="0"/></a>
 <footer class="section footer-classic">
   <div class="footer-classic-main">
     <div class="container">
@@ -12,12 +12,11 @@
           <h4 class="footer-classic-title">Enlaces rápidos</h4>
           <ul class="list footer-classic-list footer-classic-list_2-cols">
             <li><a href="#">Iniciar Sesión</a></li>
-            <li><a href="#">Our Team</a></li>
             <li><a href="#">Registrarse</a></li>
             <li><a href="#">Pricing</a></li>
             <li><a href="#">Testimonials</a></li>
             <li><a href="#">Preguntas Frecuentes</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="https://www.iubenda.com/privacy-policy/94717137" class="iubenda-white iubenda-embed" title="Privacy Policy ">Politica y privacidad</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></li>
           </ul>
         </div>
         <div class="col-sm-5 col-lg-9 col-xl-2">

@@ -26,7 +26,7 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title" v-text="p.nombre"></h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text" v-text="p.descripcion"></p>
             <a class="button button-sm button-default-outline button-winona" href="#"> Más Información</a>            
           </div>
         </div>
