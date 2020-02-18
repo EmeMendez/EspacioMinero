@@ -10,13 +10,14 @@ class ProveedorController extends Controller
 {
     
     /**
-     * Sirve para listar un lista por ejemplo.
+     * Sirve para listar.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $proveedor = Proveedor::get();
+        return view('proveedor.index',compact('proveedor'));
     }
 
     /**
