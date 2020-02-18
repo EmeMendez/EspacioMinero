@@ -17,6 +17,9 @@ class ProveedorController extends Controller
     public function index()
     {
         $proveedor = Proveedor::get();
+        if(request()->ajax()){
+            return $proveedor;
+        }
         return view('proveedor.index',compact('proveedor'));
     }
 
