@@ -54,7 +54,25 @@ class ProveedorController extends Controller
      */
     public function store()
     {
-        return request();
+
+        $p = new Proveedor;
+
+
+        $p->rut = request('user-rut');
+        $p->nombre = request('user-name');
+        $p->sitio_web = request('user-sitio');
+        $p->direccion = request('user-address');
+        $p->password = request('user-pass');
+        $p->categoria_id = request('user-cat');
+        $p->ciudad_id = request('user-city');
+        $p->tamanio_empresa_id = request('user-tamanio');
+        $p->estado_id = request('user-status');
+    
+        $p->save();
+        return redirect()->route('proveedor.index');
+
+
+
     }
 
     /**

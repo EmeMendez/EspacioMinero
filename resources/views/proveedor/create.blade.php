@@ -22,12 +22,19 @@
                         <label class="form-label" for="contact-name">Nombre</label>
                       </div>
                     </div> 
-                    <div class="col-7">
-                        <div class="form-wrap">
-                            <input class="form-input" id="contact-address" type="text" name="user-address" >
-                            <label class="form-label" for="contact-address">Dirección</label>
-                          </div>
-                        </div>                                     
+                <div class="col-7">
+                  <div class="form-wrap">
+                    <input class="form-input" id="contact-address" type="text" name="user-address" >
+                    <input type="hidden" name="user-status" value="1">
+                    <label class="form-label" for="contact-address">Dirección</label>
+                  </div>
+                </div>        
+                <div class="col-7">
+                  <div class="form-wrap">
+                    <input class="form-input" id="contact-web" type="text" name="user-sitio" >
+                    <label class="form-label" for="contact-web">Sitio Web</label>
+                  </div>
+                </div>                                                 
                 <div class="col-7">
                     <div class="form-wrap">
                         <input class="form-input" id="contact-pass" type="password" name="user-pass" >
