@@ -21,7 +21,9 @@ Route::view('/contacto','contact')->name('contact');
 
 Route::view('/iniciar-sesion','session')->name('session');
 Route::get('/proveedor/registrarse','ProveedorController@create')->name('proveedor.create');
+Route::get('/proveedor/proveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
 Route::get('/proveedor/proveedores','ProveedorController@index')->name('proveedor.index');
+
 
 Route::view('/proveedores','list-provider')->name('list-provider');
 Route::view('/proveedores-perfil','show-provider')->name('show-provider');
