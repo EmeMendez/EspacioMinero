@@ -21,7 +21,7 @@
     <div class="card mb-3" v-for="p in proveedores" v-bind:key="p.rut">
       <div class="row no-gutters">
         <div class="col-md-2">
-          <img src="https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png" class="card-img" alt="...">
+          <img :src="'/storage/' + p.imagen.substr(6)" class="card-img" alt="...">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -54,6 +54,8 @@
                 try{
                     axios.get('/proveedor/proveedores/' + this.parametro).then(res =>{
                     this.proveedores = res.data;
+
+                    //console.log(res.data.imagen.slice(-5));
                     // console.log(this.proveedores);
 
                     })               
@@ -66,6 +68,7 @@
         mounted(){
                     axios.get('/proveedor/proveedores').then(res =>{
                     this.proveedores = res.data;
+
                     //console.log(this.proveedores);
 
                     })        

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 use App\Proveedor;
 use App\Ciudad;
 use App\TamanioEmpresa;
@@ -52,10 +54,14 @@ class ProveedorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $r)
     {
-
+        //$r->file('user-imagen')->store('public');
         $p = new Proveedor;
+
+        if($r->hasFile('user-imagen')){
+            $p->imagen = $r->file('user-imagen')->store('public');
+        }
 
 
         $p->rut = request('user-rut');
@@ -68,7 +74,8 @@ class ProveedorController extends Controller
         $p->ciudad_id = request('user-city');
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id = request('user-status');
-    
+
+
         $p->save();
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
 
