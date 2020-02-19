@@ -1997,7 +1997,8 @@ __webpack_require__.r(__webpack_exports__);
 
       try {
         axios.get('/proveedor/proveedores/' + this.parametro).then(function (res) {
-          _this.proveedores = res.data; // console.log(this.proveedores);
+          _this.proveedores = res.data; //console.log(res.data.imagen.slice(-5));
+          // console.log(this.proveedores);
         });
       } catch (error) {
         console.log("llegue al catch");
@@ -2015,6 +2016,59 @@ __webpack_require__.r(__webpack_exports__);
   } // computed:{
   // }
 
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      imagenMiniatura: '/storage/default-avatar.png',
+      imagen: ''
+    };
+  },
+  methods: {
+    getImagen: function getImagen(e) {
+      var file = e.target.files[0];
+      this.imagen = file;
+      this.cargarImagen(file);
+    },
+    cargarImagen: function cargarImagen(file) {
+      var _this = this;
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this.imagenMiniatura = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  },
+  computed: {
+    imagensita: function imagensita() {
+      return this.imagenMiniatura;
+    }
+  }
 });
 
 /***/ }),
@@ -19714,7 +19768,12 @@ var render = function() {
       _vm._l(_vm.proveedores, function(p) {
         return _c("div", { key: p.rut, staticClass: "card mb-3" }, [
           _c("div", { staticClass: "row no-gutters" }, [
-            _vm._m(1, true),
+            _c("div", { staticClass: "col-md-2" }, [
+              _c("img", {
+                staticClass: "card-img",
+                attrs: { src: "/storage/" + p.imagen.substr(6), alt: "..." }
+              })
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
               _c("div", { staticClass: "card-body" }, [
@@ -19764,23 +19823,42 @@ var staticRenderFns = [
         )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("img", {
-        staticClass: "card-img",
-        attrs: {
-          src:
-            "https://www.cidere.cl//sites/default/files/gbb-uploads/Logo800x600-ta2vqm.png",
-          alt: "..."
-        }
-      })
-    ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-wrap" }, [
+      _c("input", {
+        staticClass: "form-input",
+        attrs: { id: "user-imagen", type: "file", name: "user-imagen" },
+        on: { change: _vm.getImagen }
+      })
+    ]),
+    _vm._v(" "),
+    _c("img", { attrs: { src: _vm.imagensita, height: "100", width: "100" } })
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -31971,6 +32049,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('proveedores-component', __webpack_require__(/*! ./components/ListaProveedorComponent.vue */ "./resources/js/components/ListaProveedorComponent.vue")["default"]);
+Vue.component('verimagen-component', __webpack_require__(/*! ./components/VerImagenComponent.vue */ "./resources/js/components/VerImagenComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32164,6 +32243,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/VerImagenComponent.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/VerImagenComponent.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VerImagenComponent_vue_vue_type_template_id_6f1ddfd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VerImagenComponent.vue?vue&type=template&id=6f1ddfd2& */ "./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2&");
+/* harmony import */ var _VerImagenComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VerImagenComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _VerImagenComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _VerImagenComponent_vue_vue_type_template_id_6f1ddfd2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _VerImagenComponent_vue_vue_type_template_id_6f1ddfd2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/VerImagenComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerImagenComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./VerImagenComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VerImagenComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerImagenComponent_vue_vue_type_template_id_6f1ddfd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./VerImagenComponent.vue?vue&type=template&id=6f1ddfd2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerImagenComponent_vue_vue_type_template_id_6f1ddfd2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_VerImagenComponent_vue_vue_type_template_id_6f1ddfd2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -32171,7 +32319,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Can't find stylesheet to import.\n  ╷\n8 │ @import '~bootstrap/scss/bootstrap';\r\n  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  ╵\n  C:\\laragon\\www\\EspacioMinero\\resources\\sass\\app.scss 8:9  root stylesheet\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\laragon\\www\\EspacioMinero\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\sass-loader\\dist\\index.js:73:7\n    at Function.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:56230:16)\n    at _render_closure1.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:34691:12)\n    at _RootZone.runBinary$3$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3500:88)\n    at _Future._completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18219:12)\n    at Object._asyncRethrow (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3256:17)\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:10615:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3500:88)\n    at _Future._completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18219:12)\n    at Object._asyncRethrow (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3256:17)\n    at C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:12510:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\laragon\\www\\EspacioMinero\\node_modules\\sass\\sass.dart.js:3500:88)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -32182,8 +32330,8 @@ throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

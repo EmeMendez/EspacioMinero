@@ -7,14 +7,18 @@
     <div class="row justify-content-center">
       <div class="col-lg-11 col-xl-9">
         <!-- RD Mailform-->
-        <form class="rd-mailform rd-form sig" method="POST" action="{{ route('proveedor.store') }}">
+        <form enctype="multipart/form-data" class="rd-mailform rd-form sig" method="POST" action="{{ route('proveedor.store') }}">
           @csrf
+
           <div class="row row-x-16 row-20"  >
+            <div id="app">
+              <verimagen-component></verimagen-component>
+            </div>
             <div class="col-7">
                 <div class="form-wrap">
                     <input class="form-input" id="contact-rut" type="text" name="user-rut">
                     <label class="form-label" for="contact-rut">Rut</label>
-                  </div>
+                </div>
                 </div>
                 <div class="col-7">
                     <div class="form-wrap">
