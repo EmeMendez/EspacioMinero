@@ -19,8 +19,8 @@ class ProveedorController extends Controller
     public function index()
     {
         $proveedor = Proveedor::get();
-        if(request()->ajax()){
-            return $proveedor;
+         if(request()->ajax()){
+             return $proveedor;
         }
         return view('proveedor.index',compact('proveedor'));
     }
@@ -92,6 +92,11 @@ class ProveedorController extends Controller
     public function show($id)
     {
         //
+        if(request()->ajax()){
+            return view('proveedor.show',compact($id));
+        }
+        return view('proveedor.show',compact($id));
+       
     }
 
     /**

@@ -19792,7 +19792,7 @@ var render = function() {
                   {
                     staticClass:
                       "button button-sm button-default-outline button-winona",
-                    attrs: { href: "#" }
+                    attrs: { href: "/proveedores-perfil/" + p.nombre }
                   },
                   [_vm._v(" Más Información")]
                 )

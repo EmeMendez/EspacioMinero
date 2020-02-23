@@ -24,8 +24,7 @@ Route::get('/proveedor/registrarse','ProveedorController@create')->name('proveed
 Route::post('/proveedor/proveedores', 'ProveedorController@store')->name('proveedor.store');
 Route::get('/proveedor/proveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
 Route::get('/proveedor/proveedores','ProveedorController@index')->name('proveedor.index');
-
+Route::get('/proveedores-perfil/{parameter}','ProveedorController@show')->name('proveedor.show');
 
 
 Route::view('/proveedores','list-provider')->name('list-provider');
-Route::view('/proveedores-perfil','show-provider')->name('show-provider');

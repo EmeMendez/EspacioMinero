@@ -27,7 +27,7 @@
           <div class="card-body">
             <h5 class="card-title" v-text="p.nombre"></h5>
             <p class="card-text" v-text="p.descripcion"></p>
-            <a class="button button-sm button-default-outline button-winona" href="#"> Más Información</a>            
+            <a class="button button-sm button-default-outline button-winona" :href="'/proveedores-perfil/' + p.nombre"> Más Información</a>            
           </div>
         </div>
       </div>
