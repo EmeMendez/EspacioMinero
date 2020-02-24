@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     protected $table = 'proveedor';
+    protected $keyType = 'string';
+    protected $primaryKey = 'url';
 
-    //protected $fillable = [''];
+
+    public function getRouteKeyName(){
+        return 'url';
+    }
 }

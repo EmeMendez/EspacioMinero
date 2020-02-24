@@ -3,23 +3,14 @@
 
 <section class="section section-xs bg-gray-100">
     <div class="container">
-      <h3 class="text-center">Buscar Proveedor</h3><br>
+      <h3 class="text-center">Informacion del proveedor</h3><br>
   
       <!-- Buscardor proveedor -->
       <div class="container">
         <div class="form-group row">
           <div class="col-sm-2">               
           </div>        
-          <div class="col-sm-7">
-            <div class="form-wrap">
-              <input placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
-            </div>
-          </div>
-            <div class="col-sm-3">
-              <div class="form-wrap">
-                <a class="button button-sm button-default-outline button-winona" href="#"> Buscar Proveedor</a>            
-              </div>                   
-            </div>
+          
         </div>
       </div>
     </div>
@@ -33,15 +24,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-7">
-                        <img src="https://aurigae.com/blog/wp-content/uploads/2018/06/SPRING-1.png" class="rounded-circle" />
+                    <img src="{{ Storage::url($p->imagen)}}"  />
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="col-sm-9">
-            <h3>Nombre de la Empresa</h3>
-            <p>Incididunt voluptate eiusmod ullamco dolore ea pariatur. Velit dolore ea elit nulla. Proident et sunt ut culpa cillum eiusmod enim amet occaecat cillum labore tempor.</p>
+        <h3>{{ $p -> nombre }}</h3>
+        <p>{{ $p-> descripcion }}</p>
             <button class="button button-block button-primary col-4" type="submit">Contactar</button> 
         </div>
     </div>
@@ -51,12 +42,12 @@
         <div class="col-3">
 
             <h5>Datos del Proveedor</h5>
-            <p><b>Dirección</b><br>Calle Arturo Prat 564</p>
+            <p><b>Sitio Web</b><br>{{ $p -> sitio_web }}</p>
             <p><b>Teléfono de contacto</b><br> +569 88888888</p>
-            <p><b>Comuna</b><br> La Serena</p>
-            <p><b>Dirección</b><br>Calle Arturo Prat 564</p>
-            <p><b>Teléfono de contacto</b><br> +569 88888888</p>
-            <p><b>Comuna</b><br> La Serena</p>
+            <p><b>Ciudad</b><br> La Serena</p>
+            <p><b>Dirección</b><br>{{ $p-> direccion }}</p>
+            <p><b>Tamaño de empresa</b><br> +569 88888888</p>
+            <p><b>Servicio que ofrece</b><br> La Serena</p>
         </div>
         <div class="col-sm-9">
             <h3>Ordered </h3>

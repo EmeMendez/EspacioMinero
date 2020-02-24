@@ -8,11 +8,6 @@
             <input @keyup="getProveedoresByName" v-model="parametro" placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
           </div>
         </div>
-          <div class="col-sm-3">
-            <div class="form-wrap">
-              <a class="button button-sm button-default-outline button-winona" href="#"> Buscar Proveedor</a>            
-            </div>                   
-          </div>
       </div>
     <!-- Fin Buscador --> 
      <!-- inicio de la lista -->
@@ -27,7 +22,7 @@
           <div class="card-body">
             <h5 class="card-title" v-text="p.nombre"></h5>
             <p class="card-text" v-text="p.descripcion"></p>
-            <a class="button button-sm button-default-outline button-winona" :href="'/proveedores-perfil/' + p.nombre"> Más Información</a>            
+            <a class="button button-sm button-default-outline button-winona" :href="'/proveedores-perfil/' + p.url"> Más Información</a>            
           </div>
         </div>
       </div>

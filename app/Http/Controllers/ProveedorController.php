@@ -62,19 +62,19 @@ class ProveedorController extends Controller
         if($r->hasFile('user-imagen')){
             $p->imagen = $r->file('user-imagen')->store('public');
         }
+        
 
-
-        $p->rut = request('user-rut');
-        $p->nombre = request('user-name');
-        $p->sitio_web = request('user-sitio');
-        $p->descripcion = request('user-descripcion');
-        $p->direccion = request('user-address');
-        $p->password = request('user-pass');
-        $p->categoria_id = request('user-cat');
-        $p->ciudad_id = request('user-city');
+        $p->rut                = request('user-rut');
+        $p->nombre             = request('user-name');
+        $p->sitio_web          = request('user-sitio');
+        $p->descripcion        = request('user-descripcion');
+        $p->direccion          = request('user-address');
+        $p->password           = bcrypt(request('user-pass'));
+        $p->categoria_id       = request('user-cat');
+        $p->ciudad_id          = request('user-city');
         $p->tamanio_empresa_id = request('user-tamanio');
-        $p->estado_id = request('user-status');
-
+        $p->estado_id          = request('user-status');
+        $p->url                = str_replace(" ","-",strtolower(request('user-name')));
 
         $p->save();
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
@@ -89,14 +89,11 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($rut)
     {
-        //
-        if(request()->ajax()){
-            return view('proveedor.show',compact($id));
-        }
-        return view('proveedor.show',compact($id));
-       
+         $p = Proveedor::find($rut);
+         return view('proveedor.show',compact('p'));
+               
     }
 
     /**

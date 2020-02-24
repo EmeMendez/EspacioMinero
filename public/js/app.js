@@ -1979,11 +1979,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19756,9 +19751,7 @@ var render = function() {
               }
             })
           ])
-        ]),
-        _vm._v(" "),
-        _vm._m(0)
+        ])
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "h5" }, [
@@ -19792,7 +19785,7 @@ var render = function() {
                   {
                     staticClass:
                       "button button-sm button-default-outline button-winona",
-                    attrs: { href: "/proveedores-perfil/" + p.nombre }
+                    attrs: { href: "/proveedores-perfil/" + p.url }
                   },
                   [_vm._v(" Más Información")]
                 )
@@ -19805,26 +19798,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-3" }, [
-      _c("div", { staticClass: "form-wrap" }, [
-        _c(
-          "a",
-          {
-            staticClass:
-              "button button-sm button-default-outline button-winona",
-            attrs: { href: "#" }
-          },
-          [_vm._v(" Buscar Proveedor")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -32330,8 +32304,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

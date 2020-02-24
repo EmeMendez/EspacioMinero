@@ -3820,7 +3820,6 @@ input:-webkit-autofill ~ .form-validation {
 	background-color: #ffffff;
 	background-image: none;
 	border-radius: 35px;
-	-webkit-appearance: none;
 	transition: .3s ease-in-out;
 	border: 1px solid #ebebeb;
 }
