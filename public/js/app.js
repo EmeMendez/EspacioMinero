@@ -1986,31 +1986,28 @@ __webpack_require__.r(__webpack_exports__);
       parametro: ''
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/proveedor/proveedores/json/getproveedores').then(function (res) {
+      _this.proveedores = res.data;
+    });
+  },
   methods: {
     getProveedoresByName: function getProveedoresByName() {
-      var _this = this;
+      var _this2 = this;
 
       try {
-        axios.get('/proveedor/proveedores/' + this.parametro).then(function (res) {
-          _this.proveedores = res.data; //console.log(res.data.imagen.slice(-5));
-          // console.log(this.proveedores);
+        axios.get('/proveedor/proveedores/json/getproveedores/' + this.parametro).then(function (res) {
+          _this2.proveedores = res.data;
         });
       } catch (error) {
-        console.log("llegue al catch");
+        console.log("error obteniendo la lista de proveedores por nombre");
       }
 
       return this.proveedores;
     }
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    axios.get('/proveedor/proveedores').then(function (res) {
-      _this2.proveedores = res.data; //console.log(this.proveedores);
-    });
-  } // computed:{
-  // }
-
+  }
 });
 
 /***/ }),
@@ -32304,8 +32301,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

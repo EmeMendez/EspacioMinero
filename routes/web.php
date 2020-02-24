@@ -22,8 +22,14 @@ Route::view('/contacto','contact')->name('contact');
 Route::view('/iniciar-sesion','session')->name('session');
 Route::get('/proveedor/registrarse','ProveedorController@create')->name('proveedor.create');
 Route::post('/proveedor/proveedores', 'ProveedorController@store')->name('proveedor.store');
-Route::get('/proveedor/proveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
 Route::get('/proveedor/proveedores','ProveedorController@index')->name('proveedor.index');
+
+//rutas jSON
+Route::get('/proveedor/proveedores/json/getproveedores','ProveedorController@indexJSON')->name('proveedor.indexJSON');
+Route::get('/proveedor/proveedores/json/getproveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
+//fin json
+
+
 Route::get('/proveedores-perfil/{parameter}','ProveedorController@show')->name('proveedor.show');
 
 

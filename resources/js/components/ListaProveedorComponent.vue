@@ -5,7 +5,7 @@
         <div class="col-sm-2">               
         </div>        <div class="col-sm-7">
           <div class="form-wrap">
-            <input @keyup="getProveedoresByName" v-model="parametro" placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
+             <input @keyup="getProveedoresByName" v-model="parametro" placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
           </div>
         </div>
       </div>
@@ -37,40 +37,34 @@
 
 
 <script>
-    export default {
+	
+	    export default {
         data(){
             return {
                 proveedores: [],
                 parametro: ''
             }
         },
+        mounted(){
+          axios.get('/proveedor/proveedores/json/getproveedores').then(res=>{
+            this.proveedores = res.data
+          })
+        },
+        
         methods:{
           getProveedoresByName(){
                 try{
-                    axios.get('/proveedor/proveedores/' + this.parametro).then(res =>{
+                    axios.get('/proveedor/proveedores/json/getproveedores/' + this.parametro).then(res =>{
                     this.proveedores = res.data;
-
-                    //console.log(res.data.imagen.slice(-5));
-                    // console.log(this.proveedores);
-
                     })               
                 }catch(error){
-                    console.log("llegue al catch");
+                    console.log("error obteniendo la lista de proveedores por nombre");
                 }
                 return this.proveedores;
             }  
-        },
-        mounted(){
-                    axios.get('/proveedor/proveedores').then(res =>{
-                    this.proveedores = res.data;
-
-                    //console.log(this.proveedores);
-
-                    })        
-        },
-        // computed:{
-         
-        // }
+        }
 
     }
+
+
 </script>
