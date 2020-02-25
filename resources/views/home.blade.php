@@ -1,27 +1,25 @@
 @extends("layout")
 @section('content')
 <!-- FScreen-->
-<div class="layout-4">
-<div class="layout-4-item-right">
-    <div class="box-custom-2 bg-accent">
-    <div class="box-custom-2-bg bg-gray-900"><img class="map-image" src="/images/world-map-light.svg" alt=""></div>
-    <div class="box-custom-2-inner">
-        <h2 class="wow fadeIn">Marketing That Generates Results</h2>
-        <h4 class="text-default wow fadeIn" data-wow-delay=".2s">Get the free checklist with 7 ways to improve your business.</h4>
-        <form class="rd-form rd-mailform form-shadow block-11 ot50" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
-        <div class="form-wrap">
-            <input class="form-input text-center" id="subscribe-form-email" type="email" name="email" data-constraints="@Email @Required">
-            <label class="form-label text-center" for="subscribe-form-email">Your E-mail</label>
-        </div>
-        <div class="form-button">
-            <button class="button button-block button-primary button-winona" type="submit">Get Checklist</button>
-        </div>
-        </form>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        
+    <div class="carousel-inner">
+        @foreach($imagenes as $banner)
+            <div class="carousel-item @if($loop->first) active @endif" >
+            <img src="{{ Storage::url($banner->urlImagen)}}" class="d-block w-100 h-25 d-inline-block" alt="...">
+            </div>
+        @endforeach
     </div>
-    </div>
-</div>
-<div class="layout-4-item-left"><img src="/images/home-01-654x515.png" alt="" width="654" height="515"/>
-</div>
+   
+
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+    </a>
 </div>
 
 <!-- Our Solutions-->
