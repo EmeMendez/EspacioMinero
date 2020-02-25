@@ -39,6 +39,7 @@
   <div class="footer-classic-aside">
     <div class="container">
       <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span> Espacio Industrial Minero. Todos los Derechos Reservados</p>
+      <a href="{{ url('/logout') }}"> logout </a>
     </div>
   </div>
 </footer>

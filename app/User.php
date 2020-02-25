@@ -3,22 +3,20 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Proveedor;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'proveedor';
+    protected $keyType = 'string';
+    protected $primaryKey = 'url';
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
+    'rut', 'password'
+];
+   
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -28,6 +26,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -36,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getRouteKeyName(){
+        return 'url';
+    }
 }

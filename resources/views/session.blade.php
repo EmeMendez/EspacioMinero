@@ -24,7 +24,8 @@
         @endif
 
         <!-- RD Mailform-->
-        <form class="rd-mailform rd-form ses" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+        <form class="rd-mailform rd-form ses" data-form-output="form-output-global" data-form-type="contact" method="post" action={{route('login')}}>
+        @csrf
           <div class="row row-x-16 row-20"  >
             <div class="col-7">
                 <div class="form-wrap">
