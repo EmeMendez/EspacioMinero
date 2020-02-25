@@ -3,7 +3,8 @@
     <div class="container">
       <div class="form-group row">
         <div class="col-sm-2">               
-        </div>        <div class="col-sm-7">
+        </div>        
+        <div class="col-sm-7">
           <div class="form-wrap">
              <input @keyup="getProveedoresByName" v-model="parametro" placeholder="Nombre" class="form-input" id="provider-name" type="text" name="user-name" >
           </div>
@@ -11,7 +12,7 @@
       </div>
     <!-- Fin Buscador --> 
      <!-- inicio de la lista -->
-    <p class="h5">[Resultados {{proveedores.length}}]</p>
+    <label class="lead pb-3">Resultados : {{resultados}}</label>
     
     <div class="card mb-3" v-for="p in proveedores" v-bind:key="p.rut">
       <div class="row no-gutters">
@@ -28,9 +29,17 @@
       </div>
     </div> 
     <!-- end list -->
+    <div v-if="resultados != 0" class="row ">
+        <button  @click="changePage(n)" class="btn mx-2" :class="{
+          'btn-secondary' :n != page,
+          'btn-primary' :n == page
+        }" v-for="(n,index) in this.total_pages" :key="index">{{n}}
 
+        </button>
+    </div>
     </div>
 
+  
 
 </template>
 
@@ -42,26 +51,47 @@
         data(){
             return {
                 proveedores: [],
-                parametro: ''
+                parametro: '',
+                total_pages : null,
+                page: 1,
+                resultados: 0
             }
         },
         mounted(){
-          axios.get('/proveedor/proveedores/json/getproveedores').then(res=>{
-            this.proveedores = res.data
-          })
+          this.getProveedoresByName()
         },
         
         methods:{
           getProveedoresByName(){
                 try{
-                    axios.get('/proveedor/proveedores/json/getproveedores/' + this.parametro).then(res =>{
-                    this.proveedores = res.data;
-                    })               
+                    if(this.parametro != ''){
+                        axios.get('/proveedor/proveedores/json/getproveedores/' + this.parametro + '?page=1').then(res =>{
+                        this.proveedores = res.data.data;
+                        this.total_pages = res.data.last_page
+                        this.resultados = res.data.total
+
+                        }) 
+
+                    }else{
+                        axios.get('/proveedor/proveedores/json/getproveedores/*?page=' + this.page).then(res=>{
+                        this.proveedores = res.data.data                       
+                        this.total_pages = res.data.last_page
+                        this.resultados = res.data.total
+
+
+
+          })
+                    }              
                 }catch(error){
                     console.log("error obteniendo la lista de proveedores por nombre");
                 }
                 return this.proveedores;
-            }  
+            },
+        changePage(n){
+          this.page = n
+          this.getProveedoresByName()
+        }
+            
         }
 
     }

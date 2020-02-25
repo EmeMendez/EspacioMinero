@@ -23,7 +23,6 @@ Route::get('/proveedor/proveedores','ProveedorController@index')->name('proveedo
 Route::get('/proveedores-perfil/{parameter}','ProveedorController@show')->name('proveedor.show');
 
 //rutas jSON
-Route::get('/proveedor/proveedores/json/getproveedores','ProveedorController@indexJSON')->name('proveedor.indexJSON');
 Route::get('/proveedor/proveedores/json/getproveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
 //fin json
 

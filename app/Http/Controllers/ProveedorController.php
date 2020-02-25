@@ -22,18 +22,15 @@ class ProveedorController extends Controller
         return view('proveedor.index',compact('proveedor'));
     }
 
-    public function indexJSON()
-    {
-
-        $proveedor = Proveedor::get();
-         return $proveedor;
-        
-    }
 
     public function getProveedoresByName($parameter)
     {
-
-        $proveedor = Proveedor::where('nombre','LIKE', '%' . $parameter . '%')->get();
+        if($parameter =='*'){
+            $proveedor = Proveedor::latest()->paginate(10);
+        }
+        else{
+            $proveedor = Proveedor::where('nombre','LIKE', '%' . $parameter . '%')->paginate(10);
+        }
         return $proveedor;
         
     }
