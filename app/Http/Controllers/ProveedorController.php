@@ -26,12 +26,20 @@ class ProveedorController extends Controller
     public function getProveedoresByName($parameter)
     {
         if($parameter =='*'){
-            $proveedor = Proveedor::latest()->paginate(10);
+            $proveedor = Proveedor::orderBy('nombre','ASC')->paginate(10);
         }
         else{
-            $proveedor = Proveedor::where('nombre','LIKE', '%' . $parameter . '%')->paginate(10);
+            $proveedor = Proveedor::where('nombre','LIKE', '%' . $parameter . '%')->orderBy('nombre','ASC')->paginate(10);
         }
-        return $proveedor;
+        return ['pagination' => [
+                 'total' => $proveedor->total(),
+                 'current_page' => $proveedor->currentPage(),
+                 'per_page' => $proveedor->perPage(),
+                 'last_page' => $proveedor->lastPage(),
+                 'from' => $proveedor->firstItem(),
+                 'to' => $proveedor->lastPage(),
+                 ],
+                'proveedores' => $proveedor];
         
     }
     /**

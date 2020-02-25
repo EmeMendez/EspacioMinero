@@ -1988,35 +1988,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       proveedores: [],
+      pagination: {
+        'total': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      },
       parametro: '',
-      total_pages: null,
-      page: 1,
       resultados: 0
     };
   },
   mounted: function mounted() {
     this.getProveedoresByName();
   },
+  computed: {
+    isActived: function isActived() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function pagesNumber() {
+      if (!this.pagination.to) {
+        return [];
+      }
+
+      var from = this.pagination.current_page - 2; //to do
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + 2 * 2; //to do
+
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page;
+      }
+
+      var pagesArray = [];
+
+      while (from <= to) {
+        pagesArray.push(from);
+        from++;
+      }
+
+      return pagesArray;
+    }
+  },
   methods: {
-    getProveedoresByName: function getProveedoresByName() {
+    getProveedoresByName: function getProveedoresByName(page) {
       var _this = this;
 
       try {
         if (this.parametro != '') {
           axios.get('/proveedor/proveedores/json/getproveedores/' + this.parametro + '?page=1').then(function (res) {
-            _this.proveedores = res.data.data;
-            _this.total_pages = res.data.last_page;
-            _this.resultados = res.data.total;
+            _this.proveedores = res.data.proveedores.data;
+            _this.pagination = res.data.pagination;
           });
         } else {
-          axios.get('/proveedor/proveedores/json/getproveedores/*?page=' + this.page).then(function (res) {
-            _this.proveedores = res.data.data;
-            _this.total_pages = res.data.last_page;
-            _this.resultados = res.data.total;
+          axios.get('/proveedor/proveedores/json/getproveedores/*?page=' + page).then(function (res) {
+            _this.proveedores = res.data.proveedores.data;
+            _this.pagination = res.data.pagination;
           });
         }
       } catch (error) {
@@ -2025,9 +2063,9 @@ __webpack_require__.r(__webpack_exports__);
 
       return this.proveedores;
     },
-    changePage: function changePage(n) {
-      this.page = n;
-      this.getProveedoresByName();
+    changePage: function changePage(page) {
+      this.pagination.current_page = page;
+      this.getProveedoresByName(page); //window.scrollTo(0,0);
     }
   }
 });
@@ -19773,21 +19811,24 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("label", { staticClass: "lead pb-3" }, [
-        _vm._v("Resultados : " + _vm._s(_vm.resultados))
+      _c("label", { staticClass: "lead pb-3", attrs: { id: "results" } }, [
+        _vm._v("Resultados : " + _vm._s(_vm.pagination.total))
       ]),
       _vm._v(" "),
       _vm._l(_vm.proveedores, function(p) {
         return _c("div", { key: p.rut, staticClass: "card mb-3" }, [
           _c("div", { staticClass: "row no-gutters" }, [
-            _c("div", { staticClass: "col-md-2" }, [
+            _c("div", { staticClass: "col-md-2 col-12 text-center my-auto" }, [
               _c("img", {
-                staticClass: "card-img",
-                attrs: { src: "/storage/" + p.imagen.substr(6), alt: "..." }
+                attrs: {
+                  src: "/storage/" + p.imagen.substr(6),
+                  width: "150",
+                  height: "150"
+                }
               })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "col-md-8 col-12" }, [
               _c("div", { staticClass: "card-body" }, [
                 _c("h5", {
                   staticClass: "card-title",
@@ -19795,7 +19836,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("p", {
-                  staticClass: "card-text",
+                  staticClass: "card-text multine-ellipsis text-justify",
                   domProps: { textContent: _vm._s(p.descripcion) }
                 }),
                 _vm._v(" "),
@@ -19803,7 +19844,7 @@ var render = function() {
                   "a",
                   {
                     staticClass:
-                      "button button-sm button-default-outline button-winona",
+                      "button button-sm button-default-outline button-winona ml-0",
                     attrs: { href: "/proveedores-perfil/" + p.url }
                   },
                   [_vm._v(" Más Información")]
@@ -19814,32 +19855,98 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _vm.resultados != 0
-        ? _c(
-            "div",
-            { staticClass: "row " },
-            _vm._l(this.total_pages, function(n, index) {
-              return _c(
-                "button",
-                {
-                  key: index,
-                  staticClass: "btn mx-2",
-                  class: {
-                    "btn-secondary": n != _vm.page,
-                    "btn-primary": n == _vm.page
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.changePage(n)
-                    }
-                  }
+      _c("nav", [
+        _c(
+          "ul",
+          { staticClass: "pagination" },
+          [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: {
+                  "page-item disabled": _vm.pagination.current_page == 1,
+                  "page-item": _vm.pagination.current_page > 1
                 },
-                [_vm._v(_vm._s(n) + "\n\n    ")]
+                attrs: { to: "results" }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changePage(_vm.pagination.current_page - 1)
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("«")])]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.pagesNumber, function(page) {
+              return _c(
+                "li",
+                {
+                  key: page,
+                  staticClass: "page-item",
+                  class: [page == _vm.isActived ? "active" : "page-item"]
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.changePage(page)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(page))]
+                  )
+                ]
               )
             }),
-            0
-          )
-        : _vm._e()
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: {
+                  "page-item disabled":
+                    _vm.pagination.current_page == _vm.pagination.last_page,
+                  "page-item":
+                    _vm.pagination.current_page != _vm.pagination.last_page
+                }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.changePage(_vm.pagination.current_page + 1)
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("»")])]
+                )
+              ]
+            )
+          ],
+          2
+        )
+      ])
     ],
     2
   )
@@ -32350,8 +32457,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
