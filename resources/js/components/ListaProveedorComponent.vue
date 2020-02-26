@@ -23,7 +23,7 @@
           <div class="card-body">
             <h5 class="card-title" v-text="p.nombre"></h5>
             <p class="card-text multine-ellipsis text-justify"  v-text="p.descripcion"></p>
-            <a class="button button-sm button-default-outline button-winona ml-0" :href="'/proveedores-perfil/' + p.url"> Más Información</a>            
+            <a class="button button-sm button-default-outline button-winona ml-0" :href="'/proveedor/perfil/' + p.url"> Más Información</a>            
           </div>
         </div>
       </div>

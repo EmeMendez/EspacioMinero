@@ -69,6 +69,8 @@ class ProveedorController extends Controller
 
         if($r->hasFile('user-imagen')){
             $p->imagen = $r->file('user-imagen')->store('public');
+        }else{
+            $p->imagen = 'public/default-avatar.png';
         }
         
 
@@ -97,11 +99,15 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($rut)
+    public function show(Proveedor $url)
     {
-         $p = Proveedor::find($rut);
-         return view('proveedor.show',compact('p'));
-               
+        $proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
+                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
+                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
+                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen")
+                              ->where("url", "=", $url->url)->first();
+        return view('proveedor.show',compact('proveedor',$proveedor));
+
     }
 
     /**

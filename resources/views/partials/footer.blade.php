@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row row-50 justify-content-lg-between">
         <div class="col-sm-7 col-lg-3 col-xl-2"><a class="brand" href="index.html"><img src="/images/logo-eim.png" alt="" width="199" height="41"/></a>
-          <p><span style="max-width: 250px;">Creamos instancias de participación que contribuyen al desarrollo sustentable de la Región de Coquimbo.</span></p><a class="button button-sm button-default-outline button-winona" href="{{route('about')}}">Nosotros</a>
+          <p><span style="max-width: 250px;">Creamos instancias de participación que contribuyen al desarrollo sustentable de la Región de Coquimbo.</span></p><a class="button button-sm button-default-outline button-winona ml-0" href="{{route('about')}}">Nosotros</a>
         </div>
 
         <div class="col-sm-7 col-lg-5 col-xl-3">

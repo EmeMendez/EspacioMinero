@@ -87,16 +87,11 @@
                     <label class="form-label" for="contact-description">Descripción de su empresa</label>
                   </div>
                 </div>   
-                <div id="app">
-                  <verimagen-component></verimagen-component>
-                </div>
-
             <div class="col-md-7">
                 <div class="form-wrap form-button">
                   <button class="button button-block button-primary" id="btnEnviar" type="submit">Registrarse</button>
                 </div>
               </div>
-
           </div>
         </form>
       </div>
