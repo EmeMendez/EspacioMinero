@@ -27,16 +27,20 @@
         </div>
     @endif
 
-<form action={{ route('proveedor.update',$proveedor) }} method="POST">
-    @method('PATCH')
-    @csrf 
     <div class="container">
         <div class="row">
             <div class="col-3 ">
+                <div id="app">
+                    <imagen-component></impagen-component>
+                </div>                
 
-                 <img height="260" width="255" src="{{ Storage::url($proveedor->imagen)}}"  />
-                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Informacion Generas</a>
+
+
+
+
+
+                 <div class="nav flex-column nav-pills mt-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Informacion General</a>
                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Teléfonos</a>
                     <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Correos</a>
                     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">certificaciones</a>
@@ -48,63 +52,69 @@
                 <div class="row">
                     <div class="tab-content" id="v-pills-tabContent">
 
+                        
                         <!--=================================================
                         =            SECCION INFORMACION GENERAL            =
                         ==================================================-->
 
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            <h5 class="text-md-left text-center">Informacion General</h5>
-                            <div class="col-12">
-                                <span>nombre</span>
-                                <input type="text" value="{{$proveedor->nombre}}" name="user-name">
-                                <input type="hidden" value="{{$proveedor->rut}}" name="user-rut">
+                            <form action={{ route('proveedor.update',$proveedor) }} method="POST">
+                                @method('PATCH')
+                                @csrf 
+                                <h5 class="text-md-left text-center">Informacion General</h5>
+                                <div class="col-12">
+                                    <span>Nombre</span>
+                                        <input class="form-input" size="40" type="text" value="{{$proveedor->nombre}}" name="user-name">
+                                    
+                                    
+                                    <input type="hidden" value="{{$proveedor->rut}}" name="user-rut">
+                                </div>
+                                <div class="col-12">
+                                    <span>Descripción</span>
+                                    <textarea class="form-input" name="user-descripcion" id="descripcion"  cols="100" rows="5">{{ $proveedor->descripcion}}</textarea>
+                                </div>
+                                <div class="col-12">
+                                    <span>Ciudad</span>
+                                    <select name="user-city" class="form-input">
+                                        @foreach ($ciudades as $c)
+                                        <option @if($c->id == $proveedor->ciudad_id) selected   @endif value="{{$c->id}}">{{$c->nombre}}</option>
+                                        @endforeach
+                                    </select> 
+                                </div> 
+                                <div class="col-12">
+                                    <span>Tamaño empresa</span>
+                                    <select name="user-tamanio" class="form-input">
+                                        @foreach ($tamanio_empresa as $tae)
+                                        <option  @if($tae->id == $proveedor->tamanio_empresa_id) selected   @endif value="{{$tae->id}}">{{$tae->nombre}}</option>
+                                        @endforeach
+                                    </select> 
+                                </div> 
+                                <div class="col-12">
+                                    <span>Tipo de empresa</span>
+                                    <select name="user-cat" class="form-input">
+                                        @foreach ($categorias as $cat)
+                                        <option  @if($cat->id == $proveedor->categoria_id) selected   @endif value="{{$cat->id}}">{{$cat->nombre}}</option>
+                                        @endforeach
+                                    </select> 
+                                </div>                       
+                                <h5 class="text-md-left text-center">Datos de contacto</h5>
+                                <div class="col-12">
+                                    <span>Sitio web</span>
+                                    <input class="form-input" name="user-sitio" type="text" value="{{$proveedor->sitio_web}}">
+                                </div>                     
+                                <div class="col-12">
+                                    <span>Dirección</span>
+                                    <input class="form-input" name="user-address" type="text" value="{{$proveedor->direccion}}">
+                                </div> 
+                                    
+                                <div class="form-wrap form-button">
+                                    <button class="button button-block button-primary w-25 p-2 mx-auto" id="btnEnviar" type="submit">Actualizar</button>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <span>Descripción</span>
-                                <textarea name="user-descripcion" id="descripcion"  cols="100" rows="5">{{ $proveedor->descripcion}}</textarea>
-                            </div>
-                            <div class="col-12">
-                                <span>Ciudad</span>
-                                <select name="user-city">
-                                    @foreach ($ciudades as $c)
-                                    <option @if($c->id == $proveedor->ciudad_id) selected   @endif value="{{$c->id}}">{{$c->nombre}}</option>
-                                    @endforeach
-                                </select> 
-                            </div> 
-                            <div class="col-12">
-                                <span>Tamaño empresa</span>
-                                <select name="user-tamanio">
-                                    @foreach ($tamanio_empresa as $tae)
-                                    <option  @if($tae->id == $proveedor->tamanio_empresa_id) selected   @endif value="{{$tae->id}}">{{$tae->nombre}}</option>
-                                    @endforeach
-                                </select> 
-                            </div> 
-                            <div class="col-12">
-                                <span>Tipo de empresa</span>
-                                <select name="user-cat">
-                                    @foreach ($categorias as $cat)
-                                    <option  @if($cat->id == $proveedor->categoria_id) selected   @endif value="{{$cat->id}}">{{$cat->nombre}}</option>
-                                    @endforeach
-                                </select> 
-                            </div>                       
-                            <h5 class="text-md-left text-center">Datos de contacto</h5>
-                            <div class="col-12">
-                                <span>Sitio web</span>
-                                <input name="user-sitio" type="text" value="{{$proveedor->sitio_web}}">
-                            </div>                     
-                            <div class="col-12">
-                                <span>Dirección</span>
-                                <input name="user-address" type="text" value="{{$proveedor->direccion}}">
-                            </div> 
-                                
-                            <div class="form-wrap form-button">
-                                <button class="button button-block button-primary pl-0" id="btnEnviar" type="submit">Actualizar</button>
-                            </div>
-                        </div>
 
                         <!--====  End of SECCION INFORMACION GENERAL  ====-->
 
-                        
+                        </form>
 
                         <!--=====================================
                         =            SECCION TELEFONO           =
@@ -154,6 +164,53 @@
             </div>
         </div>
     </div>
-</form>
+
+    <style>
+        .image-container {
+  position: relative;
+  backgroung-color: black;
+}
+
+.proveedor-image {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image-container:hover .proveedor-image {
+  opacity: 0.3;
+}
+
+.image-container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  padding: auto;
+}
+
+.middle input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+    </style>
+
 @endsection
 

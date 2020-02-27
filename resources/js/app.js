@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('proveedores-component', require('./components/ListaProveedorComponent.vue').default);
-Vue.component('verimagen-component', require('./components/VerImagenComponent.vue').default);
+Vue.component('imagen-component', require('./components/ImagenComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

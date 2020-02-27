@@ -13,7 +13,7 @@ class ProveedorController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show','create','getProveedoresByName');
+        $this->middleware('auth')->except('index','show','create','getProveedoresByName','store');
     }
 
     /**
