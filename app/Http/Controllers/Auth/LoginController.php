@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/session';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -47,15 +47,18 @@ class LoginController extends Controller
         public function login(){
         
         if (Auth::attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
-            return 'si funca';
+            return redirect()->route('home');
+        }else{
+            return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
         }
-        return 'no funca';
 
     }
     
     public function logout()
-  {
-    Auth::logout();
-  }
+    {
+        Auth::logout();
+        return redirect()->route('home');
+
     }
+}
 

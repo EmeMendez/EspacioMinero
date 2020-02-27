@@ -1,5 +1,9 @@
 <!-- Page Header-->
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <header class="section page-header">
 <!-- RD Navbar-->
 <div class="rd-navbar-wrap" >
@@ -14,26 +18,51 @@
         </div>
         <div class="rd-navbar-nav-wrap" style="padding-bottom: 20px;">
         <!-- RD Navbar Nav-->
-        <ul class="rd-navbar-nav ">
-        <li class="rd-nav-item  {{setActive('home')}}"><a class="rd-nav-link " href="{{route('home')}}" >INICIO</a>
-            </li>
-            <li class="rd-nav-item {{setActive('about')}}"><a class="rd-nav-link" href="{{route('about')}}" >NOSOTROS</a>
-            </li>
-            <li class="rd-nav-item {{setActive('typo')}}"><a class="rd-nav-link" href="{{route('typo')}}" >TYPOGRAPHY</a>
-            </li>
-            <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}" ">CONTÁCTANOS</a>
-            </li>
-        </ul>
-        <div class="rd-navbar-tel">
-            <ul class="rd-navbar-nav">
-                <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}" >INICIAR SESIÓN</a>
-                    </li>
-                    <li class="rd-nav-item {{setActive('proveedor.create')}}"><a class="rd-nav-link" href="{{route('proveedor.create')}}" >REGISTRARSE</a>
-                    </li>
+        @guest
+            <ul class="rd-navbar-nav ">
+                
+                <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
+                <li class="rd-nav-item {{setActive('about')}}">  <a class="rd-nav-link" href="{{route('about')}}" >NOSOTROS</a> </li>
+                <li class="rd-nav-item {{setActive('typo')}}">   <a class="rd-nav-link" href="{{route('typo')}}" >TYPOGRAPHY</a> </li>
+                <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
+                
+            </ul>
+
+            <div class="rd-navbar-tel">
+
+                <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}" >INICIAR SESIÓN</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.create')}}"><a class="rd-nav-link" href="{{route('proveedor.create')}}" >REGISTRARSE</a> </li>
                 </ul>
-        </div>          
+
+            </div>
+        
+        @endguest
+
+        @auth
+            <ul class="rd-navbar-nav ">
+                    
+                <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
+                <li class="rd-nav-item {{setActive('about')}}">  <a class="rd-nav-link" href="{{route('about')}}" >PROVEEDORES</a> </li>
+                <li class="rd-nav-item {{setActive('typo')}}">   <a class="rd-nav-link" href="{{route('typo')}}" >DESCARGA</a> </li>
+                <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
+                
+            </ul>
+
+            <div class="rd-navbar-tel">
+
+                <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"><a class="rd-nav-link" href="{{route('proveedor.edit', auth()->user()->url )}}" >PERFIL</a> </li>
+                    <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
+                </ul>
+
+            </div>            
+        @endauth
             <div class="rd-navbar-dummy"></div>
     </div>
     </nav>
 </div>
 </header>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf</form>

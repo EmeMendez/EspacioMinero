@@ -22,8 +22,8 @@
           <p>{{ $proveedor->descripcion}}</p>
           </div>
           <div class="col-12">
-            {{-- <button class="button button-block button-primary ml-0" type="submit">Contactar</button>             --}}
-            <button class="btn btn-primary">Contactar</button>
+            <button class="button button-block button-primary ml-0 col-md-4 col-12 p-0 p-md-2 p-sm-2" type="submit">Contactar</button>            
+            {{-- <button class="btn btn-primary">Contactar</button> --}}
           </div>
         </div>       
       </div>

@@ -11,6 +11,11 @@ use App\Categoria;
 class ProveedorController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index','show','create','getProveedoresByName');
+    }
+
     /**
      * Sirve para listar.
      *
@@ -49,13 +54,17 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        $ciudad = Ciudad::get();
-        $tamanioempresa = TamanioEmpresa::get();
-        $categoria = Categoria::get();
-        return view('proveedor.create',compact('ciudad','tamanioempresa','categoria'));
+        if(auth()->user()){
+            return redirect()->route('home');
+        }else{
+            
+            $ciudad = Ciudad::get();
+            $tamanioempresa = TamanioEmpresa::get();
+            $categoria = Categoria::get();
+            return view('proveedor.create',compact('ciudad','tamanioempresa','categoria'));
+        }
 
     }
-
     /**
      * Para guardar el recurso desde el create(como un insert)
      *
@@ -116,9 +125,18 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($url)
     {
-        //
+        $ciudades  = ciudad::get();
+        $categorias = Categoria::get();
+        $tamanio_empresa = TamanioEmpresa::get();
+        $proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
+                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
+                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
+                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
+                              ->where("url", "=", $url)->first();
+        // return view('proveedor.edit',compact('proveedor',$proveedor));
+        return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor]);
     }
 
     /**
@@ -128,9 +146,38 @@ class ProveedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+
+        $proveedor =  Proveedor::where("rut","=", request('user-rut'))->first();
+
+        
+
+        // if($r->hasFile('user-imagen')){
+        //     $p->imagen = $r->file('user-imagen')->store('public');
+        // }else{
+        //     $p->imagen = 'public/default-avatar.png';
+        // }
+        $ciudades  = ciudad::get();
+        $categorias = Categoria::get();
+        $tamanio_empresa = TamanioEmpresa::get();
+
+        $proveedor->nombre             = request('user-name');
+        $proveedor->sitio_web          = request('user-sitio');
+        $proveedor->descripcion        = request('user-descripcion');
+        $proveedor->direccion          = request('user-address');
+        $proveedor->categoria_id       = request('user-cat');
+        $proveedor->ciudad_id          = request('user-city');
+        $proveedor->tamanio_empresa_id = request('user-tamanio');
+        $proveedor->url                = str_replace(" ","-",strtolower(request('user-name')));
+
+
+        $nueva_url = $proveedor->url;
+
+        $proveedor->save();
+
+        return redirect()->route('home')->with('success','¡Actualización Exitosa!');   
+        
     }
 
     /**
