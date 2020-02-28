@@ -1,105 +1,160 @@
 @extends('layout')
 @section('content')
 <!-- Get in Touch-->
-<section class="section section-md bg-gray-100">
+{{-- <section class="section section-md bg-gray-100">
+</section> --}}
+<div class="bg-light py-4">
+  <h3 class="text-center">Registrarse</h3>
+</div>
+<hr>
   <div class="container">
-    <h3 class="text-center">Registrarse</h3>
-    <div class="row justify-content-center">
-      <div class="col-lg-11 col-xl-9">
+    <div class="row text-center">
+      <div class="col-12">
         <!-- RD Mailform-->
-        <form enctype="multipart/form-data" name="f1" class="rd-mailform rd-form sig" method="POST" action="{{ route('proveedor.store') }}">
+        <form enctype="multipart/form-data" name="f1" class="rd-mailform rd-form" method="POST" action="{{ route('proveedor.store') }}">
           @csrf
 
-          <div class="row row-x-16 row-20" >
-            <div class="col-7">
+            <div class="col-12 col-md-7 mx-auto mt-5">
                 <div class="form-wrap">
-                    <input class="form-input" id="contact-rut" type="text" name="user-rut" onblur="validarRut()">
-                    <label class="form-label" for="contact-rut">Rut ej: 12345678-9</label>
-                    <p class="text-danger" id="msgerror"></p>
+                  <p class="pl-4 mb-2">Rut Proveedor</p>
+                  <input placeholder="Ejemplo 12345678-9" class="form-input" id="contact-rut" type="text" name="user-rut" onblur="validarRut()">
+                  <p class="text-danger my-0 pb-1 pl-4" id="msgerror">&nbsp</p>
                 </div>
+            </div>
+
+            <div class="col-12 col-md-7 mx-auto">
+                <div class="form-wrap">
+                  <p class="pl-4 mb-2">Nombre</p>                    
+                  <input class="form-input" id="contact-name" type="text" name="user-name" >
+                  <p class="text-danger my-0 pb-1 pl-4" id="msgerror">&nbsp</p>               
                 </div>
-                <div class="col-7">
-                    <div class="form-wrap">
-                        <input class="form-input" id="contact-name" type="text" name="user-name" >
-                        <label class="form-label" for="contact-name">Nombre</label>
-                      </div>
-                    </div> 
-                <div class="col-7">
+            </div> 
+
+            <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                <p class="pl-4 mb-2">Correo Electrónico</p>                    
+                <input  class="form-input" id="contact-address" type="text" name="user-address" >
+                <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                               
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                <p class="pl-4 mb-2">Región</p>                    
+                  <select id="inputState" class="form-input" name="user-city">
+                      @foreach ($ciudad as $ciu)
+                        <option value="{{$ciu['id']}}">{{$ciu['nombre']}}</option>
+                      @endforeach            
+                    </select>
+                    <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                <p class="pl-4 mb-2">Ciudad</p>                    
+                  <select id="inputState" class="form-input" name="user-city">
+                      @foreach ($ciudad as $ciu)
+                        <option value="{{$ciu['id']}}">{{$ciu['nombre']}}</option>
+                      @endforeach            
+                    </select>
+                    <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7 mx-auto">
                   <div class="form-wrap">
+                    <p class="pl-4 mb-2">Dirección</p>                    
                     <input class="form-input" id="contact-address" type="text" name="user-address" >
-                    <input type="hidden" name="user-status" value="1">
-                    <label class="form-label" for="contact-address">Dirección</label>
+                    <p class="text-danger my-0 pb-1 pl-4" id="msgerror">&nbsp</p>                               
                   </div>
-                </div>        
-                <div class="col-7">
-                  <div class="form-wrap">
-                    <input class="form-input" id="contact-web" type="text" name="user-sitio" >
-                    <label class="form-label" for="contact-web">Sitio Web</label>
-                  </div>
-                </div>                                               
-                <div class="col-7">
+            </div>
+            
+            {{-- COPIA NO BORRAR <div class="col-12">
+              <div class="form-wrap">
+                  <input class="form-input" id="contact-repass" type="password" name="user-repass" onblur="comparacion()">
+                  <label class="form-label" for="contact-repass">Confirmar Contraseña</label>
+                  <p class="text-danger" id="msgerrorp"></p>
+              </div>
+          </div> --}}
+
+            <div class="col-12 col-md-7 mx-auto ">
                     <div class="form-wrap">
-                        <input class="form-input" id="contact-pass" type="password" name="user-pass" onblur="minp()">
-                        <label class="form-label" for="contact-pass">Contraseña</label>
-                        <p class="text-danger" id="msgerrorps"></p>
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="form-wrap">
-                        <input class="form-input" id="contact-repass" type="password" name="user-repass" onblur="comparacion()">
-                        <label class="form-label" for="contact-repass">Confirmar Contraseña</label>
-                        <p class="text-danger" id="msgerrorp"></p>
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="form-wrap">
-                        <select id="inputState" class="form-input" name="user-city">
-                            @foreach ($ciudad as $ciu)
-                              <option value="{{$ciu['id']}}">{{$ciu['nombre']}}</option>
-                            @endforeach            
-                          </select>
-                       
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="form-wrap">
+                      <p class="pl-4 mb-2">Tamaño Empresa</p>                    
                         <select id="inputState" class="form-input " name="user-tamanio">
                           @foreach ($tamanioempresa as $te)
                             <option value="{{$te['id']}}">{{$te['nombre']}}</option>
                           @endforeach                        
                           </select>
-                      
+                          <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                                                 
                     </div>
+            </div>
+
+            <div class="col-12 col-md-7 mx-auto">
+                <div class="form-wrap">
+                  <p class="pl-4 mb-2">Tipo de Empresa</p>                    
+                    <select id="inputState" class="form-input" name="user-cat">
+                      @foreach ($categoria as $cat)
+                        <option value="{{$cat['id']}}">{{$cat['nombre']}}</option>
+                      @endforeach                         
+                      </select>
+                      <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                                                 
+
                 </div>
-                <div class="col-7">
-                    <div class="form-wrap">
-                        <select id="inputState" class="form-input" name="user-cat">
-                          @foreach ($categoria as $cat)
-                            <option value="{{$cat['id']}}">{{$cat['nombre']}}</option>
-                          @endforeach                         
-                          </select>
-                         
-                    </div>
-                </div>
-                <div class="col-7">
-                  <div class="form-wrap">
-                    <textarea class="form-input" id="contact-description" name="user-descripcion"></textarea>
-                    <label class="form-label" for="contact-description">Descripción de su empresa</label>
-                  </div>
-                </div>   
-            <div class="col-md-7">
-                <div class="form-wrap form-button">
-                  <button class="button button-block button-primary" id="btnEnviar" type="submit">Registrarse</button>
-                </div>
+            </div>
+
+
+            <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                <p class="pl-4 mb-2">Descripción de la empresa</p>                    
+                <textarea class="form-input" id="contact-description" name="user-descripcion"></textarea>
+                <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                                                               
+              </div>
+            </div> 
+            
+            <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                <p class="pl-4 mb-2">Sitio web</p>                    
+                <input class="form-input" id="contact-web" type="text" name="user-sitio" >
+                <p class="text-danger my-0 pb-1 pl-4" id="msgerror">&nbsp</p>                                                 
+              </div>
+            </div>
+
+
+            <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                <p class="pl-4 mb-2">Contraseña</p>                    
+                  <input class="form-input" id="contact-pass" type="password" name="user-pass" onblur="minp()">
+                  <p class="text-danger my-0 pb-1 pl-4" id="msgerrorps">&nbsp</p>                                                 
               </div>
           </div>
+
+          <div class="col-12 col-md-7 mx-auto">
+              <div class="form-wrap">
+                  <p class="pl-4 mb-2">Confirmar contraseña</p>                    
+                  <input class="form-input" id="contact-repass" type="password" name="user-repass" onblur="comparacion()">
+                  <p class="text-danger my-0 pb-3 pl-4" id="msgerrorp">&nbsp</p>                                                 
+              </div>
+          </div>
+
+          <div class="col-12 col-md-7 mx-auto">
+            <div class="form-wrap">
+                <p class=" text-center pl-4 mb-2">Al hacer clic en <b>Registrarse</b>, aceptas nuestras <a class="text-primary" href="#">Condiciones y la Política de privacidad de datos.</a></p>                    
+            </div>
+        </div>
+            
+            <div class="col-12 col-md-7 mx-auto mt-3 mb-5">
+                <div class="form-wrap form-button">
+                  <button class="button button-block button-primary col-md-6 col-12 mx-auto" id="btnEnviar" type="submit">Registrarse</button>
+                </div>
+            </div>
+
         </form>
       </div>
     </div>
 
     
   </div>
-</section>
 @endsection
 <style>
   select {
@@ -164,7 +219,7 @@ i{
 
   function validarRut(){
       if (Fn.validaRut( $("#contact-rut").val() )){
-          $("#msgerror").html("");
+          $("#msgerror").html("&nbsp");
       } else {
           $("#msgerror").html("El Rut ingresado no es válido ");
       }
@@ -175,7 +230,7 @@ i{
     if(document.getElementById("contact-pass").value != document.getElementById("contact-repass").value){
       $("#msgerrorp").html("Las contraseñas no coinciden");
     }else{
-      $("#msgerrorp").html("");
+      $("#msgerrorp").html("&nbsp");
     }
 
   }
@@ -184,7 +239,7 @@ i{
     if(document.getElementById("contact-pass").value.length < 8){
       $("#msgerrorps").html("La contraseña debe tener almenos 8 caracteres");
     }else{
-      $("#msgerrorps").html("");
+      $("#msgerrorps").html("&nbsp");
     }
   }
 

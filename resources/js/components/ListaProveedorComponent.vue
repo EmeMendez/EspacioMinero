@@ -12,6 +12,37 @@
       </div>
     <!-- Fin Buscador --> 
      <!-- inicio de la lista -->
+
+    <div v-if="!a">
+        <!-- <img width="50" height="50" src="/images/loading/loading.gif" alt=""> -->
+       
+
+        <!-- jjjfjffjfj -->
+
+    <label id="results" class="lead pb-3">Resultados : </label>
+
+      <div class="card mb-3" v-for="p in proveedores" :key="p">
+      <div class="row no-gutters">
+          <div class="col-md-2 col-12 text-center my-auto">
+              <img src="/images/carga.png" width="150" height="150">
+          </div>
+              <div>
+          </div>
+          <div class="col-md-8 col-12">
+            <div class="card-body">
+            <h5 class="card-title text-left text-light bg-light">&nbsp</h5>
+            <p class="card-text multine-ellipsis text-justify text-light bg-light py-auto">&nbsp<br>&nbsp<br>&nbsp<br></p>
+            <a class="button button-sm button-winona ml-0 text-light bg-light">Más Información</a>            
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+
+    </div>
+    <div v-else>
     <label id="results" class="lead pb-3">Resultados : {{pagination.total}}</label>
     
     <div class="card mb-3" v-for="p in proveedores" v-bind:key="p.rut">
@@ -28,6 +59,9 @@
         </div>
       </div>
     </div> 
+
+    </div>
+
     <!-- end list -->
 
     <!-- start buttons -->
@@ -53,6 +87,8 @@
 	    export default {
         data(){
             return {
+                nombres : ['melon','nani','silver'],
+                a: null,
                 proveedores: [],
                 pagination:{
                  'total': 0,
@@ -69,7 +105,8 @@
             }
         },
         mounted(){
-          this.getProveedoresByName()
+          this.cargo();
+          this.getProveedoresByName();
         },
         computed:{
             isActived: function(){
@@ -122,6 +159,12 @@
               this.pagination.current_page = page
               this.getProveedoresByName(page)
               //window.scrollTo(0,0);
+            },
+            cargo(){
+                setTimeout(()=>{
+                  this.a = true
+                },2000);                
+                  return this.a;
             }
         }
     }

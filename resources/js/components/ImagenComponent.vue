@@ -1,7 +1,7 @@
 <template>
   
-                <div class="image-container p.0">
-                    <img class="proveedor-image" :src="imagensita"  style="height: 200px; width:280px;"/>
+                <div class="image-container">
+                    <img class="proveedor-image" :src="imagensita"/>
                     <div class="middle">
                       <button class="btn btn-primary text">Cambiar mi Logo</button>
                       <input @change="getImagen" type="file" accept=".png, .jpeg, .jpg"/>

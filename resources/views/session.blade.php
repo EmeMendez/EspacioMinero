@@ -1,11 +1,13 @@
 @extends('layout')
 @section('content')
 <!-- Get in Touch-->
-<section class="section section-md bg-gray-100">
-  <div class="container">
-    <h3 class="text-center">Iniciar Sesión</h3>
-    <div class="row justify-content-center">
-      <div class="col-lg-11 col-xl-9">
+<div class="bg-light py-4">
+  <h3 class="text-center">Iniciar Sesión</h3>
+</div>
+<hr>
+  <div class="container mt-5">
+
+    <div class="row">
 
         @if(count($errors)> 0)
         <div class="alert alert-danger">
@@ -18,50 +20,55 @@
         </div>
         @endif
         @if (\Session::has('error'))
-        <div class="alert alert-danger">
+        <div class="col-12 px-0 mx-0">
+        <div class="alert alert-danger text-center">
           <p>{{\Session::get('error')}}</p>
         </div>
+      </div>
         @endif
         @if (\Session::has('success'))
-        <div class="alert alert-success">
+        <div class="col-12 px-0 mx-0">
+        <div class="alert alert-success text-center">
           <p>{{\Session::get('success')}}</p>
+        </div>
         </div>
         @endif
 
         <!-- RD Mailform-->
-        <form class="rd-mailform rd-form ses" data-form-output="form-output-global" data-form-type="contact" method="post" action={{route('login')}}>
+        <form class="col-12" method="post" action={{route('login')}}>
         @csrf
-          <div class="row row-x-16 row-20"  >
-            <div class="col-7">
+            <div class="col-12 col-md-5 mx-auto">
                 <div class="form-wrap">
-                    <input class="form-input" id="contact-name" type="text" name="user-name" data-constraints="@Required @Email">
-                    <label class="form-label" for="contact-name">Rut</label>
+                    <p class="pl-4 my-2">Rut</p>                    
+                    <input class="form-input" id="contact-name" type="text" name="user-name">
                   </div>
+            </div>
+
+            <div class="col-12 col-md-5 mx-auto">
+                <div class="form-wrap">
+                    <p class="pl-4 my-2">Contraseña</p>                    
+                    <input class="form-input" id="contact-email" type="password" name="user-pass" >
                 </div>
-                <div class="col-7">
-                    <div class="form-wrap">
-                        <input class="form-input" id="contact-email" type="password" name="user-pass" data-constraints="@Required @Email">
-                        <label class="form-label" for="contact-email">Contraseña</label>
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="help-block text-right"><a href="">¿Olvidaste tu contraseña?</a></div>
-                    </div>
-                </div><br>
-            <div class="col-md-7">
-              <div class="form-wrap form-button">
-                <button class="button button-block button-primary" type="submit">Inciar Sesión</button>
+            </div>
+            
+            <div class="col-12 col-md-5 mx-auto my-3">
+              <div class="text-md-right text-center">
+                <a class="mr-4" href="#">¿Olvidaste tu contraseña?</a>
               </div>
             </div>
 
-          </div>
+
+            <div class="col-12 mx-auto mb-5">
+              <div class="form-wrap form-button">
+                <button class="button button-block button-primary col-md-5 col-12 mx-auto" id="btnEnviar" type="submit">Registrarse</button>
+              </div>
+            </div>
+
         </form>
       </div>
     </div>
 
     
-  </div>
 
-</section>
 
 @endsection
