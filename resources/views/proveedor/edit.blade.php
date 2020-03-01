@@ -169,26 +169,16 @@
 
                             <h3 class="text-center">Mis datos de Contácto</h3><br>
                             <h5 class="pb-3 text-center">Informacion de contácto Telefónico</h5>
-                        
                             <form action={{ route('telefono.update') }} method="POST">
                                 @method('PATCH')
                                 @csrf
-                                <div class="col-12 pl-0 pt-3 mb-3">
-                                    <p class="pl-4 mb-2">Teléfono área Comercial</p>
-                                    <input type="hidden" name="rut" value="{{$proveedor->rut}}">
-                                <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-comercial" @if($telefono->tipo_id=1) value="{{$telefono->telefono}}" @endif>
-                                </div>
-                                <div class="col-12 pl-0 mb-3">
-                                    <p class="pl-4 mb-2">Teléfono área administrativa</p>
-                                    <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-admin">
-                                </div>
-                                <div class="col-12 pl-0 mb-3">
-                                    <p class="pl-4 mb-2">Teléfono área técnica</p>
-                                    <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-supp">
-                                </div>
-                                <div class="col-12 pl-0 mb-3 text-center pt-4">
-                                    <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
-                                </div>
+                                @foreach($telefono as $t)
+                                    <div class="col-12 pl-0 pt-3 mb-3">
+                                    <p class="pl-4 mb-2">Teléfono área {{$t->des}}</p>
+                                        <input type="hidden" name="rut" value="">
+                                    <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-{{$t->tipo_id}}"value="{{$t->telefono}}" >
+                                    </div>
+                                @endforeach
                             </form>
 
 

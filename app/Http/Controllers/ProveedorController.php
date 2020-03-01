@@ -153,7 +153,7 @@ class ProveedorController extends Controller
          
         $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
                               ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
-                              ->select("telefono","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();
 
         return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor, 'telefono'=>$telefono]);
@@ -171,7 +171,6 @@ class ProveedorController extends Controller
 
         $proveedor =  Proveedor::where("rut","=", request('user-rut'))->first();
 
-        
 
         // if($r->hasFile('user-imagen')){
         //     $p->imagen = $r->file('user-imagen')->store('public');
