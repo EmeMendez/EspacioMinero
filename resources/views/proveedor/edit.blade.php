@@ -170,12 +170,13 @@
                             <h3 class="text-center">Mis datos de Contácto</h3><br>
                             <h5 class="pb-3 text-center">Informacion de contácto Telefónico</h5>
                         
-                            <form action={{ route('telefono.store') }} method="POST">
+                            <form action={{ route('telefono.update') }} method="POST">
+                                @method('PATCH')
                                 @csrf
                                 <div class="col-12 pl-0 pt-3 mb-3">
                                     <p class="pl-4 mb-2">Teléfono área Comercial</p>
                                     <input type="hidden" name="rut" value="{{$proveedor->rut}}">
-                                <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-comercial">
+                                <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-comercial" @if($telefono->tipo_id=1) value="{{$telefono->telefono}}" @endif>
                                 </div>
                                 <div class="col-12 pl-0 mb-3">
                                     <p class="pl-4 mb-2">Teléfono área administrativa</p>

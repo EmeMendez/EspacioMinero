@@ -14,7 +14,7 @@ class ProveedorTelefonoController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -37,21 +37,8 @@ class ProveedorTelefonoController extends Controller
     {
         $rut = request('rut');
         $verificacion = ProveedorTelefono::where('proveedor_rut','=',$rut)->first();
-    
-        if(empty($verificacion)){ //insert
-            $tele = array();
-            array_push($tele,request('tel-comercial'),request('tel-admin'),request('tel-supp'));
-            $incremento = 1;
-            foreach ($tele as $val) {
-                $telefono = new ProveedorTelefono;
-                $telefono->proveedor_rut = $rut;
-                $telefono->telefono = $val;
-                $telefono->tipo_contacto_id = $incremento++;
-                $telefono->save();
-            }
             
-            return redirect()->route('home')->with('success','¡Actualización de Perfil exitosa!');
-        }else{ //update
+            //update
             $tele = array();
             array_push($tele,request('tel-comercial'),request('tel-admin'),request('tel-supp'));
 
@@ -61,7 +48,7 @@ class ProveedorTelefonoController extends Controller
                 $telefono->telefono = $val;
                 $telefono->save();
             }
-        }
+        
 
     }
 
@@ -73,7 +60,7 @@ class ProveedorTelefonoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -82,9 +69,8 @@ class ProveedorTelefonoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+
     }
 
     /**
@@ -94,9 +80,9 @@ class ProveedorTelefonoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        return 'jojo';
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Proveedor;
 use App\Ciudad;
 use App\TamanioEmpresa;
 use App\Categoria;
+use App\ProveedorTelefono;
 class ProveedorController extends Controller
 {
     
@@ -75,6 +76,7 @@ class ProveedorController extends Controller
     {
         //$r->file('user-imagen')->store('public');
         $p = new Proveedor;
+        
 
         if($r->hasFile('user-imagen')){
             $p->imagen = $r->file('user-imagen')->store('public');
@@ -97,6 +99,18 @@ class ProveedorController extends Controller
         $p->url                = str_replace(" ","-",strtolower(request('user-name')));
 
         $p->save();
+
+        $tele = array();
+            array_push($tele,'Sin Registros','Sin Registros','Sin Registros');
+            $incremento = 1;
+            foreach ($tele as $val) {
+                $telefono = new ProveedorTelefono;
+                $telefono->proveedor_rut = request('user-rut');
+                $telefono->telefono = $val;
+                $telefono->tipo_contacto_id = $incremento++;
+                $telefono->save();
+            }
+
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
 
 
@@ -136,8 +150,13 @@ class ProveedorController extends Controller
                               ->join("categoria","categoria.id","=","proveedor.categoria_id")
                               ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
                               ->where("url", "=", $url)->first();
-        // return view('proveedor.edit',compact('proveedor',$proveedor));
-        return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor]);
+         
+        $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
+                              ->select("telefono","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();
+
+        return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor, 'telefono'=>$telefono]);
     }
 
     /**

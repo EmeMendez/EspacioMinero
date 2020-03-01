@@ -2351,6 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -20647,27 +20648,35 @@ var render = function() {
               }
             }
           },
-          _vm._l(_vm.tamanio_empresa, function(t, indexx) {
-            return _c("option", { key: indexx, domProps: { value: t.id } }, [
-              _vm._v(
-                _vm._s(t.nombre) +
-                  " : Minimo ($ " +
-                  _vm._s(
-                    _vm.formateador(
-                      (_vm.uf * parseFloat(t.ventaMinima)).toFixed(0)
-                    )
-                  ) +
-                  " CLP) - Maximo ($ " +
-                  _vm._s(
-                    _vm.formateador(
-                      (_vm.uf * parseFloat(t.ventaMaxima)).toFixed(0)
-                    )
-                  ) +
-                  " CLP)"
-              )
-            ])
-          }),
-          0
+          [
+            _c(
+              "option",
+              { attrs: { selected: "selected", disabled: "", value: "" } },
+              [_vm._v("Seleccione un tamaño de empresa")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.tamanio_empresa, function(t, indexx) {
+              return _c("option", { key: indexx, domProps: { value: t.id } }, [
+                _vm._v(
+                  _vm._s(t.nombre) +
+                    " : Minimo ($ " +
+                    _vm._s(
+                      _vm.formateador(
+                        (_vm.uf * parseFloat(t.ventaMinima)).toFixed(0)
+                      )
+                    ) +
+                    " CLP) - Maximo ($ " +
+                    _vm._s(
+                      _vm.formateador(
+                        (_vm.uf * parseFloat(t.ventaMaxima)).toFixed(0)
+                      )
+                    ) +
+                    " CLP)"
+                )
+              ])
+            })
+          ],
+          2
         ),
         _vm._v(" "),
         _c(

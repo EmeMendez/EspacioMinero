@@ -45,4 +45,4 @@ Auth::routes();
 Route::post('sama','Auth\LoginController@login')->name('sama');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::post('/', 'ProveedorTelefonoController@store')->name('telefono.store');
+Route::patch('/proveedor/vista-perfil', 'ProveedorTelefonoController@update')->name('telefono.update');

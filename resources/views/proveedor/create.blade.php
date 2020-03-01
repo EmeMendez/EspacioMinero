@@ -33,7 +33,7 @@
 
             <div class="col-12 col-md-7 mx-auto">
               <div class="form-wrap">
-                <p class="pl-4 mb-2">Correo Electrónico</p>                    
+                <p class="pl-4 mb-2">Correo Electrónico</p>                   
                 <input  class="form-input" id="contact-address" type="text" name="user-email" >
                 <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                               
               </div>
