@@ -34,33 +34,13 @@
             <div class="col-12 col-md-7 mx-auto">
               <div class="form-wrap">
                 <p class="pl-4 mb-2">Correo Electrónico</p>                    
-                <input  class="form-input" id="contact-address" type="text" name="user-address" >
+                <input  class="form-input" id="contact-address" type="text" name="user-email" >
                 <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                               
               </div>
             </div>
 
-            <div class="col-12 col-md-7 mx-auto">
-              <div class="form-wrap">
-                <p class="pl-4 mb-2">Región</p>                    
-                  <select id="inputState" class="form-input" name="user-city">
-                      @foreach ($ciudad as $ciu)
-                        <option value="{{$ciu['id']}}">{{$ciu['nombre']}}</option>
-                      @endforeach            
-                    </select>
-                    <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-7 mx-auto">
-              <div class="form-wrap">
-                <p class="pl-4 mb-2">Ciudad</p>                    
-                  <select id="inputState" class="form-input" name="user-city">
-                      @foreach ($ciudad as $ciu)
-                        <option value="{{$ciu['id']}}">{{$ciu['nombre']}}</option>
-                      @endforeach            
-                    </select>
-                    <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>
-              </div>
+            <div id="ciudad">
+              <select-ciudad-component></select-ciudad-component>
             </div>
 
             <div class="col-12 col-md-7 mx-auto">

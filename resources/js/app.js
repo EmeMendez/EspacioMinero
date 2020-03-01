@@ -24,6 +24,7 @@ Vue.component('proveedores-component', require('./components/ListaProveedorCompo
 Vue.component('imagen-component', require('./components/ImagenComponent.vue').default);
 Vue.component('ver-imagen-component', require('./components/VerImagenComponent.vue').default);
 Vue.component('uf-component', require('./components/ufComponent.vue').default);
+Vue.component('select-ciudad-component', require('./components/SelectCiudadComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,4 +34,7 @@ Vue.component('uf-component', require('./components/ufComponent.vue').default);
 
 const app = new Vue({
     el: '#app',
+});
+const ciudad = new Vue({
+    el: '#ciudad',
 });

@@ -1,26 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Region;
-use App\Provincia;
-use App\Ciudad;
-use App\TamanioEmpresa;
 
-class RegionController extends Controller
+use Illuminate\Http\Request;
+use App\ProveedorTelefono;
+
+class ProveedorTelefonoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function index()
+    public function index()
     {
-        $tamanio_empresa = TamanioEmpresa::get();
-        $regiones = Region::get();
-        $provincias = Provincia::get();
-        $ciudades = Ciudad::get();
-        return ['regiones' => $regiones,'provincias' => $provincias, 'ciudades' =>$ciudades, 'tamanio_empresa' => $tamanio_empresa];
+        //
     }
 
     /**
@@ -39,9 +33,36 @@ class RegionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $rut = request('rut');
+        $verificacion = ProveedorTelefono::where('proveedor_rut','=',$rut)->first();
+    
+        if(empty($verificacion)){ //insert
+            $tele = array();
+            array_push($tele,request('tel-comercial'),request('tel-admin'),request('tel-supp'));
+            $incremento = 1;
+            foreach ($tele as $val) {
+                $telefono = new ProveedorTelefono;
+                $telefono->proveedor_rut = $rut;
+                $telefono->telefono = $val;
+                $telefono->tipo_contacto_id = $incremento++;
+                $telefono->save();
+            }
+            
+            return redirect()->route('home')->with('success','¡Actualización de Perfil exitosa!');
+        }else{ //update
+            $tele = array();
+            array_push($tele,request('tel-comercial'),request('tel-admin'),request('tel-supp'));
+
+            foreach ($tele as $val) {
+                $telefono = ProveedorTelefono::where('proveedor_rut','=',$rut)->first();
+                $telefono->proveedor_rut = $rut;
+                $telefono->telefono = $val;
+                $telefono->save();
+            }
+        }
+
     }
 
     /**

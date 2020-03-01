@@ -2171,6 +2171,97 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SelectCiudadComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SelectCiudadComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      regiones: [],
+      provincias: [],
+      ciudades: [],
+      region: '',
+      provincia: '',
+      ciudad: ''
+    };
+  },
+  mounted: function mounted() {
+    this.getRegiones();
+  },
+  methods: {
+    getRegiones: function getRegiones() {
+      var _this = this;
+
+      axios.get('/regiones/provincias/ciudades').then(function (res) {
+        _this.regiones = res.data.regiones;
+      });
+    },
+    getProvincias: function getProvincias() {
+      var _this2 = this;
+
+      axios.get('/provincias/' + this.region).then(function (res) {
+        _this2.provincia = '';
+        _this2.ciudad = '';
+        _this2.provincias = res.data.provincias;
+      });
+      getCiudades();
+    },
+    getCiudades: function getCiudades() {
+      var _this3 = this;
+
+      axios.get('/ciudades/' + this.provincia).then(function (res) {
+        _this3.ciudad = '';
+        _this3.ciudades = res.data.ciudades;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerImagenComponent.vue?vue&type=script&lang=js& ***!
@@ -2260,23 +2351,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       uf: 0,
-      regiones: [],
-      provincias: [],
-      ciudades: [],
       tamanio_empresa: [],
-      regionSelected: null
+      tamanio: ''
     };
   },
   mounted: function mounted() {
@@ -2287,14 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/regiones/provincias/ciudades').then(function (res) {
-        _this.regiones = res.data.regiones;
-        _this.provincias = res.data.provincias;
-        _this.ciudades = res.data.ciudades;
         _this.tamanio_empresa = res.data.tamanio_empresa;
-        console.log(_this.regiones);
-        console.log(_this.provincias);
-        console.log(_this.ciudades);
-        console.log(_this.tamanio_empresa);
       });
       fetch('https://mindicador.cl/api').then(function (response) {
         return response.json();
@@ -2304,10 +2377,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     formateador: function formateador(number) {
       return new Intl.NumberFormat("de-DE").format(number);
-    },
-    hola: function hola() {
-      var region = document.getElementById('region').value;
-      alert(region);
     }
   }
 });
@@ -20262,6 +20331,214 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SelectCiudadComponent.vue?vue&type=template&id=2967dde4&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SelectCiudadComponent.vue?vue&type=template&id=2967dde4& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "col-12 col-md-7 mx-auto " }, [
+      _c("div", { staticClass: "form-wrap" }, [
+        _c("p", { staticClass: "pl-4 mb-2" }, [_vm._v("Región")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.region,
+                expression: "region"
+              }
+            ],
+            staticClass: "form-input",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.region = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getProvincias()
+                }
+              ]
+            }
+          },
+          [
+            _c(
+              "option",
+              { attrs: { selected: "selected", disabled: "", value: "" } },
+              [_vm._v("Seleccione una Región")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.regiones, function(r) {
+              return _c("option", { key: r.id, domProps: { value: r.id } }, [
+                _vm._v(_vm._s(r.nombre))
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-danger my-0 pb-1 pl-4",
+            attrs: { id: "error_region" }
+          },
+          [_vm._v(" ")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-12 col-md-7 mx-auto " }, [
+      _c("div", { staticClass: "form-wrap" }, [
+        _c("p", { staticClass: "pl-4 mb-2" }, [_vm._v("Provincia")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.provincia,
+                expression: "provincia"
+              }
+            ],
+            staticClass: "form-input",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.provincia = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getCiudades()
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { selected: "", disabled: "", value: "" } }, [
+              _vm._v("Seleccione una Provincia")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.provincias, function(p) {
+              return _c("option", { key: p.id, domProps: { value: p.id } }, [
+                _vm._v(_vm._s(p.nombre))
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-danger my-0 pb-1 pl-4",
+            attrs: { id: "error_provincia" }
+          },
+          [_vm._v(" ")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-12 col-md-7 mx-auto " }, [
+      _c("div", { staticClass: "form-wrap" }, [
+        _c("p", { staticClass: "pl-4 mb-2" }, [_vm._v("Ciudad")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.ciudad,
+                expression: "ciudad"
+              }
+            ],
+            staticClass: "form-input",
+            attrs: { name: "user-city" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.ciudad = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { disabled: "", value: "" } }, [
+              _vm._v("Seleccione una Ciudad")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.ciudades, function(c) {
+              return _c("option", { key: c.id, domProps: { value: c.id } }, [
+                _vm._v(_vm._s(c.nombre))
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-danger my-0 pb-1 pl-4",
+            attrs: { id: "error_ciudad" }
+          },
+          [_vm._v(" ")]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/VerImagenComponent.vue?vue&type=template&id=6f1ddfd2& ***!
@@ -20330,77 +20607,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-12 col-md-7 mx-auto " }, [
-    _c("div", { staticClass: "form-wrap" }, [
-      _c("p", { staticClass: "pl-4 mb-2" }, [
-        _vm._v(
-          "Tamaño Empresa ( valor de la UF actual es de : " +
-            _vm._s(_vm.uf) +
-            " ) "
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "select",
-        { staticClass: "form-input", attrs: { name: "user-tamanio" } },
-        _vm._l(_vm.tamanio_empresa, function(t, indexx) {
-          return _c("option", { key: indexx, attrs: { value: "t.id" } }, [
-            _vm._v(
-              _vm._s(t.nombre) +
-                " : Minimo ($ " +
-                _vm._s(
-                  _vm.formateador((_vm.uf * parseFloat(t.minimo)).toFixed(0))
-                ) +
-                " CLP) - Maximo ($ " +
-                _vm._s(
-                  _vm.formateador((_vm.uf * parseFloat(t.maxima)).toFixed(0))
-                ) +
-                " CLP)"
-            )
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          attrs: { name: "user-tamanio", id: "region" },
-          on: {
-            change: function($event) {
-              return _vm.hola()
+  return _c("div", [
+    _c("div", { staticClass: "col-12 col-md-7 mx-auto " }, [
+      _c("div", { staticClass: "form-wrap" }, [
+        _c("p", { staticClass: "pl-4 mb-2" }, [
+          _vm._v(
+            "Tamaño Empresa ( valor de la UF actual es de : $ " +
+              _vm._s(_vm.formateador(_vm.uf)) +
+              " CLP ) "
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.tamanio,
+                expression: "tamanio"
+              }
+            ],
+            staticClass: "form-input",
+            attrs: { name: "user-tamanio" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.tamanio = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
             }
-          }
-        },
-        _vm._l(_vm.regiones, function(t) {
-          return _c("option", { key: t.id, attrs: { value: "n.id" } }, [
-            _vm._v(_vm._s(t.nombre))
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "select",
-        { attrs: { name: "user-tamanio" } },
-        _vm._l(_vm.provincias, function(p) {
-          return _c("option", { key: p.id, attrs: { value: "" } }, [
-            _vm._v(_vm._s(p.nombre))
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "select",
-        { attrs: { name: "user-tamanio", id: "" } },
-        _vm._l(_vm.ciudades, function(c) {
-          return _c("option", { key: c.id, attrs: { value: "" } }, [
-            _vm._v(_vm._s(c.nombre))
-          ])
-        }),
-        0
-      )
+          },
+          _vm._l(_vm.tamanio_empresa, function(t, indexx) {
+            return _c("option", { key: indexx, domProps: { value: t.id } }, [
+              _vm._v(
+                _vm._s(t.nombre) +
+                  " : Minimo ($ " +
+                  _vm._s(
+                    _vm.formateador(
+                      (_vm.uf * parseFloat(t.ventaMinima)).toFixed(0)
+                    )
+                  ) +
+                  " CLP) - Maximo ($ " +
+                  _vm._s(
+                    _vm.formateador(
+                      (_vm.uf * parseFloat(t.ventaMaxima)).toFixed(0)
+                    )
+                  ) +
+                  " CLP)"
+              )
+            ])
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-danger my-0 pb-1 pl-4",
+            attrs: { id: "error_tipo_empresa" }
+          },
+          [_vm._v(" ")]
+        )
+      ])
     ])
   ])
 }
@@ -32598,6 +32876,7 @@ Vue.component('proveedores-component', __webpack_require__(/*! ./components/List
 Vue.component('imagen-component', __webpack_require__(/*! ./components/ImagenComponent.vue */ "./resources/js/components/ImagenComponent.vue")["default"]);
 Vue.component('ver-imagen-component', __webpack_require__(/*! ./components/VerImagenComponent.vue */ "./resources/js/components/VerImagenComponent.vue")["default"]);
 Vue.component('uf-component', __webpack_require__(/*! ./components/ufComponent.vue */ "./resources/js/components/ufComponent.vue")["default"]);
+Vue.component('select-ciudad-component', __webpack_require__(/*! ./components/SelectCiudadComponent.vue */ "./resources/js/components/SelectCiudadComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32606,6 +32885,9 @@ Vue.component('uf-component', __webpack_require__(/*! ./components/ufComponent.v
 
 var app = new Vue({
   el: '#app'
+});
+var ciudad = new Vue({
+  el: '#ciudad'
 });
 
 /***/ }),
@@ -32860,6 +33142,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SelectCiudadComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/SelectCiudadComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SelectCiudadComponent_vue_vue_type_template_id_2967dde4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SelectCiudadComponent.vue?vue&type=template&id=2967dde4& */ "./resources/js/components/SelectCiudadComponent.vue?vue&type=template&id=2967dde4&");
+/* harmony import */ var _SelectCiudadComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SelectCiudadComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/SelectCiudadComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SelectCiudadComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SelectCiudadComponent_vue_vue_type_template_id_2967dde4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SelectCiudadComponent_vue_vue_type_template_id_2967dde4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SelectCiudadComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SelectCiudadComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/SelectCiudadComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectCiudadComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SelectCiudadComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SelectCiudadComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectCiudadComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SelectCiudadComponent.vue?vue&type=template&id=2967dde4&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/SelectCiudadComponent.vue?vue&type=template&id=2967dde4& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectCiudadComponent_vue_vue_type_template_id_2967dde4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SelectCiudadComponent.vue?vue&type=template&id=2967dde4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SelectCiudadComponent.vue?vue&type=template&id=2967dde4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectCiudadComponent_vue_vue_type_template_id_2967dde4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectCiudadComponent_vue_vue_type_template_id_2967dde4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/VerImagenComponent.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/VerImagenComponent.vue ***!
@@ -33016,8 +33367,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

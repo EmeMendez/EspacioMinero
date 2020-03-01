@@ -91,6 +91,7 @@ class ProveedorController extends Controller
         $p->password           = bcrypt(request('user-pass'));
         $p->categoria_id       = request('user-cat');
         $p->ciudad_id          = request('user-city');
+        $p->correo             = request('user-email');
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id          = request('user-status');
         $p->url                = str_replace(" ","-",strtolower(request('user-name')));
@@ -168,6 +169,7 @@ class ProveedorController extends Controller
         $proveedor->direccion          = request('user-address');
         $proveedor->categoria_id       = request('user-cat');
         $proveedor->ciudad_id          = request('user-city');
+        $proveedor->correo             = request('user-email');
         $proveedor->tamanio_empresa_id = request('user-tamanio');
         $proveedor->url                = str_replace(" ","-",strtolower(request('user-name')));
 

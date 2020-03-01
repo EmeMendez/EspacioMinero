@@ -170,22 +170,25 @@
                             <h3 class="text-center">Mis datos de Contácto</h3><br>
                             <h5 class="pb-3 text-center">Informacion de contácto Telefónico</h5>
                         
-
-                            <div class="col-12 pl-0 pt-3 mb-3">
-                                <p class="pl-4 mb-2">Teléfono área Comercial</p>
-                                <input placeholder="02 55 55" class="form-input" size="40" type="text" value="espacio@industria.cl" name="user-name">
-                            </div>
-                            <div class="col-12 pl-0 mb-3">
-                                <p class="pl-4 mb-2">Teléfono área administrativa</p>
-                                <input placeholder="02 55 55" class="form-input" size="40" type="text" value="espacio@industria.cl" name="user-name">
-                            </div>
-                            <div class="col-12 pl-0 mb-3">
-                                <p class="pl-4 mb-2">Teléfono área técnica</p>
-                                <input placeholder="02 55 55" class="form-input" size="40" type="text" value="espacio@industria.cl" name="user-name">
-                            </div>
-                            <div class="col-12 pl-0 mb-3 text-center pt-4">
-                                <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
-                            </div>
+                            <form action={{ route('telefono.store') }} method="POST">
+                                @csrf
+                                <div class="col-12 pl-0 pt-3 mb-3">
+                                    <p class="pl-4 mb-2">Teléfono área Comercial</p>
+                                    <input type="hidden" name="rut" value="{{$proveedor->rut}}">
+                                <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-comercial">
+                                </div>
+                                <div class="col-12 pl-0 mb-3">
+                                    <p class="pl-4 mb-2">Teléfono área administrativa</p>
+                                    <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-admin">
+                                </div>
+                                <div class="col-12 pl-0 mb-3">
+                                    <p class="pl-4 mb-2">Teléfono área técnica</p>
+                                    <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-supp">
+                                </div>
+                                <div class="col-12 pl-0 mb-3 text-center pt-4">
+                                    <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
+                                </div>
+                            </form>
 
 
 

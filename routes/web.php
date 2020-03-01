@@ -31,6 +31,10 @@ Route::get('/recursos','ProveedorController@recursos')->name('proveedor.recursos
 Route::get('/proveedor/proveedores/json/getproveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
 Route::get('/regiones/provincias/ciudades','RegionController@index')->name('regiones');
 
+Route::get('/provincias/{region}','ProvinciaController@provinciasByRegion')->name('provincias');
+Route::get('/ciudades/{provincia}','CiudadController@CiudadesByProvincia')->name('ciudades');
+
+
 //fin json
 
 /*====  RUTAS DE PROVEEDOR   */
@@ -40,3 +44,5 @@ Auth::routes();
 
 Route::post('sama','Auth\LoginController@login')->name('sama');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::post('/', 'ProveedorTelefonoController@store')->name('telefono.store');
