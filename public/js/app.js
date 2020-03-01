@@ -2263,22 +2263,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      uf: 0
+      uf: 0,
+      regiones: [],
+      provincias: [],
+      ciudades: [],
+      tamanio_empresa: [],
+      regionSelected: null
     };
-  },
-  methods: {
-    getUf: function getUf() {
-      fetch('https://mindicador.cl/api').then(function (response) {
-        this.uf = response.uf.valor;
-        return this.uf;
-      });
-    }
   },
   mounted: function mounted() {
     this.getUf();
+  },
+  methods: {
+    getUf: function getUf() {
+      var _this = this;
+
+      axios.get('/regiones/provincias/ciudades').then(function (res) {
+        _this.regiones = res.data.regiones;
+        _this.provincias = res.data.provincias;
+        _this.ciudades = res.data.ciudades;
+        _this.tamanio_empresa = res.data.tamanio_empresa;
+        console.log(_this.regiones);
+        console.log(_this.provincias);
+        console.log(_this.ciudades);
+        console.log(_this.tamanio_empresa);
+      });
+      fetch('https://mindicador.cl/api').then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        _this.uf = json.uf.valor;
+      });
+    },
+    formateador: function formateador(number) {
+      return new Intl.NumberFormat("de-DE").format(number);
+    },
+    hola: function hola() {
+      var region = document.getElementById('region').value;
+      alert(region);
+    }
   }
 });
 
@@ -20304,26 +20334,77 @@ var render = function() {
     _c("div", { staticClass: "form-wrap" }, [
       _c("p", { staticClass: "pl-4 mb-2" }, [
         _vm._v(
-          "Tamaño Empresa       ( valor de la UF actual es de : " +
+          "Tamaño Empresa ( valor de la UF actual es de : " +
             _vm._s(_vm.uf) +
-            ") "
+            " ) "
         )
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "select",
+        { staticClass: "form-input", attrs: { name: "user-tamanio" } },
+        _vm._l(_vm.tamanio_empresa, function(t, indexx) {
+          return _c("option", { key: indexx, attrs: { value: "t.id" } }, [
+            _vm._v(
+              _vm._s(t.nombre) +
+                " : Minimo ($ " +
+                _vm._s(
+                  _vm.formateador((_vm.uf * parseFloat(t.minimo)).toFixed(0))
+                ) +
+                " CLP) - Maximo ($ " +
+                _vm._s(
+                  _vm.formateador((_vm.uf * parseFloat(t.maxima)).toFixed(0))
+                ) +
+                " CLP)"
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          attrs: { name: "user-tamanio", id: "region" },
+          on: {
+            change: function($event) {
+              return _vm.hola()
+            }
+          }
+        },
+        _vm._l(_vm.regiones, function(t) {
+          return _c("option", { key: t.id, attrs: { value: "n.id" } }, [
+            _vm._v(_vm._s(t.nombre))
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        { attrs: { name: "user-tamanio" } },
+        _vm._l(_vm.provincias, function(p) {
+          return _c("option", { key: p.id, attrs: { value: "" } }, [
+            _vm._v(_vm._s(p.nombre))
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        { attrs: { name: "user-tamanio", id: "" } },
+        _vm._l(_vm.ciudades, function(c) {
+          return _c("option", { key: c.id, attrs: { value: "" } }, [
+            _vm._v(_vm._s(c.nombre))
+          ])
+        }),
+        0
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("select", { attrs: { name: "user-tamanio", id: "" } }, [
-      _c("option", { attrs: { value: "" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -32935,8 +33016,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -29,6 +29,8 @@ Route::get('/recursos','ProveedorController@recursos')->name('proveedor.recursos
 
 //rutas jSON
 Route::get('/proveedor/proveedores/json/getproveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');
+Route::get('/regiones/provincias/ciudades','RegionController@index')->name('regiones');
+
 //fin json
 
 /*====  RUTAS DE PROVEEDOR   */
