@@ -142,7 +142,7 @@
                         =            SECCION LOGO           =
                         ======================================-->
 
-
+                            
                         <div class="tab-pane fade" id="v-pills-logo" role="tabpanel" aria-labelledby="v-pills-logo-tab">
                             <div class="row">
                             <div class="col-12">

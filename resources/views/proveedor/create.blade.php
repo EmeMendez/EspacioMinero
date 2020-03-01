@@ -26,6 +26,7 @@
                 <div class="form-wrap">
                   <p class="pl-4 mb-2">Nombre</p>                    
                   <input class="form-input" id="contact-name" type="text" name="user-name" >
+                  <input type="hidden" name="user-status" value="1">
                   <p class="text-danger my-0 pb-1 pl-4" id="msgerror">&nbsp</p>               
                 </div>
             </div> 
@@ -78,16 +79,10 @@
               </div>
           </div> --}}
 
-            <div class="col-12 col-md-7 mx-auto ">
-                    <div class="form-wrap">
-                      <p class="pl-4 mb-2">Tamaño Empresa</p>                    
-                        <select id="inputState" class="form-input " name="user-tamanio">
-                          @foreach ($tamanioempresa as $te)
-                            <option value="{{$te['id']}}">{{$te['nombre']}}</option>
-                          @endforeach                        
-                          </select>
-                          <p class="text-danger my-0 pb-1 pl-4">&nbsp</p>                                                 
-                    </div>
+            <div id="app">
+
+                <uf-component></uf-component>
+
             </div>
 
             <div class="col-12 col-md-7 mx-auto">

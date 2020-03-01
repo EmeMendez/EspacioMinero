@@ -25,6 +25,7 @@ Route::patch('/proveedor/vista-perfil/{proveedor}','ProveedorController@update')
 Route::post('/proveedor/proveedores', 'ProveedorController@store')->name('proveedor.store');
 Route::get('/proveedor/proveedores','ProveedorController@index')->name('proveedor.index');
 Route::get('/proveedor/perfil/{url}','ProveedorController@show')->name('proveedor.show');
+Route::get('/recursos','ProveedorController@recursos')->name('proveedor.recursos');
 
 //rutas jSON
 Route::get('/proveedor/proveedores/json/getproveedores/{parameter}','ProveedorController@getProveedoresByName')->name('getProveedoresByName');

@@ -79,7 +79,7 @@ class ProveedorController extends Controller
         if($r->hasFile('user-imagen')){
             $p->imagen = $r->file('user-imagen')->store('public');
         }else{
-            $p->imagen = 'public/default-avatar.png';
+            $p->imagen = 'public/default-avatar-image.png';
         }
         
 
@@ -156,7 +156,7 @@ class ProveedorController extends Controller
         // if($r->hasFile('user-imagen')){
         //     $p->imagen = $r->file('user-imagen')->store('public');
         // }else{
-        //     $p->imagen = 'public/default-avatar.png';
+        //     $p->imagen = 'public/default-avatar-image.png';
         // }
         $ciudades  = ciudad::get();
         $categorias = Categoria::get();
@@ -189,5 +189,9 @@ class ProveedorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function recursos(){
+        return view('proveedor.recursos');
     }
 }

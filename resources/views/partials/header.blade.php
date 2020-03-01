@@ -23,7 +23,7 @@
                 
                 <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
                 <li class="rd-nav-item {{setActive('about')}}">  <a class="rd-nav-link" href="{{route('about')}}" >NOSOTROS</a> </li>
-                <li class="rd-nav-item {{setActive('typo')}}">   <a class="rd-nav-link" href="{{route('typo')}}" >TYPOGRAPHY</a> </li>
+                <li class="rd-nav-item {{setActive('proveedor.index')}}">   <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
                 <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                 
             </ul>
@@ -43,8 +43,8 @@
             <ul class="rd-navbar-nav ">
                     
                 <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
-                <li class="rd-nav-item {{setActive('about')}}">  <a class="rd-nav-link" href="{{route('about')}}" >PROVEEDORES</a> </li>
-                <li class="rd-nav-item {{setActive('typo')}}">   <a class="rd-nav-link" href="{{route('typo')}}" >DESCARGA</a> </li>
+                <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
+                <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}" >RECURSOS</a> </li>
                 <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                 
             </ul>

@@ -25,7 +25,7 @@
     export default {
         data(){
             return {
-                imagenMiniatura: '/storage/default-avatar.png' ,
+                imagenMiniatura: '/storage/default-avatar-image.png' ,
                 imagen: ''
             }
         },
