@@ -35,20 +35,6 @@ class ProveedorTelefonoController extends Controller
      */
     public function store()
     {
-        $rut = request('rut');
-        $verificacion = ProveedorTelefono::where('proveedor_rut','=',$rut)->first();
-            
-            //update
-            $tele = array();
-            array_push($tele,request('tel-comercial'),request('tel-admin'),request('tel-supp'));
-
-            foreach ($tele as $val) {
-                $telefono = ProveedorTelefono::where('proveedor_rut','=',$rut)->first();
-                $telefono->proveedor_rut = $rut;
-                $telefono->telefono = $val;
-                $telefono->save();
-            }
-        
 
     }
 
@@ -82,7 +68,30 @@ class ProveedorTelefonoController extends Controller
      */
     public function update()
     {
-        return 'jojo';
+        $rut = auth()->user()->rut;
+        //$telefono =  ProveedorTelefono::where("proveedor_rut","=",$rut)->get();
+
+        $telefono1 = request('tel-1');
+        $telefono2 = request('tel-2');
+        $telefono3 = request('tel-3');
+   
+
+        ProveedorTelefono::where('tipo_contacto_id', 1)
+                    ->where('proveedor_rut', $rut)
+                    ->update(['telefono' => $telefono1]);
+
+        ProveedorTelefono::where('tipo_contacto_id', 2)
+                    ->where('proveedor_rut', $rut)
+                    ->update(['telefono' => $telefono2]);
+                    
+        ProveedorTelefono::where('tipo_contacto_id', 3)
+                    ->where('proveedor_rut', $rut)     
+                    ->update(['telefono' => $telefono3]);          
+                    
+                    
+                         
+
+        return redirect()->route('home')->with('success','¡Actualización Exitosa!'); 
     }
 
     /**

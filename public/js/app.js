@@ -1955,23 +1955,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      imagenMiniatura: '/storage/default-avatar-image.png',
+      imagenMiniatura: '/storage/default-avatar.jpeg',
       imagen: ''
     };
   },
+  mounted: function mounted() {
+    this.getImagenUpdate();
+  },
   methods: {
+    getImagenUpdate: function getImagenUpdate() {
+      var _this = this;
+
+      axios.get('/imagen/proveedor').then(function (res) {
+        _this.imagenMiniatura = res.data.imagen;
+      });
+    },
     getImagen: function getImagen(e) {
       var file = e.target.files[0];
       this.imagen = file;
       this.cargarImagen(file);
     },
     cargarImagen: function cargarImagen(file) {
-      var _this = this;
+      var _this2 = this;
 
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        _this.imagenMiniatura = e.target.result;
+        _this2.imagenMiniatura = e.target.result;
       };
 
       reader.readAsDataURL(file);
@@ -20033,7 +20043,7 @@ var render = function() {
   return _c("div", { staticClass: "image-container" }, [
     _c("img", {
       staticClass: "proveedor-image",
-      attrs: { src: _vm.imagensita }
+      attrs: { src: _vm.imagensita.split(6) }
     }),
     _vm._v(" "),
     _c("div", { staticClass: "middle" }, [
@@ -20042,7 +20052,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("input", {
-        attrs: { type: "file", accept: ".png, .jpeg, .jpg" },
+        attrs: {
+          name: "user-imagen",
+          type: "file",
+          accept: ".png, .jpeg, .jpg"
+        },
         on: { change: _vm.getImagen }
       })
     ])

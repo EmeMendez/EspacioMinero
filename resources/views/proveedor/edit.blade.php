@@ -145,16 +145,20 @@
                             
                         <div class="tab-pane fade" id="v-pills-logo" role="tabpanel" aria-labelledby="v-pills-logo-tab">
                             <div class="row">
-                            <div class="col-12">
-                                    <h3 class="text-center">Logo empresarial</h3><br>
-                                    <h5 class="pb-3 text-center">Toco sobre la imagen para cambiar</h5>
-                                    <div id="app">
-                                    <imagen-component></imagen-component>
-                            </div>
-                            <div class="col-12 pl-0 mb-3 text-center pt-4">
-                                <button class="button button-block button-primary col-md-4 col-8 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
-                            </div>                                                              
-                            </div>    
+                                <div class="col-12">
+                                        <h3 class="text-center">Logo empresarial</h3><br>
+                                        <h5 class="pb-3 text-center">Toco sobre la imagen para cambiar</h5>
+                                        <form action={{ route('proveedor.update_imagen') }} method="POST" enctype="multipart/form-data">
+                                            @method('PATCH')
+                                            @csrf
+                                            <div id="app">
+                                                <imagen-component></imagen-component>
+                                            </div>
+                                            <div class="col-12 pl-0 mb-3 text-center pt-4">
+                                                <button class="button button-block button-primary col-md-4 col-8 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
+                                            </div> 
+                                        </form>                                                             
+                                </div>    
                             </div>               
                         </div>
 
@@ -174,11 +178,14 @@
                                 @csrf
                                 @foreach($telefono as $t)
                                     <div class="col-12 pl-0 pt-3 mb-3">
-                                    <p class="pl-4 mb-2">Teléfono área {{$t->des}}</p>
+                                    <p class="pl-4 mb-2">Teléfono {{$t->des}}</p>
                                         <input type="hidden" name="rut" value="">
-                                    <input placeholder="+569 87654321" class="form-input" size="40" type="text"  name="tel-{{$t->tipo_id}}"value="{{$t->telefono}}" >
+                                    <input placeholder="Ejemplo-> +569 87654321" class="form-input" size="40" type="text"  name="tel-{{$t->tipo_id}}"value="{{$t->telefono}}" >
                                     </div>
                                 @endforeach
+                                <div class="col-12 pl-0 mb-3 text-center pt-4">
+                                    <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Actualizar Datos</button>
+                                </div> 
                             </form>
 
 
@@ -192,27 +199,26 @@
                         =            SECCION EMAIL           =
                         ======================================-->
 
-                        <div class="tab-pane fade" id="v-pills-email" role="tabpanel" aria-labelledby="v-pills-phone-tab">
+                        <div class="tab-pane fade" id="v-pills-email" role="tabpanel" aria-labelledby="v-pills-email-tab">
 
-                            <h3 class="text-center">Mis datos de Contácto</h3>
-                            <h5 class="pb-3 text-center">Informacion de Correo Electrónico</h5>
-                        
+                            <h3 class="text-center">Mis datos de Contácto</h3><br>
+                            <h5 class="pb-3 text-center">Informacion de contácto de correos electronicos</h5>
+                            <form action={{ route('correo.update') }} method="POST">
+                                @method('PATCH')
+                                @csrf
+                                @foreach($correo as $em)
+                                    <div class="col-12 pl-0 pt-3 mb-3">
+                                    <p class="pl-4 mb-2">Correo {{$em->des}}</p>
+                                        <input type="hidden" name="rut" value="">
+                                    <input placeholder="Ejemplo-> example@example.com" class="form-input" size="40" type="text"  name="correo-{{$em->tipo_id}}"value="{{$em->correo}}" >
+                                    </div>
+                                @endforeach
+                                <div class="col-12 pl-0 mb-3 text-center pt-4">
+                                    <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Actualizar Datos</button>
+                                </div> 
+                            </form>
 
-                        <div class="col-12 pl-0 pt-3 mb-3">
-                            <p class="pl-4 mb-2">Correo electrónico área Comercial</p>
-                            <input placeholder="espaco@industria.cl" class="form-input" size="40" type="text" value="espaco@industria.cl" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3">
-                            <p class="pl-4 mb-2">Correo electrónico administrativa</p>
-                            <input placeholder="espaco@industria.cl" class="form-input" size="40" type="text" value="espaco@industria.cl" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3">
-                            <p class="pl-4 mb-2">Correo electrónico área técnica</p>
-                            <input placeholder="espaco@industria.cl" class="form-input" size="40" type="text" value="espaco@industria.cl" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3 text-center pt-4">
-                            <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
-                        </div> 
+
 
 
                         </div>

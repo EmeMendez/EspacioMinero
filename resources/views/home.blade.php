@@ -22,6 +22,16 @@
             text: 'Sus datos se han actualizado correctamente',
             })
         </script>
+    @elseif(\Session::has('error'))
+    <script>
+                        
+        Swal.fire({
+        icon: 'error',
+        title: '¡Ha habido un Error!',
+        text: 'chale, te piteaste la pagina',
+        })
+    </script>
+    
     @endif
     
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

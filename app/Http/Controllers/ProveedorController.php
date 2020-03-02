@@ -9,6 +9,8 @@ use App\Ciudad;
 use App\TamanioEmpresa;
 use App\Categoria;
 use App\ProveedorTelefono;
+use App\ProveedorCorreo;
+
 class ProveedorController extends Controller
 {
     
@@ -78,11 +80,6 @@ class ProveedorController extends Controller
         $p = new Proveedor;
         
 
-        if($r->hasFile('user-imagen')){
-            $p->imagen = $r->file('user-imagen')->store('public');
-        }else{
-            $p->imagen = 'public/default-avatar-image.png';
-        }
         
 
         $p->rut                = request('user-rut');
@@ -97,11 +94,11 @@ class ProveedorController extends Controller
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id          = request('user-status');
         $p->url                = str_replace(" ","-",strtolower(request('user-name')));
-
+        $p->imagen             = 'public/default-avatar-image.png';
         $p->save();
 
         $tele = array();
-            array_push($tele,'Sin Registros','Sin Registros','Sin Registros');
+            array_push($tele,'','','');
             $incremento = 1;
             foreach ($tele as $val) {
                 $telefono = new ProveedorTelefono;
@@ -109,6 +106,17 @@ class ProveedorController extends Controller
                 $telefono->telefono = $val;
                 $telefono->tipo_contacto_id = $incremento++;
                 $telefono->save();
+            }
+
+            $correosh = array();
+            array_push($correosh,'','','');
+            $incremento = 1;
+            foreach ($correosh as $valo) {
+                $miCorreito = new ProveedorCorreo;
+                $miCorreito->proveedor_rut = request('user-rut');
+                $miCorreito->correo = $val;
+                $miCorreito->tipo_contacto_id = $incremento++;
+                $miCorreito->save();
             }
 
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
@@ -156,7 +164,12 @@ class ProveedorController extends Controller
                               ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();
 
-        return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor, 'telefono'=>$telefono]);
+         $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
+
+        return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor, 'telefono'=>$telefono, 'correo'=>$correosh]);
     }
 
     /**
@@ -172,11 +185,6 @@ class ProveedorController extends Controller
         $proveedor =  Proveedor::where("rut","=", request('user-rut'))->first();
 
 
-        // if($r->hasFile('user-imagen')){
-        //     $p->imagen = $r->file('user-imagen')->store('public');
-        // }else{
-        //     $p->imagen = 'public/default-avatar-image.png';
-        // }
         $ciudades  = ciudad::get();
         $categorias = Categoria::get();
         $tamanio_empresa = TamanioEmpresa::get();
@@ -198,6 +206,30 @@ class ProveedorController extends Controller
 
         return redirect()->route('home')->with('success','¡Actualización Exitosa!');   
         
+    }
+
+    public function update_imagen(Request $r){
+
+        $rut = auth()->user()->rut;
+        if($r->hasFile('user-imagen')){
+            $imagen = $r->file('user-imagen')->store('public');
+            Proveedor::where('rut', $rut)
+                    ->update(['imagen' => $imagen]);  
+                    return redirect()->route('home')->with('success','¡Imágen actualizada exitosamente!');   
+                   
+
+        }else{
+            return redirect()->route('home')->with('error','No se puedo actualizar la imágen');   
+        }
+       
+
+    }
+
+    public function image(){
+        $rut = auth()->user()->rut;
+        $imagen = Proveedor::select("imagen")
+                              ->where("rut", "=", $rut)->first();
+        return $imagen;
     }
 
     /**

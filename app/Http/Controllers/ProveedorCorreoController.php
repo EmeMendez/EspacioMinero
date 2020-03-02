@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProveedorCorreo;
 
 class ProveedorCorreoController extends Controller
 {
@@ -66,9 +67,32 @@ class ProveedorCorreoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        $rut = auth()->user()->rut;
+        //$telefono =  ProveedorTelefono::where("proveedor_rut","=",$rut)->get();
+
+        $correo1 = request('correo-1');
+        $correo2 = request('correo-2');
+        $correo3 = request('correo-3');
+   
+
+        ProveedorCorreo::where('tipo_contacto_id', 1)
+                    ->where('proveedor_rut', $rut)
+                    ->update(['correo' => $correo1]);
+
+        ProveedorCorreo::where('tipo_contacto_id', 2)
+                    ->where('proveedor_rut', $rut)
+                    ->update(['correo' => $correo2]);
+                    
+        ProveedorCorreo::where('tipo_contacto_id', 3)
+                    ->where('proveedor_rut', $rut)     
+                    ->update(['correo' => $correo3]);          
+                    
+                    
+                         
+
+        return redirect()->route('home')->with('success','¡Actualización Exitosa!'); 
     }
 
     /**
