@@ -138,7 +138,13 @@ class ProveedorController extends Controller
                               ->join("categoria","categoria.id","=","proveedor.categoria_id")
                               ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen")
                               ->where("url", "=", $url->url)->first();
-        return view('proveedor.show',compact('proveedor',$proveedor));
+      
+                              $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", $url->rut)->get();                               
+
+        return view('proveedor.show',['proveedor'=>$proveedor, 'correo'=>$correosh]);                              
 
     }
 

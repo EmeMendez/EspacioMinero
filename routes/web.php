@@ -51,3 +51,5 @@ Route::get('/tiposession','Auth\LoginController@TipoUsuario')->name('xd');
 
 Route::patch('/telefono/update', 'ProveedorTelefonoController@update')->name('telefono.update');
 Route::patch('/correo/update', 'ProveedorCorreoController@update')->name('correo.update');
+
+Route::post('/sendmail', 'CorreoController@send')->name('send');

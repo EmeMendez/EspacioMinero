@@ -12,3 +12,4 @@ class CiaMineraUsuarioController extends Controller
     {
         $this->middleware('auth');
     }
+}

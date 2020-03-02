@@ -21,12 +21,6 @@
           <div class="col-12">
           <p>{{ $proveedor->descripcion}}</p>
           </div>
-          @if(Auth::guard('admin')->check())
-            <div class="col-12">
-              <button class="button button-block button-primary ml-0 col-md-4 col-12 p-0 p-md-2 p-sm-2" type="submit">Contactar</button>            
-              {{-- <button class="btn btn-primary">Contactar</button> --}}
-            </div>
-          @endif
         </div>       
       </div>
     </div>
@@ -134,8 +128,32 @@
                         </ol>
                       </div>
                     </div>
-        
-        </div>
+
+
+                    <hr class="mt-3 mb-2">
+                    <h3 class="ml-0 mt-3 pl-0">Contactar</h3>
+                    <div class="col-12 mt-2 mt-2">
+
+            
+                      @foreach($correo as $em)
+                      <div class="row">
+                      <form action="{{ route('send') }}" method="POST">
+                        @csrf
+                      <div class="col-md-12 p-2 mt-0">
+                        <p>Correo {{$em->des}}</p>
+                        <input readonly class="pt-3 pb-3 pl-0 col-md-6 col-12" name="correo" value="{{$em->correo}}">
+                        <button id="button-addon1" class=" button button-block button-primary col-md-3 d-inline mt-0 col-12 ml-0 mt-2 mt-md-0" type="submit">Contactar</button>
+                      </div> 
+                    </form>
+                    </div>       
+                      @endforeach
+            
+            
+            
+                    </div>
+        </div>  
+       
+
     </div>
     
 <br>
@@ -143,6 +161,7 @@
 
 
 </div>
+
 
 
 
