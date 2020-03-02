@@ -1,10 +1,25 @@
 <?php
 
 namespace App;
+use Illuminate\Foundation\Auth\Admin as Authenticatable;
 
-use Illuminate\Database\Eloquent\Model;
-
-class CiaMineraUsuario extends Model
+class CiaMineraUsuario extends Authenticatable
 {
-    //
+    
+    protected $table = 'cia_minera_usuario';
+    protected $keyType = 'string';
+    protected $primaryKey = 'rut';
+    protected $fillable = [
+    'rut', 'password'
+];
+
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

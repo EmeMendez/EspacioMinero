@@ -49,13 +49,21 @@ class LoginController extends Controller
         if (Auth::attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
             return redirect()->route('home');
         }else{
+            if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                return redirect()->route('home');
+                //return redirect()->intended(route('admin.session'))->with('status','You are Logged in as Admin!');
+            }
+            else{
             return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
         }
-
     }
+    }
+
+    
     
     public function logout()
     {
+        Auth::guard('admin')->logout();
         Auth::logout();
         return redirect()->route('home');
 
