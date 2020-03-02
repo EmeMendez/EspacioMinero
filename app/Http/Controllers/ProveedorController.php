@@ -227,9 +227,8 @@ class ProveedorController extends Controller
 
     public function image(){
         $rut = auth()->user()->rut;
-        $imagen = Proveedor::select("imagen")
-                              ->where("rut", "=", $rut)->first();
-        return $imagen;
+        $imagen = Proveedor::find($rut);
+        return $imagen->imagen;
     }
 
     /**

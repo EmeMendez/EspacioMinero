@@ -22,7 +22,6 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('proveedores-component', require('./components/ListaProveedorComponent.vue').default);
 Vue.component('imagen-component', require('./components/ImagenComponent.vue').default);
-Vue.component('ver-imagen-component', require('./components/VerImagenComponent.vue').default);
 Vue.component('uf-component', require('./components/ufComponent.vue').default);
 Vue.component('select-ciudad-component', require('./components/SelectCiudadComponent.vue').default);
 
