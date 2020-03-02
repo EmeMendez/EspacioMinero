@@ -2126,16 +2126,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tipo: false,
+      invitado: false,
       nombres: ['melon', 'nani', 'silver'],
-      a: null,
+      loading: null,
       proveedores: [],
       pagination: {
         'total': 0,
@@ -2215,29 +2211,26 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       setTimeout(function () {
-        _this2.a = true;
-      }, 2000);
-      return this.a;
+        _this2.loading = true;
+      }, 1500);
+      return this.loading;
     },
     tipoUsuario: function tipoUsuario() {
       var _this3 = this;
 
       axios.get('/tiposession').then(function (res) {
-        var proveedor = res.data.proveedor;
         var invitado = res.data.invitado;
-        var ciaminero = res.data.ciaminera;
-        var tipo = "";
+        var proveedor = res.data.proveedor;
 
-        if (proveedor != null) {
-          tipo = "proveedor";
-        } else if (invitado == true) {
-          tipo = "invitado";
+        if (res.data.ciaminera == true) {
+          _this3.invitado = false;
+        } else if (proveedor != null) {
+          _this3.invitado = false;
         } else {
-          tipo = "ciaminera";
+          _this3.invitado = true;
         }
 
-        console.log(tipo);
-        _this3.tipo = true;
+        console.log(_this3.invitado);
       });
     }
   }
@@ -20119,7 +20112,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    !_vm.a
+    !_vm.loading
       ? _c(
           "div",
           [
@@ -20133,9 +20126,7 @@ var render = function() {
               return _c("div", { key: p, staticClass: "card mb-3" }, [
                 _vm._m(0, true)
               ])
-            }),
-            _vm._v(" "),
-            _vm._m(1)
+            })
           ],
           2
         )
@@ -20177,7 +20168,7 @@ var render = function() {
                         domProps: { textContent: _vm._s(p.descripcion) }
                       }),
                       _vm._v(" "),
-                      _vm.tipo
+                      _vm.invitado
                         ? _c(
                             "a",
                             {
@@ -20185,10 +20176,22 @@ var render = function() {
                                 "button button-sm button-default-outline button-winona ml-0",
                               attrs: {
                                 "data-toggle": "modal",
-                                "data-target": "#exampleModal"
+                                "data-target": "#exampleModalCenter"
                               }
                             },
-                            [_vm._v(" Más Información")]
+                            [_vm._v("Más Información")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.invitado
+                        ? _c(
+                            "a",
+                            {
+                              staticClass:
+                                "button button-sm button-default-outline button-winona ml-0",
+                              attrs: { href: "/proveedor/perfil/" + p.url }
+                            },
+                            [_vm._v("Más Información")]
                           )
                         : _vm._e()
                     ])
@@ -20199,6 +20202,8 @@ var render = function() {
           ],
           2
         ),
+    _vm._v(" "),
+    _vm._m(1),
     _vm._v(" "),
     _c("nav", [
       _c(
@@ -20353,17 +20358,20 @@ var staticRenderFns = [
       {
         staticClass: "modal fade",
         attrs: {
-          id: "exampleModal",
+          id: "exampleModalCenter",
           tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
+          "aria-labelledby": "exampleModalCenterTitle",
           "aria-hidden": "true"
         }
       },
       [
         _c(
           "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-header" }, [
@@ -20371,7 +20379,7 @@ var staticRenderFns = [
                   "h5",
                   {
                     staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
+                    attrs: { id: "exampleModalLongTitle" }
                   },
                   [_vm._v("Modal title")]
                 ),
@@ -33348,8 +33356,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

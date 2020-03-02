@@ -19,26 +19,37 @@
         <div class="rd-navbar-nav-wrap" style="padding-bottom: 20px;">
         <!-- RD Navbar Nav-->
 
-        
-        @if(Auth::guard('admin')->check())
-        <ul class="rd-navbar-nav ">
+        <!--=====================================
+        =            HEADER CIA MINERA          =
+        ======================================-->
+
+            @if(Auth::guard('admin')->check())
+            <ul class="rd-navbar-nav ">
+                        
+                <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >MATCH</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}" >UWU</a> </li>
+                    <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                     
-            <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
-                <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
-                <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}" >RECURSOS</a> </li>
-                <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
-                
-        </ul>
-
-        <div class="rd-navbar-tel">
-
-            <ul class="rd-navbar-nav">
-                <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
             </ul>
 
-        </div>  
-        
+            <div class="rd-navbar-tel">
+
+                <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"><a class="rd-nav-link" href="#" >PERFIL</a> </li>
+                    <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
+                </ul>
+
+            </div>  
+
+         <!--====  End of HEADER CIA MINERA ====-->
+
+
+        <!--=====================================
+        =            HEADER PROVEEDOR           =
+        ======================================-->
+
             @elseif(Auth::check())
 
             <ul class="rd-navbar-nav ">
@@ -59,6 +70,14 @@
                 </ul>
 
             </div> 
+
+        <!--====  End of HEADER PROVEEDOR ====-->
+
+
+        <!--=====================================
+        =            HEADER INVITADO            =
+        ======================================-->
+
             @else    
             <ul class="rd-navbar-nav ">
                 
@@ -77,9 +96,13 @@
                 </ul>
 
             </div>
-            @endif          
-        
-            <div class="rd-navbar-dummy"></div>
+            @endif  
+
+        <!--====  End of HEADER INVITADO   ====-->
+
+
+
+        <div class="rd-navbar-dummy"></div>
     </div>
     </nav>
 </div>

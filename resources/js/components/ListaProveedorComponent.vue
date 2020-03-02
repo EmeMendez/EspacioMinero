@@ -10,15 +10,11 @@
           </div>
         </div>
       </div>
-    <!-- Fin Buscador --> 
+    <!-- Fin Buscador -->
+    
+
      <!-- inicio de la lista -->
-
-    <div v-if="!a">
-        <!-- <img width="50" height="50" src="/images/loading/loading.gif" alt=""> -->
-       
-
-        <!-- jjjfjffjfj -->
-
+    <div v-if="!loading">      
     <label id="results" class="lead pb-3">Resultados : </label>
 
       <div class="card mb-3" v-for="p in proveedores" :key="p">
@@ -38,17 +34,42 @@
       </div>
       </div>
 
+    </div>
+    <div v-else>
+    <label id="results" class="lead pb-3">Resultados : {{pagination.total}}</label>
+    
+    <div class="card mb-3" v-for="p in proveedores" v-bind:key="p.rut">
+      <div class="row no-gutters">
+        <div class="col-md-2 col-12 text-center my-auto">
+          <img :src="'/storage/' + p.imagen.substr(6)" width="150" height="150">
+        </div>
+        <div class="col-md-8 col-12">
+          <div class="card-body">
+            <h5 class="card-title" v-text="p.nombre"></h5>
+            <p class="card-text multine-ellipsis text-justify"  v-text="p.descripcion"></p>
+            
+          
+              <a v-if="invitado"  data-toggle="modal" data-target="#exampleModalCenter" class="button button-sm button-default-outline button-winona ml-0" >Más Información</a>                      
+              <a v-if="!invitado" class="button button-sm button-default-outline button-winona ml-0" :href="'/proveedor/perfil/' + p.url" >Más Información</a>                      
 
+            </div>
+        </div>
+      </div>
+    </div> 
+
+    </div>
+
+    <!-- end list -->
 
 
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -75,33 +96,8 @@
 
 
 
-    </div>
-    <div v-else>
-    <label id="results" class="lead pb-3">Resultados : {{pagination.total}}</label>
-    
-    <div class="card mb-3" v-for="p in proveedores" v-bind:key="p.rut">
-      <div class="row no-gutters">
-        <div class="col-md-2 col-12 text-center my-auto">
-          <img :src="'/storage/' + p.imagen.substr(6)" width="150" height="150">
-        </div>
-        <div class="col-md-8 col-12">
-          <div class="card-body">
-            <h5 class="card-title" v-text="p.nombre"></h5>
-            <p class="card-text multine-ellipsis text-justify"  v-text="p.descripcion"></p>
-            
-          
-              <a v-if="tipo"  data-toggle="modal" data-target="#exampleModal" class="button button-sm button-default-outline button-winona ml-0" > Más Información</a>            
-              
-            
-            
-            </div>
-        </div>
-      </div>
-    </div> 
 
-    </div>
 
-    <!-- end list -->
 
     <!-- start buttons -->
       <nav>
@@ -126,9 +122,9 @@
 	    export default {
         data(){
             return {
-                tipo: false,
+                invitado: false,
                 nombres : ['melon','nani','silver'],
-                a: null,
+                loading: null,
                 proveedores: [],
                 pagination:{
                  'total': 0,
@@ -145,6 +141,7 @@
             }
         },
         mounted(){
+
           this.cargo();
           this.getProveedoresByName();
           this.tipoUsuario();
@@ -203,33 +200,28 @@
             },
             cargo(){
                 setTimeout(()=>{
-                  this.a = true
-                },2000);                
-                  return this.a;
+                  this.loading = true
+                },1500);                
+                  return this.loading;
             },
             tipoUsuario(){
-                        axios.get('/tiposession').then(res=>{
-                        var proveedor = res.data.proveedor;
-                        var invitado = res.data.invitado;
-                        var ciaminero = res.data.ciaminera;
-                        var tipo = "";
-                        if(proveedor!=null){
-                          tipo = "proveedor";
-                        }else if(invitado==true){
-                          tipo = "invitado"
-                        }
-                        else{
-                          tipo = "ciaminera";
-                        }
-                        console.log(tipo)
-                        this.tipo=true;
-                        
-          })
+                axios.get('/tiposession').then(res=>{
+                var invitado = res.data.invitado;
+                var proveedor = res.data.proveedor;
+                if(res.data.ciaminera == true){
+                    this.invitado=false;       
+                }
+                else if(proveedor != null){
+                    this.invitado=false;       
+                }else{
+                    this.invitado=true;       
+                }
+                console.log(this.invitado)
+              })
             }
-        }
     }
 
-
+}
 </script>
 
 
