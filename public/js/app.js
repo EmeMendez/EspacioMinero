@@ -2091,9 +2091,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      tipo: false,
       nombres: ['melon', 'nani', 'silver'],
       a: null,
       proveedores: [],
@@ -2112,6 +2152,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.cargo();
     this.getProveedoresByName();
+    this.tipoUsuario();
   },
   computed: {
     isActived: function isActived() {
@@ -2177,6 +2218,27 @@ __webpack_require__.r(__webpack_exports__);
         _this2.a = true;
       }, 2000);
       return this.a;
+    },
+    tipoUsuario: function tipoUsuario() {
+      var _this3 = this;
+
+      axios.get('/tiposession').then(function (res) {
+        var proveedor = res.data.proveedor;
+        var invitado = res.data.invitado;
+        var ciaminero = res.data.ciaminera;
+        var tipo = "";
+
+        if (proveedor != null) {
+          tipo = "proveedor";
+        } else if (invitado == true) {
+          tipo = "invitado";
+        } else {
+          tipo = "ciaminera";
+        }
+
+        console.log(tipo);
+        _this3.tipo = true;
+      });
     }
   }
 });
@@ -20071,7 +20133,9 @@ var render = function() {
               return _c("div", { key: p, staticClass: "card mb-3" }, [
                 _vm._m(0, true)
               ])
-            })
+            }),
+            _vm._v(" "),
+            _vm._m(1)
           ],
           2
         )
@@ -20113,15 +20177,20 @@ var render = function() {
                         domProps: { textContent: _vm._s(p.descripcion) }
                       }),
                       _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass:
-                            "button button-sm button-default-outline button-winona ml-0",
-                          attrs: { href: "/proveedor/perfil/" + p.url }
-                        },
-                        [_vm._v(" Más Información")]
-                      )
+                      _vm.tipo
+                        ? _c(
+                            "a",
+                            {
+                              staticClass:
+                                "button button-sm button-default-outline button-winona ml-0",
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#exampleModal"
+                              }
+                            },
+                            [_vm._v(" Más Información")]
+                          )
+                        : _vm._e()
                     ])
                   ])
                 ])
@@ -20274,6 +20343,82 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "exampleModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Modal title")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v("\n        ...\n      ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
+                  [_vm._v("Save changes")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -33203,8 +33348,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

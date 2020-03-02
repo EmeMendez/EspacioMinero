@@ -32,11 +32,45 @@
             <div class="card-body">
             <h5 class="card-title text-left text-light bg-light">&nbsp</h5>
             <p class="card-text multine-ellipsis text-justify text-light bg-light py-auto">&nbsp<br>&nbsp<br>&nbsp<br></p>
-            <a class="button button-sm button-winona ml-0 text-light bg-light">Más Información</a>            
+            <a class="button button-sm button-winona ml-0 text-light bg-light" >Más Información</a>            
           </div>
         </div>
       </div>
       </div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -54,8 +88,13 @@
           <div class="card-body">
             <h5 class="card-title" v-text="p.nombre"></h5>
             <p class="card-text multine-ellipsis text-justify"  v-text="p.descripcion"></p>
-            <a class="button button-sm button-default-outline button-winona ml-0" :href="'/proveedor/perfil/' + p.url"> Más Información</a>            
-          </div>
+            
+          
+              <a v-if="tipo"  data-toggle="modal" data-target="#exampleModal" class="button button-sm button-default-outline button-winona ml-0" > Más Información</a>            
+              
+            
+            
+            </div>
         </div>
       </div>
     </div> 
@@ -87,6 +126,7 @@
 	    export default {
         data(){
             return {
+                tipo: false,
                 nombres : ['melon','nani','silver'],
                 a: null,
                 proveedores: [],
@@ -107,6 +147,7 @@
         mounted(){
           this.cargo();
           this.getProveedoresByName();
+          this.tipoUsuario();
         },
         computed:{
             isActived: function(){
@@ -165,6 +206,25 @@
                   this.a = true
                 },2000);                
                   return this.a;
+            },
+            tipoUsuario(){
+                        axios.get('/tiposession').then(res=>{
+                        var proveedor = res.data.proveedor;
+                        var invitado = res.data.invitado;
+                        var ciaminero = res.data.ciaminera;
+                        var tipo = "";
+                        if(proveedor!=null){
+                          tipo = "proveedor";
+                        }else if(invitado==true){
+                          tipo = "invitado"
+                        }
+                        else{
+                          tipo = "ciaminera";
+                        }
+                        console.log(tipo)
+                        this.tipo=true;
+                        
+          })
             }
         }
     }

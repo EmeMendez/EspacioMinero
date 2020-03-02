@@ -47,7 +47,7 @@ Auth::routes();
 
 Route::post('sama','Auth\LoginController@login')->name('sama');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-
+Route::get('/tiposession','Auth\LoginController@TipoUsuario')->name('xd');
 
 Route::patch('/telefono/update', 'ProveedorTelefonoController@update')->name('telefono.update');
 Route::patch('/correo/update', 'ProveedorCorreoController@update')->name('correo.update');

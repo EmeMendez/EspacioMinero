@@ -59,7 +59,12 @@ class LoginController extends Controller
     }
     }
 
-    
+    public function TipoUsuario(){
+        $proveedor = auth()->user();
+        $invitado = auth()->guest();
+        $ciaminera = auth()->guard('admin')->check();
+        return ['proveedor'=> $proveedor, 'invitado'=>$invitado,'ciaminera'=> $ciaminera];
+    }
     
     public function logout()
     {
