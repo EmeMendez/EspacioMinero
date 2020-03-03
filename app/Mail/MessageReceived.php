@@ -13,7 +13,7 @@ class MessageReceived extends Mailable
 
 
 
-//MAIL_DRIVER=smtp
+// MAIL_DRIVER=smtp
 // MAIL_HOST=mail.espacioindustria.cl
 // MAIL_PORT=587
 // MAIL_USERNAME=soporte@espacioindustria.cl

@@ -138,12 +138,13 @@
                       @foreach($correo as $em)
                       <div class="row">
                       <form action="{{ route('send') }}" method="POST">
-                        @csrf
-                      <div class="col-md-12 p-2 mt-0">
-                        <p>Correo {{$em->des}}</p>
-                        <input readonly class="pt-3 pb-3 pl-0 col-md-6 col-12" name="correo" value="{{$em->correo}}">
-                        <button id="button-addon1" class=" button button-block button-primary col-md-3 d-inline mt-0 col-12 ml-0 mt-2 mt-md-0" type="submit">Contactar</button>
-                      </div> 
+                          @csrf
+                        <div class="col-md-12 p-2 mt-0">
+                          <p>Correo {{$em->des}}</p>
+                          <input readonly class="pt-3 pb-3 pl-0 col-md-6 col-12" name="correo" value="{{$em->correo}}">
+                        <input type="hidden" name="rut" value="{{ $em->proveedor_rut }}">
+                          <button id="button-addon1" class=" button button-block button-primary col-md-3 d-inline mt-0 col-12 ml-0 mt-2 mt-md-0" type="submit">Contactar</button>
+                        </div> 
                     </form>
                     </div>       
                       @endforeach

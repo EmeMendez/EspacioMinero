@@ -60,7 +60,7 @@
 
             <div class="col-12 mx-auto mb-5">
               <div class="form-wrap form-button">
-                <button class="button button-block button-primary col-md-5 col-12 mx-auto" id="btnEnviar" type="submit">Registrarse</button>
+                <button class="button button-block button-primary col-md-5 col-12 mx-auto" id="btnEnviar" type="submit">Iniciar Sesion</button>
               </div>
             </div>
 

@@ -24,6 +24,7 @@ Vue.component('proveedores-component', require('./components/ListaProveedorCompo
 Vue.component('imagen-component', require('./components/ImagenComponent.vue').default);
 Vue.component('uf-component', require('./components/ufComponent.vue').default);
 Vue.component('select-ciudad-component', require('./components/SelectCiudadComponent.vue').default);
+Vue.component('imagen-minera-component', require('./components/ImagenMineraComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

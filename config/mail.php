@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'soporte@espacioindustria.cl'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@espacioindustria.cl'),
         'name' => env('MAIL_FROM_NAME', 'Espacio Industrial Minero'),
     ],
 

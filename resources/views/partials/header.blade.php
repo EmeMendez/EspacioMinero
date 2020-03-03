@@ -36,7 +36,7 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"><a class="rd-nav-link" href="#" >PERFIL</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"><a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>
