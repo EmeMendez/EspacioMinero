@@ -86,3 +86,11 @@ Route::patch('/correominera/update', 'MineraCorreoController@update')->name('cor
 Route::get('/imagen/minera','CiaMineraUsuarioController@image')->name('imagenminera.return');
 
 /*====  RUTAS DEL MINERA   */
+
+
+/*=====================================
+=            RUTAS CERTIFICACION        =
+======================================*/
+Route::post('/proveedor/certificacion','ProveedorCertificacionController@update')->name('proveedorcertificacion.update');
+Route::get('/proveedor/certificacion','ProveedorCertificacionController@show')->name('proveedorcertificacion.show');
+/*====  RUTAS CERTIFICACION   */

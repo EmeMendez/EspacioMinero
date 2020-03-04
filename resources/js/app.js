@@ -25,6 +25,7 @@ Vue.component('imagen-component', require('./components/ImagenComponent.vue').de
 Vue.component('uf-component', require('./components/ufComponent.vue').default);
 Vue.component('select-ciudad-component', require('./components/SelectCiudadComponent.vue').default);
 Vue.component('imagen-minera-component', require('./components/ImagenMineraComponent.vue').default);
+Vue.component('certificacion-component', require('./components/CertificacionComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,4 +38,7 @@ const app = new Vue({
 });
 const ciudad = new Vue({
     el: '#ciudad',
+});
+const certificacion = new Vue({
+    el: '#certificacion',
 });
