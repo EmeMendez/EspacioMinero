@@ -257,7 +257,7 @@
                         ======================================-->
 
                         <div class="tab-pane fade" id="v-pills-certification" role="tabpanel" aria-labelledby="v-pills-certification-tab">
-                            MIS CERTIFICACIONES
+                             @include('proveedor_certificacion.edit')
                         </div>
 
                         <!--====  End of CAMBIAR CERTIFICACIONES  ====-->

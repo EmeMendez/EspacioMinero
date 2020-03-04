@@ -8118,7 +8118,7 @@ h5.iphone-frame-4-next-text {
 	position: relative;
 	overflow: hidden;
 	min-height: 100vh;
-	opacity: 0;
+	opacity: 0; 
 }
 
 .page.fadeIn {
