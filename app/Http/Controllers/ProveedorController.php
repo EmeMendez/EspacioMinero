@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 use App\Proveedor;
 use App\Ciudad;
@@ -13,7 +14,13 @@ use App\ProveedorCorreo;
 
 class ProveedorController extends Controller
 {
-    
+    protected $ciudades= null;
+    protected $categorias = null;
+    protected $tamanio_empresa = null;
+    protected $proveedor = null;
+    protected $correosh = null;
+    protected $telefono = null;
+
     public function __construct()
     {
         $this->middleware('auth')->except('index','show','create','getProveedoresByName','store');
@@ -156,26 +163,8 @@ class ProveedorController extends Controller
      */
     public function edit($url)
     {
-        $ciudades  = ciudad::get();
-        $categorias = Categoria::get();
-        $tamanio_empresa = TamanioEmpresa::get();
-        $proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
-                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
-                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
-                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
-                              ->where("url", "=", $url)->first();
-         
-        $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
-                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
-                              ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
-                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();
-
-         $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
-                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
-                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
-
-        return view('proveedor.edit',['categorias' => $categorias,'ciudades'=>$ciudades,'tamanio_empresa'=>$tamanio_empresa,'proveedor'=>$proveedor, 'telefono'=>$telefono, 'correo'=>$correosh]);
+        $this->getInformation($url);
+        return view('proveedor.edit',['categorias' => $this->categorias,'ciudades'=>$this->ciudades,'tamanio_empresa'=>$this->tamanio_empresa,'proveedor'=>$this->proveedor, 'telefono'=>$this->telefono, 'correo'=>$this->correosh]);
     }
 
     /**
@@ -201,31 +190,62 @@ class ProveedorController extends Controller
         $proveedor->direccion          = request('user-address');
         $proveedor->categoria_id       = request('user-cat');
         $proveedor->ciudad_id          = request('user-city');
-        $proveedor->correo             = request('user-email');
+        //$proveedor->correo             = request('user-email');
         $proveedor->tamanio_empresa_id = request('user-tamanio');
         $proveedor->url                = str_replace(" ","-",strtolower(request('user-name')));
 
 
-        $nueva_url = $proveedor->url;
+
+        $nueva_url = str_replace(" ","-",strtolower(request('user-name')));
 
         $proveedor->save();
-
-        return redirect()->route('home')->with('success','¡Actualización Exitosa!');   
-        
+        $this->getInformation($nueva_url);
+        return redirect()->route('proveedor.edit',[$this->proveedor])->with('success','¡Actualizacion Exitosa!');
     }
+
+
+    public function changepassword(){
+
+        $rut = auth()->user()->rut;
+        $url = auth()->user()->url;
+        $proveedor =  Proveedor::where("rut","=", $rut)->first();
+
+        $passwordAnterior = $proveedor->password;
+        $passwordAnteriorForm = request('user-pass-be');
+        $passwordNueva = Hash::make(request('user-password'));
+
+        if (Hash::check($passwordAnteriorForm, $passwordAnterior)) {
+            Proveedor::where('rut', $rut)
+                    ->update(['password' => $passwordNueva]);  
+        $this->getInformation($url);
+        return redirect()->route('proveedor.edit',[$this->proveedor])->with('success','¡Actualizacion Exitosa!');
+                    
+        }else{
+            $this->getInformation($url);
+            return redirect()->route('proveedor.edit',[$this->proveedor])->with('error','¡Actualizacion Erronea! Algo ha salido mal');
+        }
+
+    }
+
+
+
+
 
     public function update_imagen(Request $r){
 
         $rut = auth()->user()->rut;
+        $url = auth()->user()->url;
         if($r->hasFile('user-imagen')){
             $imagen = $r->file('user-imagen')->store('public');
             Proveedor::where('rut', $rut)
                     ->update(['imagen' => $imagen]);  
-                    return redirect()->route('home')->with('success','¡Imágen actualizada exitosamente!');   
+            $this->getInformation($url);
+            return redirect()->route('proveedor.edit',[$this->proveedor])->with('success','¡Actualizacion Exitosa!'); 
                    
 
         }else{
-            return redirect()->route('home')->with('error','No se puedo actualizar la imágen');   
+            $this->getInformation($url);
+        return redirect()->route('proveedor.edit',[$this->proveedor])->with('error','¡Actualizacion Exitosa!'); 
         }
        
 
@@ -251,4 +271,26 @@ class ProveedorController extends Controller
     public function recursos(){
         return view('proveedor.recursos');
     }
+
+    public function getInformation($url){
+        $this->ciudades  = ciudad::get();
+        $this->categorias = Categoria::get();
+        $this->tamanio_empresa = TamanioEmpresa::get();
+        $this->proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
+                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
+                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
+                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","correo","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
+                              ->where("url", "=", $url)->first();
+         
+        $this->telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();
+
+        $this->correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
+    }
 }
+

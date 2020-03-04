@@ -2191,7 +2191,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -20491,7 +20490,7 @@ var staticRenderFns = [
                     staticClass: "modal-title",
                     attrs: { id: "exampleModalLongTitle" }
                   },
-                  [_vm._v("Modal title")]
+                  [_vm._v("Regístrate o Inicia Sesión")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -20506,31 +20505,40 @@ var staticRenderFns = [
                   },
                   [
                     _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
+                      _vm._v("×  ")
                     ])
                   ]
                 )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _vm._v("\n        ...\n      ")
+                _vm._v(
+                  "\n        Para poder ver la información de este proveedor, necesitas registrarte o si ya tienes una cuenta ¡inicia sesión! \n      "
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                ),
+                _c("a", { attrs: { href: "/iniciar-sesion" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button button-primary py-2 px-5",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Inicia Sesión")]
+                  )
+                ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                  [_vm._v("Save changes")]
-                )
+                _c("a", { attrs: { href: "/proveedor/registrarse" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary py-2 px-5",
+                      attrs: { type: "button" }
+                    },
+                    [_vm._v("Regístrate")]
+                  )
+                ])
               ])
             ])
           ]

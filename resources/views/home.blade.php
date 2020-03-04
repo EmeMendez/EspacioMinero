@@ -2,37 +2,7 @@
 @section('content')
 <!-- FScreen-->
 
-    @if(count($errors)> 0)
-        <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-                
-            @endforeach
-        </ul>
-        </div>
-    @endif
 
-    @if (\Session::has('success'))
-        <script>
-                        
-            Swal.fire({
-            icon: 'success',
-            title: '¡Actualización Exitosa!',
-            text: 'Sus datos se han actualizado correctamente',
-            })
-        </script>
-    @elseif(\Session::has('error'))
-    <script>
-                        
-        Swal.fire({
-        icon: 'error',
-        title: '¡Ha habido un Error!',
-        text: 'chale, te piteaste la pagina',
-        })
-    </script>
-    
-    @endif
     
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         

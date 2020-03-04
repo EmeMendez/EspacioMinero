@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProveedorTelefono;
+use App\Proveedor;
+use App\Ciudad;
+use App\TamanioEmpresa;
+use App\Categoria;
+use App\ProveedorCorreo;
 
 class ProveedorTelefonoController extends Controller
 {
+
+    protected $ciudades= null;
+    protected $categorias = null;
+    protected $tamanio_empresa = null;
+    protected $proveedor = null;
+    protected $correosh = null;
+    protected $telefono = null;
+
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +82,7 @@ class ProveedorTelefonoController extends Controller
     public function update()
     {
         $rut = auth()->user()->rut;
-        //$telefono =  ProveedorTelefono::where("proveedor_rut","=",$rut)->get();
+        $url = auth()->user()->url;
 
         $telefono1 = request('tel-1');
         $telefono2 = request('tel-2');
@@ -88,10 +101,10 @@ class ProveedorTelefonoController extends Controller
                     ->where('proveedor_rut', $rut)     
                     ->update(['telefono' => $telefono3]);          
                     
-                    
-                         
+        $this->getInformation($url);
+        return redirect()->route('proveedor.edit',[$this->proveedor])->with('success','¡Actualizacion Exitosa!');
 
-        return redirect()->route('home')->with('success','¡Actualización Exitosa!'); 
+                         
     }
 
     /**
@@ -103,5 +116,26 @@ class ProveedorTelefonoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getInformation($url){
+        $this->ciudades  = ciudad::get();
+        $this->categorias = Categoria::get();
+        $this->tamanio_empresa = TamanioEmpresa::get();
+        $this->proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
+                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
+                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
+                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
+                              ->where("url", "=", $url)->first();
+         
+        $this->telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();
+
+        $this->correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
 }
