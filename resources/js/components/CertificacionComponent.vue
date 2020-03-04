@@ -1,5 +1,6 @@
 <template>
      <div>
+         <!-- push del mal -->
          <input type="text"><button>agregar</button> 
           <hr class="mx-3">
          <p class="lead">Mis certificaciones</p>
