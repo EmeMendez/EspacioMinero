@@ -13,7 +13,6 @@ Route::view('/contacto','contact')->name('contact');
 
 
 
-
 /*=====================================
 =            RUTAS DE PROVEEDOR         =
 ======================================*/
@@ -67,8 +66,12 @@ Route::get('/tiposession','Auth\LoginController@TipoUsuario')->name('xd');
 /*=================================================
 =            RUTAS DE CORREOS ELECTRONICOS         =
 ==================================================*/
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::post('password/reset/{token}', 'Auth\ForgotPasswordController@showResetForm')->name('password.reset') ;
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-Route::post('/sendmail', 'CorreoController@send')->name('send');
+
 
 /*====  RUTAS DEL CORREOS ELECTRONICOS   ========*/
 
