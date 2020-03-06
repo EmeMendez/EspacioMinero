@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Certificacion;
 use App\ProveedorCertificacion;
-class ProveedorCertificacionController extends Controller
+class CertificacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,16 @@ class ProveedorCertificacionController extends Controller
      */
     public function index()
     {
-        //
+        $proveedor_certificaciones = ProveedorCertificacion::where("proveedor_rut", "=", auth()->user()->rut  )->get();                              
+        $certificaciones = Certificacion::get();       
+        foreach($certificaciones as $key => $c){
+                foreach($proveedor_certificaciones as $pc){
+                     if($pc->certificacion_id == $c->id){
+                        unset($certificaciones[$key]);
+                     }                       
+                }                             
+        }
+        return $certificaciones;
     }
 
     /**
@@ -34,11 +44,7 @@ class ProveedorCertificacionController extends Controller
      */
     public function store(Request $request)
     {
-        $pc = new ProveedorCertificacion;
-        $pc->proveedor_rut = $request->proveedor_rut;
-        $pc->certificacion_id = $request->certificacion_id;
-        $pc->save();
-        return $request;
+        
     }
 
     /**
@@ -47,13 +53,9 @@ class ProveedorCertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $rut = auth()->user()->rut;
-        $certificaciones = ProveedorCertificacion::join("certificacion","certificacion.id", "=", "proveedor_certificacion.certificacion_id")
-                                ->select('nombre',"certificacion_id","proveedor_rut")
-                                ->where("proveedor_rut", "=", $rut  )->get();                              
-        return ['certificaciones' => $certificaciones, 'rut' => $rut];
+        //
     }
 
     /**
@@ -74,11 +76,9 @@ class ProveedorCertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        
-        //return $request;
-        return $request;
+        //
     }
 
     /**
@@ -87,12 +87,8 @@ class ProveedorCertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        ProveedorCertificacion::where("proveedor_rut","=",$request->proveedor_rut)
-                                ->where("certificacion_id", "=", $request->certificacion_id)
-                                ->delete();
-        return $request;
-        
+        //
     }
 }

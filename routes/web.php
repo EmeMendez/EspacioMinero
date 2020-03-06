@@ -31,6 +31,7 @@ Route::patch('/telefono/update', 'ProveedorTelefonoController@update')->name('te
 Route::patch('/correo/update', 'ProveedorCorreoController@update')->name('correo.update');
 Route::patch('/cambiar-password', 'ProveedorController@changepassword')->name('provedorchangepassword.update');
 
+
 /*=====================================
 =    RUTAS JSON DEL PROVEEDOR         =
 ======================================*/
@@ -47,7 +48,17 @@ Route::get('/ciudades/{provincia}','CiudadController@CiudadesByProvincia')->name
 
 /*====  RUTAS DE PROVEEDOR   */
 
+/*=====================================
+=            RUTAS CERTIFICACION        =
+======================================*/
+Route::post('/proveedor/certificacion/store','ProveedorCertificacionController@store')->name('proveedorcertificacion.store');
+Route::get('/proveedor/certificacion','ProveedorCertificacionController@show')->name('proveedorcertificacion.show');
+Route::delete('/proveedor/certificacion','ProveedorCertificacionController@destroy')->name('proveedorcertificacion.destroy');
 
+
+
+Route::get('certificacion/certificaciones','CertificacionController@index')->name('certificacion.index');
+/*====  RUTAS CERTIFICACION   */
 
 
 
