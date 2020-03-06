@@ -5,10 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\UserResetPassword;
 
-class Proveedor extends Model implements AuthenticatableContract {
+class Proveedor extends Model implements AuthenticatableContract ,CanResetPasswordContract {
 
     use Authenticatable;
+    use  Notifiable;
+    use CanResetPassword;
     protected $table = 'proveedor';
     protected $keyType = 'string';
     protected $primaryKey = 'rut';
@@ -39,5 +45,8 @@ class Proveedor extends Model implements AuthenticatableContract {
         'email_verified_at' => 'datetime',
     ];
 
-
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UserResetPassword($token));
+    }
 }

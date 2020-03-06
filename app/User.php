@@ -5,16 +5,21 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use \Illuminate\Notifications\Notifiable;
+use App\Notifications\UserResetPassword;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPasswordContract
 {
-    use Notifiable;
-
+    
+    use  Notifiable;
+    use CanResetPassword;
     protected $table = 'proveedor';
     protected $keyType = 'string';
     protected $primaryKey = 'url';
     protected $fillable = [
-    'rut', 'password'
+    'rut', 'password','email'
 ];
    
     /**
@@ -44,4 +49,10 @@ class User extends Authenticatable
     public function getRouteKeyName(){
         return 'url';
     }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UserResetPassword($token));
+    }
+
 }

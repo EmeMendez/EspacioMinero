@@ -1,11 +1,19 @@
 <?php
 
 namespace App;
-use Illuminate\Foundation\Auth\Admin as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\UserResetPassword;
 
-class CiaMineraUsuario extends Authenticatable
+class CiaMineraUsuario extends Model implements AuthenticatableContract ,CanResetPasswordContract
 {
-    
+    use Authenticatable;
+    use  Notifiable;
+    use CanResetPassword;
     protected $table = 'cia_minera_usuario';
     protected $keyType = 'string';
     protected $primaryKey = 'rut';
@@ -14,12 +22,26 @@ class CiaMineraUsuario extends Authenticatable
 ];
 
 
+protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function getAuthPassword () {
+
+return $this->password;
+
+}
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UserResetPassword($token));
+    }
 }
