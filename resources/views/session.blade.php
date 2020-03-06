@@ -35,7 +35,6 @@
         @endif
 
         <!-- RD Mailform-->
-        
         <form class="col-12" method="post" action={{route('login')}}>
         @csrf
             <div class="col-12 col-md-5 mx-auto">
@@ -46,19 +45,15 @@
             </div>
 
             <div class="col-12 col-md-5 mx-auto">
-              
                 <div class="form-wrap">
-                    <p class="pl-4 my-2">Contraseña</p>  
-                    <div class="input-group" style="flex-wrap: nowrap;">                  
-                    <input class="form-input" id="contact-email" type="password" name="user-pass" >                    
-                    <button id="show_password" class="btn btn-outline-warning" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>              
+                    <p class="pl-4 my-2">Contraseña</p>                    
+                    <input class="form-input" id="contact-email" type="password" name="user-pass" >
                 </div>
-              </div>
             </div>
             
             <div class="col-12 col-md-5 mx-auto my-3">
               <div class="text-md-right text-center">
-              <a class="mr-4" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
+                <a class="mr-4" href="#">¿Olvidaste tu contraseña?</a>
               </div>
             </div>
 
@@ -73,25 +68,7 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-      function mostrarPassword(){
-          var cambio = document.getElementById("contact-email");
-          if(cambio.type == "password"){
-            cambio.type = "text";
-            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-          }else{
-            cambio.type = "password";
-            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-          }
-        } 
-        
-        $(document).ready(function () {
-        //CheckBox mostrar contraseña
-        $('#ShowPassword').click(function () {
-          $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-        });
-      });
-      </script>
+    
 
 
 @endsection

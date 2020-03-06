@@ -5,11 +5,9 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 use App\Mail\MessageReceived;
-use App\Mail\PasswordReset;
 use Auth;
 use App\Match;
 use App\MatchProveedores;
-use App\PasswordReset;
 
 class CorreoController extends Controller
 {
@@ -66,14 +64,6 @@ class CorreoController extends Controller
 
  
 
-    }
-
-    public function resetPassword(){
-        $to = request('email');
-        
-
-        Mail::to($to)->queue(new PasswordReset($to));
-        return new PasswordReset($to);
     }
 
 
