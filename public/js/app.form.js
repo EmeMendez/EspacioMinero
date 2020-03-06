@@ -309,10 +309,22 @@ function valida_rut(){
   $("#user_pass").focusout(function(){
         valida_pass();
         valida_repass();
+        valida_pass_be();
       });
+
     $("#user_pass").keyup(function(){
+        valida_pass_be();
         valida_pass();
         valida_repass();
+
+    }); 
+
+    $("#user_pass_be").focusout(function(){
+      valida_pass_be();
+    });
+
+    $("#user_pass_be").keyup(function(){
+        valida_pass_be();
     });
 
     $("#user_repass").keyup(function(){
@@ -335,6 +347,23 @@ function valida_rut(){
         $("#user_pass_error").html("&nbsp");
         $("#user_pass").removeClass("form-control is-invalid");                
         $("#user_pass").addClass("form-control is-valid"); 
+        pass=true;               
+      }     
+    }
+    function valida_pass_be(){
+      var length = document.getElementById("user_pass_be").value.length;
+      if($("#user_pass_be").val()==''){             
+        $("#user_pass_be_error").html("Debe proporcionar una contraseña");
+        $("#user_pass_be").addClass("form-control is-invalid");  
+        pass=false;              
+      }else if(length<8){
+        $("#user_pass_be_error").html("Contraseña debe tener al menos 8 caracteres");
+        $("#user_pass_be").addClass("form-control is-invalid"); 
+        pass=false;               
+      }else{
+        $("#user_pass_be_error").html("&nbsp");
+        $("#user_pass_be").removeClass("form-control is-invalid");                
+        $("#user_pass_be").addClass("form-control is-valid"); 
         pass=true;               
       }     
     }

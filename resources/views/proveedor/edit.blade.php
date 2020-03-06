@@ -12,19 +12,34 @@
 
     @if(count($errors)> 0)
         <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-                
-            @endforeach
-        </ul>
+            <ul>
+                 @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+            
+                @endforeach
+            </ul>
         </div>
     @endif
 
     @if (\Session::has('success'))
-        <div class="alert alert-success">
-        <p>{{\Session::get('success')}}</p>
-        </div>
+        <script>
+                        
+            Swal.fire({
+            icon: 'success',
+            title: '¡Actualización Exitosa!',
+            text: 'Sus datos se han actualizado correctamente',
+            })
+        </script>
+    @elseif(\Session::has('error'))
+        <script>
+                        
+        Swal.fire({
+        icon: 'error',
+        title: '¡Ha habido un Error!',
+        text: 'Algo ha salido mal. Intentelo denuevo',
+        })
+        </script>
+
     @endif
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
@@ -89,10 +104,22 @@
                                     <input class="form-input" size="40" type="text" value="{{$proveedor->nombre}}" name="user-name">
                                     <input type="hidden" value="{{$proveedor->rut}}" name="user-rut">
                                 </div>
+
                                 <div class="col-12  pl-0 mb-3">
                                     <p class="pl-4 mb-2">Descripción</p>
                                     <textarea placeholder="Proporciona una descripción para tu empresa" class="form-input" name="user-descripcion" id="descripcion"  cols="100" rows="5">{{ $proveedor->descripcion}}</textarea>
                                 </div>
+
+
+
+
+                                  <div class="col-12 pl-0 mb-3 ">
+                                    <p class="pl-4 mb-2">Correo Electronico</p>
+                                    <input  class="form-input " id="user_email" type="text" name="user-email" value="{{$proveedor->correo}}">
+                                    <span class="mt-3 ml-2" style="color: #0033a0;" data-toggle="tooltip" data-placement="top" title="Este correo está asociado a tu cuenta. Cuando quieras restablecer contraseña, se te informará a este email.">
+                                      <i class="far fa-question-circle"></i>
+                                </div>
+
                                 <div class="col-12 pl-0 mb-3">
                                     <p class="pl-4 mb-2">Ciudad</p>
                                     <select name="user-city" class="form-input">
@@ -147,7 +174,7 @@
                             <div class="row">
                                 <div class="col-12">
                                         <h3 class="text-center">Logo empresarial</h3><br>
-                                        <h5 class="pb-3 text-center">Toco sobre la imagen para cambiar</h5>
+                                        <h5 class="pb-3 text-center">Toca sobre la imagen para cambiar</h5>
                                         <form action={{ route('proveedor.update_imagen') }} method="POST" enctype="multipart/form-data">
                                             @method('PATCH')
                                             @csrf
@@ -230,7 +257,7 @@
                         ======================================-->
 
                         <div class="tab-pane fade" id="v-pills-certification" role="tabpanel" aria-labelledby="v-pills-certification-tab">
-                            MIS CERTIFICACIONES
+                             @include('proveedor_certificacion.edit')
                         </div>
 
                         <!--====  End of CAMBIAR CERTIFICACIONES  ====-->
@@ -243,22 +270,39 @@
                         <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
                             <h3 class="text-center">Seguridad de la Cuenta</h3><br>
                         
+                        <form action="{{ route('provedorchangepassword.update') }}" method="POST">
+                            @method('PATCH')
+                            @csrf
 
-                        <div class="col-12 pl-0 pt-3 mb-3">
-                            <p class="pl-4 mb-2">Contraseña Actual</p>
-                            <input class="form-input" size="40" type="password" value="" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3">
-                            <p class="pl-4 mb-2">Nueva contraseña</p>
-                            <input class="form-input" size="40" type="password" value="" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3">
-                            <p class="pl-4 mb-2">Confirmar nueva contraseña</p>
-                            <input  class="form-input" size="40" type="password" value="" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3 text-center pt-4">
-                            <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
-                        </div>                        
+
+                            <div class="col-12 pl-0 pt-3 mb-3 col-md-7 mx-auto">
+                                <div class="form-wrap">
+                                  <p class="pl-4 mb-2">Contraseña Actual</p>                    
+                                    <input class="form-input" id="user_pass_be" type="password" name="user-pass-be" >
+                                    <p id="user_pass_be_error" class="text-danger my-0 pb-1 pl-4 small" >&nbsp</p>                                                 
+                                </div>
+                            </div>
+
+                            <div class="col-12 pl-0 pt-3 mb-3 col-md-7 mx-auto">
+                                <div class="form-wrap">
+                                  <p class="pl-4 mb-2">Nueva Contraseña</p>                    
+                                    <input class="form-input" id="user_pass" type="password" name="user-password" >
+                                    <p id="user_pass_error" class="text-danger my-0 pb-1 pl-4 small" >&nbsp</p>                                                 
+                                </div>
+                            </div>
+
+                            <div class="col-12 pl-0 pt-3 mb-3 col-md-7 mx-auto">
+                                <div class="form-wrap">
+                                    <p class="pl-4 mb-2">Confirmar contraseña</p>                    
+                                    <input id="user_repass" class="form-input" type="password" name="user-repass" >
+                                    <p id="user_repass_error" class="text-danger my-0 pb-3 pl-4 small" >&nbsp</p>                                                 
+                                </div>
+                            </div>
+
+                            <div class="col-12 pl-0 mb-3 text-center pt-4">
+                                <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
+                            </div>    
+                        </form>                    
                     </div>
 
                         <!--====  End of PASSWORD  ====--> 
@@ -280,5 +324,7 @@
         
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/app.form.js"></script>
 @endsection
 

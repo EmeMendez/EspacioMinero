@@ -10,16 +10,18 @@
 <hr>
 <div class="container my-3 " >
     <div class="row  text-center text-md-left">
+
       <div class="col-12 col-md-3">
         <img height="255" width="255" src="{{ Storage::url($proveedor->imagen)}}"  />
       </div>
+      
       <div class="col-12 col-md-9">
         <div class="row">
           <div class="col-12">
             <h3>{{ $proveedor->nombre }}</h3>
           </div>
-          <div class="col-12">
-          <p>{{ $proveedor->descripcion}}</p>
+          <div class="col-12 bg-succes">
+            <p>{{ $proveedor->descripcion}}</p>
           </div>
         </div>       
       </div>

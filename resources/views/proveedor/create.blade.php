@@ -33,8 +33,14 @@
 
             <div class="col-12 col-md-7 mx-auto">
               <div class="form-wrap">
-                <p class="pl-4 mb-2">Correo Electrónico</p>                   
-                <input  class="form-input" id="user_email" type="text" name="user-email" >
+                <p class="pl-4 mb-2">Correo Electrónico</p>  
+                <div class="input-group flex-nowrap">                 
+                <input  class="form-input " id="user_email" type="text" name="user-email">
+                <span class="mt-3 ml-2" style="color: #0033a0;" data-toggle="tooltip" data-placement="top" title="Este correo estará asociado a tu cuenta. Cuando quieras restablecer contraseña, se te informará a este email. Lo puedes cambiar cuando quieras dentro de tu perfil">
+                  <i class="far fa-question-circle"></i>
+                </span>
+              </div>
+                
                 <p id="user_email_error" class="text-danger my-0 pb-1 pl-4 small">&nbsp</p>                               
               </div>
             </div>
@@ -50,6 +56,16 @@
                     <p id="user_address_error" class="text-danger my-0 pb-1 pl-4 small">&nbsp</p>                               
                   </div>
             </div>
+
+
+
+            {{-- <div class="input-group col-12 col-md-7 mb-3 mx-auto">
+              <div class="input-group-prepend">
+                <span class="input-group-text ">Direccion</span>
+              </div>
+              <input type="text" aria-label="First name" class="form-control" placeholder="Calle: Direccion Ejemplo">
+              <input type="text" aria-label="Last name" class="form-control" placeholder="Numero: #16742">
+            </div> --}}
             
             {{-- COPIA NO BORRAR <div class="col-12">
               <div class="form-wrap">

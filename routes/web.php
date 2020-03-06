@@ -28,6 +28,7 @@ Route::get('/proveedor/perfil/{url}','ProveedorController@show')->name('proveedo
 Route::get('/recursos','ProveedorController@recursos')->name('proveedor.recursos');
 Route::patch('/telefono/update', 'ProveedorTelefonoController@update')->name('telefono.update');
 Route::patch('/correo/update', 'ProveedorCorreoController@update')->name('correo.update');
+Route::patch('/cambiar-password', 'ProveedorController@changepassword')->name('provedorchangepassword.update');
 
 /*=====================================
 =    RUTAS JSON DEL PROVEEDOR         =
@@ -88,3 +89,11 @@ Route::patch('/correominera/update', 'MineraCorreoController@update')->name('cor
 Route::get('/imagen/minera','CiaMineraUsuarioController@image')->name('imagenminera.return');
 
 /*====  RUTAS DEL MINERA   */
+
+
+/*=====================================
+=            RUTAS CERTIFICACION        =
+======================================*/
+Route::post('/proveedor/certificacion','ProveedorCertificacionController@update')->name('proveedorcertificacion.update');
+Route::get('/proveedor/certificacion','ProveedorCertificacionController@show')->name('proveedorcertificacion.show');
+/*====  RUTAS CERTIFICACION   */

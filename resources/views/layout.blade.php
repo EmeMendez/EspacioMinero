@@ -4,15 +4,8 @@
   <body>
     <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="Estas usando un navegador pre-historico. Actualizate rápido y fácil ahora."></a></div>
     <div class="preloader" id="loading">
-      <div class="preloader-body">
-        <div id="loading-center-object">
-          <div class="object" id="object_four"></div>
-          <div class="object" id="object_three"></div>
-          <div class="object" id="object_two"></div>
-          <diV class="object" id="object_one"></div>
-        </div>
+    
       </div>
-    </div>
     <div class="page">
      @include('partials.header')
       @yield('content')

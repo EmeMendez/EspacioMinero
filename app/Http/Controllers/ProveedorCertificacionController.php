@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\ProveedorCertificacion;
 class ProveedorCertificacionController extends Controller
 {
     /**
@@ -43,9 +43,12 @@ class ProveedorCertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $certificaciones = ProveedorCertificacion::join("certificacion","certificacion.id", "=", "proveedor_certificacion.certificacion_id")
+                                ->select('nombre',"certificacion_id","proveedor_rut")
+                                ->where("proveedor_rut", "=", auth()->user()->rut  )->get();                              
+        return $certificaciones;
     }
 
     /**
@@ -66,9 +69,11 @@ class ProveedorCertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+        //return $request;
+        return $request->all();
     }
 
     /**

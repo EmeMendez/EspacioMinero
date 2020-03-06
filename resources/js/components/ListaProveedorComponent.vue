@@ -69,22 +69,21 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Regístrate o Inicia Sesión</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;  </span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        Para poder ver la información de este proveedor, necesitas registrarte o si ya tienes una cuenta ¡inicia sesión! 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <a href="/iniciar-sesion"> <button type="button" class="button button-primary py-2 px-5" data-dismiss="modal" >Inicia Sesión</button> </a>
+        <a href="/proveedor/registrarse"><button type="button" class="btn btn-secondary py-2 px-5">Regístrate</button></a>
       </div>
     </div>
   </div>
 </div>
-
 
 
 

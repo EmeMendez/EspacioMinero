@@ -115,7 +115,7 @@
                             <div class="row">
                                 <div class="col-12">
                                         <h3 class="text-center">Logo empresarial</h3><br>
-                                        <h5 class="pb-3 text-center">Toco sobre la imagen para cambiar</h5>
+                                        <h5 class="pb-3 text-center">Toca sobre la imagen para cambiar</h5>
                                         <form action={{ route('minera.update_imagen') }} method="POST" enctype="multipart/form-data">
                                             @method('PATCH')
                                             @csrf
