@@ -8,7 +8,7 @@ Route::get('/','bannerController@index')->name("home");
 Route::view('/acerca-de','about')->name("about");
 Route::view('/typography','typography')->name('typo');
 Route::view('/contacto','contact')->name('contact');
-
+/*====  cambio equis de  */
 /*====  RUTAS DEL HEADER   */
 
 
