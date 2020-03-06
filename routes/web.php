@@ -94,6 +94,11 @@ Route::get('/imagen/minera','CiaMineraUsuarioController@image')->name('imagenmin
 /*=====================================
 =            RUTAS CERTIFICACION        =
 ======================================*/
-Route::post('/proveedor/certificacion','ProveedorCertificacionController@update')->name('proveedorcertificacion.update');
+Route::post('/proveedor/certificacion','ProveedorCertificacionController@store')->name('proveedorcertificacion.store');
 Route::get('/proveedor/certificacion','ProveedorCertificacionController@show')->name('proveedorcertificacion.show');
+Route::delete('/proveedor/certificacion','ProveedorCertificacionController@destroy')->name('proveedorcertificacion.destroy');
+
+
+
+Route::get('certificacion/certificaciones','CertificacionController@index')->name('certificacion.index');
 /*====  RUTAS CERTIFICACION   */

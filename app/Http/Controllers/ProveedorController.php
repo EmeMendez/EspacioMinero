@@ -11,6 +11,7 @@ use App\TamanioEmpresa;
 use App\Categoria;
 use App\ProveedorTelefono;
 use App\ProveedorCorreo;
+use App\ProveedorCertificacion;
 
 class ProveedorController extends Controller
 {
@@ -141,17 +142,29 @@ class ProveedorController extends Controller
     public function show(Proveedor $url)
     {
         $proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
-                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
-                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
-                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen")
-                              ->where("url", "=", $url->url)->first();
-      
-                              $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
-                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
-                              ->where("proveedor_rut", "=", $url->rut)->get();                               
+        ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
+        ->join("categoria","categoria.id","=","proveedor.categoria_id")
+        ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen")
+        ->where("url", "=", $url->url)->first();
 
-        return view('proveedor.show',['proveedor'=>$proveedor, 'correo'=>$correosh]);                              
+        $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
+        ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
+        ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+        ->where("proveedor_rut", "=", $url->rut)->get();   
+
+        $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
+        ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
+        ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
+        ->where("proveedor_rut", "=", $url->rut)->get();
+
+        $certificacion = ProveedorCertificacion::join("proveedor","proveedor.rut", "=", "proveedor_certificacion.proveedor_rut")
+        ->join("certificacion","certificacion.id","=","proveedor_certificacion.certificacion_id")
+        ->select("certificacion.nombre")
+        ->where("proveedor_rut", "=", $url->rut)->get();
+        
+        
+
+return view('proveedor.show',['proveedor'=>$proveedor, 'correo'=>$correosh, 'certificacion'=>$certificacion, 'telefono'=>$telefono]);                                 
 
     }
 
