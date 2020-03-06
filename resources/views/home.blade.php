@@ -78,38 +78,38 @@
 
 <!-- Counters-->
 <section class="section section-md text-center">
-    <div class="container">
-        <div class="layout-bordered-1">
-        <div class="layout-bordered-1-item">
-            <!-- Counter Classic-->
-            <article class="counter-classic">
-            <div class="counter-classic-main">
-            <div class="counter">{{$estadisticas}}</div>
-            </div>
-            <h4 class="counter-classic-title">Match Realizados</h4>
-            </article>
+<div class="container">
+    <div class="layout-bordered-1">
+    <div class="layout-bordered-1-item">
+        <!-- Counter Classic-->
+        <article class="counter-classic">
+        <div class="counter-classic-main">
+            <div class="counter">78</div>
         </div>
-        <div class="layout-bordered-1-item">
-            <!-- Counter Classic-->
-            <article class="counter-classic">
-            <div class="counter-classic-main">
-                <div class="counter">{{$proveedor}}</div><span class="small text-primary"><i class="fa fa-users"></i></span>
-            </div>
-            <h4 class="counter-classic-title">Proveedores Registrados</h4>
-            </article>
-        </div>
-        <div class="layout-bordered-1-item">
-            <!-- Counter Classic-->
-            <article class="counter-classic">
-            <div class="counter-classic-main">
-                <div class="counter">3</div><span class="small text-primary">X</span>
-            </div>
-            <h4 class="counter-classic-title">Increased Profits</h4>
-            </article>
-        </div>
-        </div>
+        <h4 class="counter-classic-title">Successful Projects</h4>
+        </article>
     </div>
-    </section>
+    <div class="layout-bordered-1-item">
+        <!-- Counter Classic-->
+        <article class="counter-classic">
+        <div class="counter-classic-main">
+            <div class="counter">100</div><span class="small text-primary">%</span>
+        </div>
+        <h4 class="counter-classic-title">Achieved ROI</h4>
+        </article>
+    </div>
+    <div class="layout-bordered-1-item">
+        <!-- Counter Classic-->
+        <article class="counter-classic">
+        <div class="counter-classic-main">
+            <div class="counter">3</div><span class="small text-primary">X</span>
+        </div>
+        <h4 class="counter-classic-title">Increased Profits</h4>
+        </article>
+    </div>
+    </div>
+</div>
+</section>
 
 <!-- What We Do-->
 <section class="section section-xl bg-gray-900" id="what-we-do">

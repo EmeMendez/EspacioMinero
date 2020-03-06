@@ -34,11 +34,7 @@ class ProveedorCertificacionController extends Controller
      */
     public function store(Request $request)
     {
-        $pc = new ProveedorCertificacion;
-        $pc->proveedor_rut = $request->proveedor_rut;
-        $pc->certificacion_id = $request->certificacion_id;
-        $pc->save();
-        return $request;
+        //
     }
 
     /**
@@ -49,11 +45,10 @@ class ProveedorCertificacionController extends Controller
      */
     public function show()
     {
-        $rut = auth()->user()->rut;
         $certificaciones = ProveedorCertificacion::join("certificacion","certificacion.id", "=", "proveedor_certificacion.certificacion_id")
                                 ->select('nombre',"certificacion_id","proveedor_rut")
-                                ->where("proveedor_rut", "=", $rut  )->get();                              
-        return ['certificaciones' => $certificaciones, 'rut' => $rut];
+                                ->where("proveedor_rut", "=", auth()->user()->rut  )->get();                              
+        return $certificaciones;
     }
 
     /**
@@ -78,7 +73,7 @@ class ProveedorCertificacionController extends Controller
     {
         
         //return $request;
-        return $request;
+        return $request->all();
     }
 
     /**
@@ -87,12 +82,8 @@ class ProveedorCertificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        ProveedorCertificacion::where("proveedor_rut","=",$request->proveedor_rut)
-                                ->where("certificacion_id", "=", $request->certificacion_id)
-                                ->delete();
-        return $request;
-        
+        //
     }
 }

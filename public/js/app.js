@@ -1922,152 +1922,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      proveedor_certifications: [],
-      certifications: [],
-      proveedor_rut: '',
-      certificacion_id: '',
-      btn_text: 'Mostar todas',
-      show_button: false,
-      selectedItem: {},
-      inputValue: '',
-      itemList: [],
-      apiLoaded: true,
-      apiUrl: '/certificacion/certificaciones',
-      id: ''
+      certifications: []
     };
   },
   mounted: function mounted() {
-    this.getProveedorCertifications();
     this.getCertifications();
-    this.getList();
+    this.storeCertifications();
   },
   methods: {
     getCertifications: function getCertifications() {
       var _this = this;
 
-      axios.get('/certificacion/certificaciones').then(function (res) {
-        _this.certifications = res.data;
-      });
-    },
-    getProveedorCertifications: function getProveedorCertifications() {
-      var _this2 = this;
-
       axios.get('/proveedor/certificacion').then(function (res) {
-        _this2.proveedor_certifications = res.data.certificaciones;
-        _this2.proveedor_rut = res.data.rut;
+        console.log(res.data);
+        _this.certifications = res.data; //return this.imagenMiniatura 
       });
     },
-    storeProveedorCertifications: function storeProveedorCertifications() {
-      var _this3 = this;
-
+    storeCertifications: function storeCertifications() {
       axios.post('/proveedor/certificacion', {
-        proveedor_rut: this.proveedor_rut,
-        certificacion_id: this.id
-      }, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }).then(function (response) {
-        if (response.status == 200) {
-          toastr.success('Certificación añadida');
-
-          _this3.getProveedorCertifications();
-
-          _this3.getList();
-
-          _this3.resetSelection();
-        }
-      })["catch"](function (error) {
-        toastr.error('Ingrese una certificación válida');
-      });
-    },
-    change_btn_text: function change_btn_text() {
-      this.show_button = !this.show_button;
-
-      if (!this.show_button) {
-        this.btn_text = 'Mostar todas';
-      } else {
-        this.btn_text = 'Ver menos';
-      }
-    },
-    deleteProveedorCertification: function deleteProveedorCertification(certification_id) {
-      var _this4 = this;
-
-      axios["delete"]('/proveedor/certificacion', {
         data: {
-          proveedor_rut: this.proveedor_rut,
-          certificacion_id: certification_id
+          melon: 'meloncito',
+          melonium: 'melonium'
         }
       }, {
         headers: {
@@ -2075,41 +1953,8 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'application/json'
         }
       }).then(function (response) {
-        if (response.status == 200) {
-          toastr.info("Certificación Eliminada");
-
-          _this4.getProveedorCertifications();
-
-          _this4.getList();
-        }
-      });
-    },
-    resetSelection: function resetSelection() {
-      var _this5 = this;
-
-      this.selectedItem = {};
-      this.$nextTick(function () {
-        return _this5.$refs.dropdowninput.focus();
-      });
-      this.$emit('on-item-reset');
-    },
-    selectItem: function selectItem(theItem, id) {
-      this.id = id;
-      this.selectedItem = theItem;
-      this.inputValue = '';
-      this.$emit('on-item-selected', theItem);
-    },
-    itemVisible: function itemVisible(item) {
-      var currentName = item.nombre.toLowerCase();
-      var currentInput = this.inputValue.toLowerCase();
-      return currentName.includes(currentInput);
-    },
-    getList: function getList() {
-      var _this6 = this;
-
-      axios.get(this.apiUrl).then(function (response) {
-        _this6.itemList = response.data;
-        _this6.apiLoaded = true;
+        console.log("chikitri");
+        console.log(response);
       });
     }
   }
@@ -20267,271 +20112,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row mx-auto" }, [
-    _vm._m(0),
+  return _c("div", [
+    _c("input", { attrs: { type: "text" } }),
+    _c("button", [_vm._v("agregar")]),
     _vm._v(" "),
-    _c("div", { staticClass: "bg-light col-12 p-0" }, [
-      this.proveedor_certifications.length > 0
-        ? _c(
-            "div",
-            { staticClass: "p-4" },
-            [
-              _vm._l(this.proveedor_certifications, function(c, i) {
-                return _c("div", { key: i, staticClass: "d-inline" }, [
-                  i <= 3
-                    ? _c("div", { staticClass: "card mb-2" }, [
-                        _c("div", { staticClass: "card-body py-1" }, [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(c.nombre) +
-                              "\n                        "
-                          ),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "text-danger pl-3 font-weight-bold",
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.deleteProveedorCertification(
-                                    c.certificacion_id
-                                  )
-                                }
-                              }
-                            },
-                            [_vm._v("x")]
-                          )
-                        ])
-                      ])
-                    : _vm._e()
-                ])
-              }),
-              _vm._v(" "),
-              _c("div", [
-                _c("div", { staticClass: "col pl-0" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "collapse multi-collapse",
-                      attrs: { id: "multiCollapseExample1" }
-                    },
-                    _vm._l(this.proveedor_certifications, function(c, i) {
-                      return _c("div", { key: i, staticClass: "d-inline" }, [
-                        i > 3
-                          ? _c("div", { staticClass: "card mb-2" }, [
-                              _c("div", { staticClass: "card-body py-1" }, [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(c.nombre) +
-                                    "\n                                    "
-                                ),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass:
-                                      "text-danger pl-3 font-weight-bold",
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.deleteProveedorCertification(
-                                          c.certificacion_id
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("x")]
-                                )
-                              ])
-                            ])
-                          : _vm._e()
-                      ])
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
-                this.proveedor_certifications.length > 4
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "text-primary pl-2",
-                        attrs: {
-                          "data-toggle": "collapse",
-                          href: "#multiCollapseExample1",
-                          role: "button",
-                          "aria-expanded": "false",
-                          "aria-controls": "multiCollapseExample1"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.change_btn_text()
-                          }
-                        }
-                      },
-                      [_c("u", [_vm._v(_vm._s(this.btn_text))])]
-                    )
-                  : _vm._e()
-              ])
-            ],
-            2
-          )
-        : _c("div", { staticClass: "py-4" }, [
-            _c(
-              "div",
-              {
-                staticClass: "alert alert-light bg-light mb-0",
-                attrs: { role: "alert" }
-              },
+    _c("hr", { staticClass: "mx-3" }),
+    _vm._v(" "),
+    _c("p", { staticClass: "lead" }, [_vm._v("Mis certificaciones")]),
+    _vm._v(" "),
+    this.certifications.length > 0
+      ? _c(
+          "div",
+          _vm._l(this.certifications, function(c) {
+            return _c(
+              "span",
+              { key: c.rut, staticClass: "badge badge-primary my-2 mr-2" },
               [
-                _vm._v(
-                  "\n                Oops! aún no has agregado ninguna certifiación\n            "
+                _vm._v(_vm._s(c.nombre)),
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-danger pl-3 font-weight-bold",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("x")]
                 )
               ]
             )
-          ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "container py-3" }, [
-      _c("p", { staticClass: "mb-2" }, [_vm._v("Buscar certificación")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row align-items-center mt-0" }, [
-        _c("div", { staticClass: "col-12 col-md-10" }, [
-          _c("div", { staticClass: "dropdown" }, [
-            Object.keys(_vm.selectedItem).length === 0
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.trim",
-                      value: _vm.inputValue,
-                      expression: "inputValue",
-                      modifiers: { trim: true }
-                    }
-                  ],
-                  ref: "dropdowninput",
-                  staticClass: "dropdown-input",
-                  attrs: { type: "text", placeholder: "Buscar por nombre" },
-                  domProps: { value: _vm.inputValue },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.inputValue = $event.target.value.trim()
-                    },
-                    blur: function($event) {
-                      return _vm.$forceUpdate()
-                    }
-                  }
-                })
-              : _c(
-                  "div",
-                  {
-                    staticClass: "dropdown-selected",
-                    on: { click: _vm.resetSelection }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "dropdown-item-flag",
-                      attrs: {
-                        src:
-                          "https://image.flaticon.com/icons/png/512/837/premium/837819.png"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(_vm.selectedItem.nombre))])
-                  ]
-                ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.inputValue && _vm.apiLoaded,
-                    expression: "inputValue && apiLoaded"
-                  }
-                ],
-                staticClass: "dropdown-list"
-              },
-              _vm._l(_vm.itemList, function(item, index) {
-                return _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.itemVisible(item),
-                        expression: "itemVisible(item)"
-                      }
-                    ],
-                    key: index,
-                    staticClass: "dropdown-item",
-                    on: {
-                      click: function($event) {
-                        return _vm.selectItem(item, item.id)
-                      }
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "dropdown-item-flag",
-                      attrs: {
-                        src:
-                          "https://image.flaticon.com/icons/png/512/837/premium/837819.png"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(item.nombre))])
-                  ]
-                )
-              }),
-              0
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-md-2 mt-md-0 mt-2 text-center" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success",
-              on: {
-                click: function($event) {
-                  return _vm.storeProveedorCertifications()
-                }
-              }
-            },
-            [_vm._v("Agregar")]
-          )
+          }),
+          0
+        )
+      : _c("div", [
+          _c("p", { staticClass: "lead" }, [_vm._v("No tiene certificaciones")])
         ])
-      ])
-    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 pl-0" }, [
-      _c("h3", { staticClass: "text-center mb-4" }, [
-        _vm._v("Certificaciones")
-      ]),
-      _vm._v(" "),
-      _c("h5", { staticClass: "py-3 text-center" }, [
-        _vm._v("Añade tus certificaciones")
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Mis certificaciones")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
