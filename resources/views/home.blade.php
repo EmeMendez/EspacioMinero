@@ -114,6 +114,7 @@ text: 'Algo ha salido mal. Intentelo denuevo',
         <div class="layout-bordered-1-item">
             <!-- Counter Classic-->
             <article class="counter-classic">
+            <img height="150" width="150" class="mb-4" src="/images/info-match.png" />
             <div class="counter-classic-main">
             <div class="counter">{{$estadisticas}}</div>
             </div>
@@ -123,8 +124,9 @@ text: 'Algo ha salido mal. Intentelo denuevo',
         <div class="layout-bordered-1-item">
             <!-- Counter Classic-->
             <article class="counter-classic">
+            <img src="/images/info-providers.png" height="150" width="150" alt="" class="mb-4">
             <div class="counter-classic-main">
-                <div class="counter">{{$proveedor}}</div><span class="small text-primary"><i class="fa fa-users"></i></span>
+                <div class="counter">{{$proveedor}}</div><span class="small text-primary"></span>
             </div>
             <h4 class="counter-classic-title">Proveedores Registrados</h4>
             </article>
@@ -132,6 +134,7 @@ text: 'Algo ha salido mal. Intentelo denuevo',
         <div class="layout-bordered-1-item">
             <!-- Counter Classic-->
             <article class="counter-classic">
+                <img src="/images/info-nose.png" height="150" width="150" alt="" class="mb-4">
             <div class="counter-classic-main">
                 <div class="counter">{{$CiaMineraUsuario}}</div><span class="small text-primary"></span>
             </div>
