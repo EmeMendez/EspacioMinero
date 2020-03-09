@@ -49,10 +49,10 @@
         <div class="container py-3">
             <p class="mb-2">Buscar certificación</p>
             <div class="row align-items-center mt-0">
-                <div class="col-12 col-md-10">
+                <div class="col-12 col-md-9">
                     <div class="dropdown" >
-                        <input v-if="Object.keys(selectedItem).length === 0" ref="dropdowninput" v-model.trim="inputValue" class="dropdown-input" type="text" placeholder="Buscar por nombre" />
-                        <div v-else @click="resetSelection" class="dropdown-selected">
+                        <input v-if="Object.keys(selectedItem).length === 0" ref="dropdowninput" v-model.trim="inputValue" class="form-input" type="text" placeholder="Buscar por nombre" />
+                        <div v-else @click="resetSelection" class="form-input" style="background-color:#f0f3f5">
                             <!-- <img src="https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/search-512.png" class="dropdown-item-flag" /> -->
                             <img src="https://image.flaticon.com/icons/png/512/837/premium/837819.png" class="dropdown-item-flag" />                            
                             <span>{{ selectedItem.nombre }}</span>
@@ -65,7 +65,7 @@
                         </div><!--end dropdown-list-->
                     </div><!--end dropdown-->
                 </div><!--end col-9-->
-                <div class="col-12 col-md-2 mt-md-0 mt-2 text-center">
+                <div class="col-12 col-md-3 mt-md-0 mt-2 text-center">
                     <button @click="storeProveedorCertifications()" class="btn btn-success">Agregar</button>
                 </div><!--end col-3-->
             </div><!--end row -->

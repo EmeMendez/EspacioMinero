@@ -16,4 +16,14 @@ class ProvinciaController extends Controller
         $provincias = Provincia::where('region_id', $region)->get();
         return ['provincias'  => $provincias];
     }
+    
+    public function index(){
+        $provincias = Provincia::get();
+        return $provincias;
+    }
+
+    public function getProvinciasByRegion($region_id){
+        $provincia = Provincia::where('region_id', $region_id)->get();
+        return $provincia;
+    }
 }

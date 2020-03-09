@@ -237,7 +237,7 @@
                                     <div class="col-12 pl-0 pt-3 mb-3">
                                     <p class="pl-4 mb-2">Correo {{$em->des}}</p>
                                         <input type="hidden" name="rut" value="">
-                                    <input placeholder="Ejemplo-> example@example.com" class="form-input" size="40" type="text"  name="correo-{{$em->tipo_id}}"value="{{$em->correo}}" >
+                                    <input placeholder="Ejemplo-> example@example.com" class="form-input" size="40" type="text"  name="correo-{{$em->tipo_id}}"value="{{$em->email}}" >
                                     </div>
                                 @endforeach
                                 <div class="col-12 pl-0 mb-3 text-center pt-4">

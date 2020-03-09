@@ -2,6 +2,37 @@
 @section('content')
 <!-- FScreen-->
 
+@if(count($errors)> 0)
+<div class="alert alert-danger">
+    <ul>
+         @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+    
+        @endforeach
+    </ul>
+</div>
+@endif
+
+@if (\Session::has('success'))
+<script>
+                
+    Swal.fire({
+    icon: 'success',
+    title: '¡Correo Enviado con Exito!',
+    text: 'El correo ha sido enviado. Espere a que alguien se ponga en contacto con usted!',
+    })
+</script>
+@elseif(\Session::has('error'))
+<script>
+                
+Swal.fire({
+icon: 'error',
+title: '¡Ha habido un Error!',
+text: 'Algo ha salido mal. Intentelo denuevo',
+})
+</script>
+
+@endif
 
     
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -102,9 +133,9 @@
             <!-- Counter Classic-->
             <article class="counter-classic">
             <div class="counter-classic-main">
-                <div class="counter">3</div><span class="small text-primary">X</span>
+                <div class="counter">{{$CiaMineraUsuario}}</div><span class="small text-primary"></span>
             </div>
-            <h4 class="counter-classic-title">Increased Profits</h4>
+            <h4 class="counter-classic-title">Mineras Registradas</h4>
             </article>
         </div>
         </div>

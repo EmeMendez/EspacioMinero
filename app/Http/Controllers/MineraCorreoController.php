@@ -79,15 +79,15 @@ class MineraCorreoController extends Controller
 
         MineraCorreo::where('tipo_contacto_id', 1)
                     ->where('minera_rut', $rut)
-                    ->update(['correo' => $correo1]);
+                    ->update(['email' => $correo1]);
 
         MineraCorreo::where('tipo_contacto_id', 2)
                     ->where('minera_rut', $rut)
-                    ->update(['correo' => $correo2]);
+                    ->update(['email' => $correo2]);
                     
         MineraCorreo::where('tipo_contacto_id', 3)
                     ->where('minera_rut', $rut)     
-                    ->update(['correo' => $correo3]);          
+                    ->update(['email' => $correo3]);          
                     
                     
                          

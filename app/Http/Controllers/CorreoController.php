@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 use App\Mail\MessageReceived;
+use App\Mail\ContactMail;
 use Auth;
 use App\Match;
 use App\MatchProveedores;
+use App\Soporte;
 
 class CorreoController extends Controller
 {
@@ -28,7 +30,9 @@ class CorreoController extends Controller
 
             $m = new Match;
         
-            $from =  auth()->guard('admin')->user()->correo;
+            $from =  auth()->guard('admin')->user()->email;
+            $fromname = auth()->guard('admin')->user()->nombre_usuario;
+            $sitio = auth()->guard('admin')->user()->sitio_web;
             $to = request('correo');
             $m->proveedor_rut = request('rut');
             $m->cia_minera_usuario_rut = auth()->guard('admin')->user()->rut;
@@ -38,15 +42,16 @@ class CorreoController extends Controller
 
 
 
-            Mail::to($to)->queue(new MessageReceived($from));
+            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,request('prov-nom')));
 
+            return redirect()->back()->withSuccess('¡Correo Enviado!');
+            //return view('contact')->with('success','¡Correo Enviado!');
 
-            return new MessageReceived($from);
         }else{
 
             $m = new MatchProveedores;
         
-            $from =  auth()->user()->correo;
+            $from =  auth()->user()->email;
             $to = request('correo');
             $m->proveedor_rut_emisor = auth()->user()->rut;
             $m->proveedor_rut_remitente = request('rut');
@@ -58,11 +63,41 @@ class CorreoController extends Controller
 
             Mail::to($to)->queue(new MessageReceived($from));
 
+            return redirect()->back()->withSuccess('¡Correo Enviado!');
+            //return view('contact')->with('success','¡Correo Enviado!');
 
-            return new MessageReceived($from);
         }
 
  
+
+    }
+
+    public function contact(){
+
+        $cont = new Soporte;
+        
+
+            $nombre  = request('name');
+            $correo  = request('email');
+            $mensaje = request('message');
+            $rut     = request('rut');
+            $from =  'soporte@espacioindustria.cl';
+
+
+            $cont->rut = $rut;
+            $cont->nombre = $nombre;
+            $cont->correo = $correo;
+            $cont->mensaje = $mensaje;
+
+            $cont->save();
+
+
+
+            Mail::to($from)->queue(new ContactMail($rut,$nombre,$correo,$mensaje));
+    
+    
+            return redirect()->back()->withSuccess('¡Correo Enviado!');
+            //return view('contact')->with('success','¡Correo Enviado!');
 
     }
 

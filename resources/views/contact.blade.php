@@ -21,11 +21,19 @@
     </div>
   </div>
 </section>
+@if(session('success'))
+        <div class="col-12 px-0 mx-0">
+          <div class="alert alert-success text-center">
+            <p>{{\Session::get('success')}}</p>
+          </div>
+          </div>
+        @endif
 <section class="section section-md">
   <div class="container tituloAbout">
     <div class="row row-50">
       <div class="col-xl-5">
-
+        
+        
 
           <!--==========================================
           =            INFORMACION CONTACTO            =
@@ -90,7 +98,8 @@
           =            FORMULARIO CONTANCTO            =
           ===========================================-->
 
-          <form class="rd-mailform rd-form" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+          <form class="rd-mailform rd-form" action="{{ route('sendcontact') }}" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            @csrf
             <div class="row row-x-16 row-20">
               <div class="col-md-6">
                 <div class="form-wrap">
@@ -112,8 +121,8 @@
               </div>
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input class="form-input" id="contact-phone" type="text" name="phone" data-constraints="@PhoneNumber">
-                  <label class="form-label" for="contact-phone">telefono</label>
+                  <input class="form-input" id="contact-phone" type="text" name="rut" data-constraints="@PhoneNumber @Required">
+                  <label class="form-label" for="contact-phone">Rut</label>
                 </div>
               </div>
               <div class="col-md-6">

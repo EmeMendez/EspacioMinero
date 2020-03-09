@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Region;
-use App\Provincia;
-use App\Ciudad;
-use App\TamanioEmpresa;
-use App\Categoria;
 
-class RegionController extends Controller
+use Illuminate\Http\Request;
+use App\TamanioEmpresa;
+
+class TamanioEmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +14,9 @@ class RegionController extends Controller
      */
      public function index()
     {
-        $categorias =  Categoria::get();
-        $tamanio_empresa = TamanioEmpresa::get();
-        $regiones = Region::get();
-        $provincias = Provincia::get();
-        $ciudades = Ciudad::get();
-        return ['regiones' => $regiones,'provincias' => $provincias, 'ciudades' =>$ciudades, 'tamanio_empresa' => $tamanio_empresa,'categorias' => $categorias];
+        $tamanio_empresas = TamanioEmpresa::get();
+        return $tamanio_empresas;
     }
-    
-
-    
 
     /**
      * Show the form for creating a new resource.

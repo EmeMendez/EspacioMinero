@@ -6,4 +6,8 @@
 
     </script>
 
+    <a href="https://espacioindustria.cl/recursos/Minuta.pdf" class="wp-block-file__button" download="Minuta el pdf">Haz clic aquí para descargar el archivo</a>
+
+
+
 @endsection

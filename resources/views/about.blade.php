@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <section class="breadcrumbs-custom">
-  <section class="section parallax-container breadcrumbs-custom-main context-dark" data-parallax-img="images/bg-image-1.jpg">
+  <section class="section parallax-container breadcrumbs-custom-main context-dark" data-parallax-img="images/img/aso.jpg">
     <div class="parallax-content">
       <div class="container">
         <div class="row justify-content-center">
@@ -112,42 +112,42 @@
         <div class="list-blocks-item">
           <div class="list-blocks-item-inner">
             <div class="icon novi-icon icon-primary icon-xl mdi mdi-email-outline"></div>
-            <p class="list-blocks-title">Creative Space</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="list-blocks-title">¡Haz Match!</p>
+            <p>Contactate con un proveedor y empieza a expandir tu red</p>
           </div>
         </div>
         <div class="list-blocks-item">
           <div class="list-blocks-item-inner">
-            <div class="icon novi-icon icon-primary icon-xl mdi mdi-comment-text-outline"></div>
-            <p class="list-blocks-title">Copywriting</p>
-            <p>Ei sumo eruditi praesent sadipscing nec, scripta epicurei ut eam.</p>
+            <div class="icon novi-icon icon-primary icon-xl mdi mdi mdi-magnify"></div>
+            <p class="list-blocks-title">Busca proveedores</p>
+            <p>Puedes buscar y comparar tipos de proveedores</p>
           </div>
         </div>
         <div class="list-blocks-item list-blocks-item_caption">
           <div class="list-blocks-item-inner">
-            <h3>Services</h3>
-            <p>What we do</p><a class="button button-primary button-winona" href="contacts.html">Get a Quote</a>
+            <h3>Se Parte de nosotros</h3>
+            <p>Inicia Sesion y se parte de esta comunidad</p><a class="button button-primary button-winona" href="{{ route('session') }}">Iniciar Sesión</a>
           </div>
         </div>
         <div class="list-blocks-item">
           <div class="list-blocks-item-inner">
-            <div class="icon novi-icon icon-primary icon-xl mdi mdi-magnify"></div>
-            <p class="list-blocks-title">Research</p>
-            <p>Vel nihil praesent oportere ei. Fugit option oportere est in, te</p>
+            <div class="icon novi-icon icon-primary icon-xl mdi mdi-filter-outline"></div>
+            <p class="list-blocks-title">Filtra proveedores</p>
+            <p>Filtra por las categorias que tu necesitas</p>
           </div>
         </div>
         <div class="list-blocks-item">
           <div class="list-blocks-item-inner">
-            <div class="icon novi-icon icon-primary icon-xl mdi mdi-clipboard-outline"></div>
-            <p class="list-blocks-title">Analytics</p>
-            <p>Te partem omnesque eligendi has, nam ex persius lobortis.</p>
+            <div class="icon novi-icon icon-primary icon-xl mdi mdi-tooltip-edit"></div>
+            <p class="list-blocks-title">Edita tu perfil</p>
+            <p>Edita tu perfil y posicionate entre las principales busquedas</p>
           </div>
         </div>
         <div class="list-blocks-item">
           <div class="list-blocks-item-inner">
-            <div class="icon novi-icon icon-primary icon-xl mdi mdi-flag-outline"></div>
-            <p class="list-blocks-title">Sales Growth</p>
-            <p>Ei tollit euismod cum, augue labore euripidis mel ex, ut</p>
+            <div class="icon novi-icon icon-primary icon-xl mdi mdi-download"></div>
+            <p class="list-blocks-title">Descarga recursos</p>
+            <p>Como proveedor, descarga información de lo que te interese</p>
           </div>
         </div>
       </div>
@@ -157,214 +157,5 @@
 
 <!-- Our Team-->
 
-<section class="section section-md bg-gray-100 text-center">
-        <!-- Profile Modern-->
 
-  <div class="container">
-    <h3>Nuestro equipo</h3>
-    <!-- Owl Carousel-->
-    <div class="owl-carousel owl-carousel_profile-modern" data-items="1" data-sm-items="2" data-lg-items="3" data-xl-items="4" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="true" data-margin="30" data-mouse-drag="false">
-     
-        <!-- Profile Modern-->
-        <article class="profile-modern">
-          <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/gerente.jpg" alt="" width="369" height="315"/>
-          </figure>
-          <div class="profile-modern-main">
-            <div class="profile-modern-main-item profile-modern-main-item_primary">
-              <h5 class="profile-modern-name">LUIS ENRIQUE VALDEBENITO
-              </h5>
-              <p class="profile-modern-position">Gerente</p>
-            </div>
-            <div class="profile-modern-main-item profile-modern-main-item_secondary">
-              <h5 class="profile-modern-main-title">Redes</h5>
-              <ul class="list-inline list-inline-xs">
-                <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-                <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-                <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-              </ul>
-              <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-            </div>
-          </div>
-        </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/daniel.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">DANIEL MÁS VALDÉS</h5>
-            <p class="profile-modern-position">Presidente</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/francisco.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">FRANCISCO PUGA MEDINA</h5>
-            <p class="profile-modern-position">Vice Presidente</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/gaston.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">GASTÓN YVER HUDSON</h5>
-            <p class="profile-modern-position">Secretario</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/yerko.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">YERCO RENDIC VLADISLAV</h5>
-            <p class="profile-modern-position">Tesorero</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/luis.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">LUIS CARMONA AMENÁBAR</h5>
-            <p class="profile-modern-position">Director</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/jorge.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">JORGE CONTADOR ARAYA</h5>
-            <p class="profile-modern-position">Director</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Profile Modern-->
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/franco.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">FRANCO DALBOSCO</h5>
-            <p class="profile-modern-position">Director</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/delfo.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">DELFO MUÑOZ VASQUEZ</h5>
-            <p class="profile-modern-position">Jefe Administrativo</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-      <article class="profile-modern">
-        <figure class="profile-modern-figure"><img class="profile-modern-image" src="images/img/team/secretario.jpg" alt="" width="369" height="315"/>
-        </figure>
-        <div class="profile-modern-main">
-          <div class="profile-modern-main-item profile-modern-main-item_primary">
-            <h5 class="profile-modern-name">FERNANDO TAPIA TAPIA</h5>
-            <p class="profile-modern-position">Secretario</p>
-          </div>
-          <div class="profile-modern-main-item profile-modern-main-item_secondary">
-            <h5 class="profile-modern-main-title">Redes</h5>
-            <ul class="list-inline list-inline-xs">
-              <li><a class="icon icon-md mdi mdi-facebook" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-twitter" href="#"></a></li>
-              <li><a class="icon icon-md mdi mdi-instagram" href="#"></a></li>
-            </ul>
-            <div class="profile-modern-toggle mdi mdi-arrow-top-right"></div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
 @endsection

@@ -24,15 +24,21 @@ class MessageReceived extends Mailable
 
     public $subject = '¡Hiciste MATCH!';
     public $frm;
+    public $fromnme;
+    public $sw;
+    public $np;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($from)
+    public function __construct($from,$fromname,$sitio,$nombre)
     {
+        $this->np = $nombre;
         $this->frm = $from;
+        $this->fromnme = $fromname;
+        $this->sw = $sitio;
     }
 
     /**

@@ -26,6 +26,9 @@ Vue.component('uf-component', require('./components/ufComponent.vue').default);
 Vue.component('select-ciudad-component', require('./components/SelectCiudadComponent.vue').default);
 Vue.component('imagen-minera-component', require('./components/ImagenMineraComponent.vue').default);
 Vue.component('certificacion-component', require('./components/CertificacionComponent.vue').default);
+Vue.component('provincia-component', require('./components/ProvinciaComponent.vue').default);
+Vue.component('ciudad-component', require('./components/CiudadComponent.vue').default);
+Vue.component('proveedor-tags-component',require('./components/ProveedorTagsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

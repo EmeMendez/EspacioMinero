@@ -135,7 +135,7 @@ class ProveedorTelefonoController extends Controller
 
         $this->correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
                               ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id")
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
 }

@@ -79,7 +79,11 @@ Route::get('/tiposession','Auth\LoginController@TipoUsuario')->name('xd');
 /*=================================================
 =            RUTAS DE CORREOS ELECTRONICOS         =
 ==================================================*/
-
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::post('password/reset/{token}', 'Auth\ForgotPasswordController@showResetForm')->name('password.reset') ;
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+Route::post('/sendmailcontact', 'CorreoController@contact')->name('sendcontact');
 Route::post('/sendmail', 'CorreoController@send')->name('send');
 
 /*====  RUTAS DEL CORREOS ELECTRONICOS   ========*/
@@ -102,6 +106,25 @@ Route::get('/imagen/minera','CiaMineraUsuarioController@image')->name('imagenmin
 /*=====================================
 =            RUTAS CERTIFICACION        =
 ======================================*/
-Route::post('/proveedor/certificacion','ProveedorCertificacionController@update')->name('proveedorcertificacion.update');
+Route::post('/proveedor/certificacion/store','ProveedorCertificacionController@store')->name('proveedorcertificacion.store');
 Route::get('/proveedor/certificacion','ProveedorCertificacionController@show')->name('proveedorcertificacion.show');
+Route::delete('/proveedor/certificacion','ProveedorCertificacionController@destroy')->name('proveedorcertificacion.destroy');
+Route::get('certificacion/certificaciones','CertificacionController@index')->name('certificacion.index');
 /*====  RUTAS CERTIFICACION   */
+
+
+
+/*=====================================
+=            RUTAS FITRO        =
+======================================*/
+Route::get('/categoria/categorias','CategoriaController@index')->name('categorias.index');
+Route::get('/tamanio-empresa/tamanio-empresas','TamanioEmpresaController@index')->name('tamanioempresa.index');
+Route::get('/region/regiones','RegionController@index')->name('region.index');
+Route::get('/provincia/provincias','ProvinciaController@index')->name('provincia.index');
+
+
+
+Route::get('/ciudad/{provincia_id}','CiudadController@getciudadesByProvincia');
+Route::get('/provincia/{region_id}','ProvinciaController@getprovinciasByRegion');
+Route::get('/proveedor_tag/{proveedor_rut}','ProveedorTagController@getProveedorTags');
+/*====  RUTA FILTRO   */

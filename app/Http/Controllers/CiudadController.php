@@ -16,4 +16,9 @@ class CiudadController extends Controller
        $ciudades = Ciudad::where('provincia_id', $provincia)->get();
        return ['ciudades'  => $ciudades];
    }
+   
+   public function getciudadesByProvincia($provincia_id){
+      $ciudades = Ciudad::where('provincia_id',$provincia_id)->get();
+      return $ciudades;
+   }
 }

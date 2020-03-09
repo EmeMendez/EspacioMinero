@@ -98,7 +98,7 @@ class ProveedorController extends Controller
         $p->password           = bcrypt(request('user-pass'));
         $p->categoria_id       = request('user-cat');
         $p->ciudad_id          = request('user-city');
-        $p->correo             = request('user-email');
+        $p->email             = request('user-email');
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id          = request('user-status');
         $p->url                = str_replace(" ","-",strtolower(request('user-name')));
@@ -122,7 +122,7 @@ class ProveedorController extends Controller
             foreach ($correosh as $valo) {
                 $miCorreito = new ProveedorCorreo;
                 $miCorreito->proveedor_rut = request('user-rut');
-                $miCorreito->correo = $val;
+                $miCorreito->email = $val;
                 $miCorreito->tipo_contacto_id = $incremento++;
                 $miCorreito->save();
             }
@@ -149,7 +149,7 @@ class ProveedorController extends Controller
 
         $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
         ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-        ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+        ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id","proveedor.nombre as nombre")
         ->where("proveedor_rut", "=", $url->rut)->get();   
 
         $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
@@ -293,7 +293,7 @@ class ProveedorController extends Controller
         $this->proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
                               ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
                               ->join("categoria","categoria.id","=","proveedor.categoria_id")
-                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","correo","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
+                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","email","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
                               ->where("url", "=", $url)->first();
          
         $this->telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
@@ -303,7 +303,7 @@ class ProveedorController extends Controller
 
         $this->correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
                               ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id")
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
 }

@@ -91,15 +91,15 @@ class ProveedorCorreoController extends Controller
 
         ProveedorCorreo::where('tipo_contacto_id', 1)
                     ->where('proveedor_rut', $rut)
-                    ->update(['correo' => $correo1]);
+                    ->update(['email' => $correo1]);
 
         ProveedorCorreo::where('tipo_contacto_id', 2)
                     ->where('proveedor_rut', $rut)
-                    ->update(['correo' => $correo2]);
+                    ->update(['email' => $correo2]);
                     
         ProveedorCorreo::where('tipo_contacto_id', 3)
                     ->where('proveedor_rut', $rut)     
-                    ->update(['correo' => $correo3]);          
+                    ->update(['email' => $correo3]);          
                     
                     
          $this->getInformation($url);
@@ -134,7 +134,7 @@ class ProveedorCorreoController extends Controller
 
         $this->correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
                               ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.correo","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id")
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
 

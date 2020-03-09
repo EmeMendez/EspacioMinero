@@ -53,7 +53,7 @@
             
             <div class="col-12 col-md-5 mx-auto my-3">
               <div class="text-md-right text-center">
-                <a class="mr-4" href="#">¿Olvidaste tu contraseña?</a>
+                <a class="mr-4" href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
               </div>
             </div>
 
