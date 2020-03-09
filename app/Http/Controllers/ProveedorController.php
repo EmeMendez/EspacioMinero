@@ -98,7 +98,7 @@ class ProveedorController extends Controller
         $p->password           = bcrypt(request('user-pass'));
         $p->categoria_id       = request('user-cat');
         $p->ciudad_id          = request('user-city');
-        $p->email             = request('user-email');
+        $p->email              = request('user-email');
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id          = request('user-status');
         $p->url                = str_replace(" ","-",strtolower(request('user-name')));

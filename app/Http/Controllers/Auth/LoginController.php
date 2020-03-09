@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use App\Http\Controllers\LogController ;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -19,7 +22,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    
     use AuthenticatesUsers;
 
     /**
@@ -46,15 +49,19 @@ class LoginController extends Controller
 
         public function login(){
         
+            $date = Carbon::now()->toDateTimeString();
         if (Auth::attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+            DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,3]);
             return redirect()->route('home');
+
         }else{
             if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
                 return redirect()->route('home');
-                //return redirect()->intended(route('admin.session'))->with('status','You are Logged in as Admin!');
             }
             else{
-            return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
+                DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
         }
     }
     }
@@ -73,5 +80,7 @@ class LoginController extends Controller
         return redirect()->route('home');
 
     }
+    
+
 }
 
