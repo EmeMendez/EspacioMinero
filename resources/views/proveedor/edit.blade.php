@@ -57,6 +57,8 @@
                 <a class="nav-link py-2" id="v-pills-phone-tab" data-toggle="pill" href="#v-pills-phone" role="tab" aria-controls="v-pills-phone" aria-selected="false"><span class="ml-3">Teléfonos</span></a>
                 <a class="nav-link py-2" id="v-pills-email-tab" data-toggle="pill" href="#v-pills-email" role="tab" aria-controls="v-pills-email" aria-selected="false"><span class="ml-3">Correos</span></a>
                 <a class="nav-link py-2" id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-certification" aria-selected="false"><span class="ml-3">Certificaciones</span></a>
+                <a class="nav-link py-2" id="v-pills-services-tab" data-toggle="pill" href="#v-pills-services" role="tab" aria-controls="v-pills-services" aria-selected="false"><span class="ml-3">Rubro y Servicios</span></a>               
+
                 <a class="nav-link py-2" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span class="ml-3">Cambiar Contraseña</span></a>
                 <a class="nav-link py-2" id="v-pills-cancel-account-tab" data-toggle="pill" href="#v-pills-cancel-account" role="tab" aria-controls="v-pills-cancel-acount" aria-selected="false"><span class="ml-3">Cerrar Cuenta</span></a>               
             </div>               
@@ -68,7 +70,7 @@
         <div class="row mt-4 ">
             <div class="col-12 col-md-3 d-none d-md-block">
                 <div class=" text-center">
-                    <img class="rounded border border-light img-fluid" height="150" width="150" src="{{ Storage::url($proveedor->imagen)}}"  />
+                    <img class="rounded border border-light img-fluid" height="150" width="150" src="/{{ $proveedor->imagen }}"  />
                 </div>
 
                  <div class="nav flex-column nav-pills mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -77,6 +79,7 @@
                     <a class="nav-link py-2 pl-3" id="v-pills-phone-tab" data-toggle="pill" href="#v-pills-phone" role="tab" aria-controls="v-pills-phone" aria-selected="false"><span >Teléfonos</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-email-tab" data-toggle="pill" href="#v-pills-email" role="tab" aria-controls="v-pills-email" aria-selected="false"><span >Correos</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-certification" aria-selected="false"><span >Certificaciones</span></a>
+                    <a class="nav-link py-2 pl-3" id="v-pills-services-tab" data-toggle="pill" href="#v-pills-services" role="tab" aria-controls="v-pills-services" aria-selected="false"><span >Rubro y Servicios</span></a>               
                     <a class="nav-link py-2 pl-3" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span >Cambiar Contraseña</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-cancel-account-tab" data-toggle="pill" href="#v-pills-cancel-account" role="tab" aria-controls="v-pills-cancel-acount" aria-selected="false"><span >Cerrar Cuenta</span></a>               
                 </div>
@@ -115,7 +118,7 @@
 
                                   <div class="col-12 pl-0 mb-3 ">
                                     <p class="pl-4 mb-2">Correo Electronico</p>
-                                    <input  class="form-input " id="user_email" type="text" name="user-email" value="{{$proveedor->correo}}">
+                                    <input  class="form-input " id="user_email" type="text" name="user-email" value="{{$proveedor->email}}">
                                     <span class="mt-3 ml-2" style="color: #0033a0;" data-toggle="tooltip" data-placement="top" title="Este correo está asociado a tu cuenta. Cuando quieras restablecer contraseña, se te informará a este email.">
                                       <i class="far fa-question-circle"></i>
                                 </div>
@@ -263,6 +266,23 @@
                         <!--====  End of CAMBIAR CERTIFICACIONES  ====-->
 
 
+
+
+
+                        <!--=====================================
+                        =            CAMBIAR RUBRO Y SERVICIOS (TAGS)           =
+                        ======================================-->
+
+                        <div class="tab-pane fade" id="v-pills-services" role="tabpanel" aria-labelledby="v-pills-services-tab">
+                            @include('proveedor_tag.edit')
+                        </div>
+
+                       <!--====  End RUBRO Y SERVICIOS (TAGS)  ====-->
+
+
+
+
+                        
                         <!--=====================================
                         =            CAMBIAR PASSWORD          =
                         ======================================-->

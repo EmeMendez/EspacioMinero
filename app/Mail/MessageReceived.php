@@ -27,14 +27,16 @@ class MessageReceived extends Mailable
     public $fromnme;
     public $sw;
     public $np;
+    public $tip;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($from,$fromname,$sitio,$nombre)
+    public function __construct($from,$fromname,$sitio,$nombre,$tipo)
     {
+        $this->tip = $tipo;
         $this->np = $nombre;
         $this->frm = $from;
         $this->fromnme = $fromname;
@@ -48,6 +50,6 @@ class MessageReceived extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.welcome');
+        return $this->view('mails.match');
     }
 }

@@ -39,7 +39,7 @@
           <div class="row row-20 row-sm-35">
             <div class="col-6 col-sm-12 col-lg-8 col-xl-12">
               <div class="row row-10 text-default">
-                <div class="col-lg-6 col-xl-12"><a href="mailto:proyectobpe@cidere.cl">proyectobpe@cidere.cl</a></div>
+                <div class="col-lg-6 col-xl-12"><a href="mailto:proyectobpe@cidere.cl">proyectobp@cidere.cl</a></div>
                 <div class="col-lg-6 col-xl-12"><a class="big" href="tel:51-2223090">51-2223090</a></div>
               </div>
             </div>

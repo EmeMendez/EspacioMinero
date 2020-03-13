@@ -42,6 +42,8 @@ Route::get('/imagen/proveedor','ProveedorController@image')->name('imagen.return
 
 Route::get('/provincias/{region}','ProvinciaController@provinciasByRegion')->name('provincias');
 Route::get('/ciudades/{provincia}','CiudadController@CiudadesByProvincia')->name('ciudades');
+Route::get('/proveedor-tags','ProveedorTagController@show');
+
 
 /*====  RUTAS  JSON DEL PROVEEDOR   */
 
@@ -92,9 +94,8 @@ Route::post('/sendmail', 'CorreoController@send')->name('send');
 /*=====================================
 =            RUTAS DE MINERA         =
 ======================================*/
-
 Route::get('/minera/vista-perfil/{url}','CiaMineraUsuarioController@edit')->name('minera.edit');
-Route::patch('/minera/vista-perfil/{proveedor}','CiaMineraUsuarioController@update')->name('minera.update');
+Route::patch('/minera/vista-perfil/{url}','CiaMineraUsuarioController@update')->name('minera.update');
 Route::patch('/imagenminera/update', 'CiaMineraUsuarioController@update_imagen')->name('minera.update_imagen');
 Route::patch('/telefonominera/update', 'MineraTelefonoController@update')->name('telefonominera.update');
 Route::patch('/correominera/update', 'MineraCorreoController@update')->name('correominera.update');
@@ -128,3 +129,19 @@ Route::get('/ciudad/{provincia_id}','CiudadController@getciudadesByProvincia');
 Route::get('/provincia/{region_id}','ProvinciaController@getprovinciasByRegion');
 Route::get('/proveedor_tag/{proveedor_rut}','ProveedorTagController@getProveedorTags');
 /*====  RUTA FILTRO   */
+
+
+
+
+/*=====================================
+=            RUTAS TAGS        =
+======================================*/
+
+Route::post('/proveedor_tag/store/tag','ProveedorTagController@store');
+Route::delete('/proveedor_tag/delete/tag','ProveedorTagController@destroy');
+Route::get('/tag/tags','TagController@index');
+Route::post('/tag/store/tag','TagController@store');
+Route::get('/tag/{tag_name}','TagController@getTags');
+Route::post('/proveedor/post/proveedores','ProveedorController@getPost');
+
+/*====  RUTA TAGS   */

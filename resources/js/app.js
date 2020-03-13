@@ -29,6 +29,8 @@ Vue.component('certificacion-component', require('./components/CertificacionComp
 Vue.component('provincia-component', require('./components/ProvinciaComponent.vue').default);
 Vue.component('ciudad-component', require('./components/CiudadComponent.vue').default);
 Vue.component('proveedor-tags-component',require('./components/ProveedorTagsComponent.vue').default);
+Vue.component('add-delete-proveedor-tags-component',require('./components/AddDeleteProveedorTagsComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,6 +40,9 @@ Vue.component('proveedor-tags-component',require('./components/ProveedorTagsComp
 
 const app = new Vue({
     el: '#app',
+});
+const tags = new Vue({
+    el: '#tags',
 });
 const ciudad = new Vue({
     el: '#ciudad',

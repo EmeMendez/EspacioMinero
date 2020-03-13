@@ -9,6 +9,7 @@ use Auth;
 use App\Http\Controllers\LogController ;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -51,18 +52,48 @@ class LoginController extends Controller
         
             $date = Carbon::now()->toDateTimeString();
         if (Auth::attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+            
             DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,3]);
             return redirect()->route('home');
 
         }else{
-            if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
-                DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
-                return redirect()->route('home');
+            $primero = "0";
+            $tiop = DB::select("SELECT `tipo` FROM `cia_minera_usuario` WHERE `rut` = '".request('user-name')."'", [1]);
+            
+            foreach ($tiop as $tp) {
+                if(strval($tp->tipo) == '1'){
+                    $primero = "1";
+                }
+            }
+
+            if($primero == '0'){
+                
+                DB::update('update cia_minera_usuario set password = "'.Hash::make(request('user-pass')).'", tipo = 1 where rut = ?', [request('user-name')]);
+                if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                    return redirect()->route('home');
+                }
+                else{
+                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                    return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
+                }
             }
             else{
-                DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
-                return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
-        }
+                
+                if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                    return redirect()->route('home');
+                }
+                else{
+                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                    return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
+                }
+            }
+            
+            
+                
+               
+        
     }
     }
 
@@ -81,6 +112,8 @@ class LoginController extends Controller
 
     }
     
+
+
 
 }
 

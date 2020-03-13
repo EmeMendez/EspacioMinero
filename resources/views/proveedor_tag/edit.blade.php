@@ -1,23 +1,8 @@
-@extends('layout')
-@section('content')
-<!-- Get in Touch-->
-<section class="section section-md bg-gray-100">
-  <div class="container">
-    <h3 class="text-center">Buscar Proveedor</h3><br>
-
-    <div id="app">
-        <proveedores-component></proveedores-component> 
-    </div>{{-- end app --}}
-  
-    </div> {{-- end container --}}
-</section>
+<div id="tags">
+    <add-delete-proveedor-tags-component></add-delete-proveedor-tags-component>
+</div>
 <style>
-    .one-line {
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    }
+
     .dropdown{
       position: relative;
       width: 100%;
@@ -44,7 +29,6 @@
       cursor: pointer;
     }
     .dropdown-list{
-        /* display: flex; */
       position: absolute;
       width: 100%;
       max-height: 500px;
@@ -71,5 +55,4 @@
     }
 
 
-</style>
-@endsection
+    </style>

@@ -29,11 +29,13 @@ class CorreoController extends Controller
         if(auth()->guard('admin')->check()){
 
             $m = new Match;
-        
+            $url = request('prov-url');
             $from =  auth()->guard('admin')->user()->email;
             $fromname = auth()->guard('admin')->user()->nombre_usuario;
             $sitio = auth()->guard('admin')->user()->sitio_web;
             $to = request('correo');
+            $nombre = request('prov-nom');
+            $tipo = 1;
             $m->proveedor_rut = request('rut');
             $m->cia_minera_usuario_rut = auth()->guard('admin')->user()->rut;
             $m->proveedor_correo = $to;
@@ -42,17 +44,21 @@ class CorreoController extends Controller
 
 
 
-            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,request('prov-nom')));
+            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo));
 
-            return redirect()->back()->withSuccess('¡Correo Enviado!');
+            return redirect()->back()->with('¡Correo Enviado!');
             //return view('contact')->with('success','¡Correo Enviado!');
 
         }else{
 
             $m = new MatchProveedores;
-        
+            $url = request('prov-url');
             $from =  auth()->user()->email;
+            $fromname = auth()->user()->nombre;
+            $sitio = auth()->user()->sitio_web;
             $to = request('correo');
+            $nombre = request('prov-nom');
+            $tipo = 2;
             $m->proveedor_rut_emisor = auth()->user()->rut;
             $m->proveedor_rut_remitente = request('rut');
             $m->proveedor_correo_emisor = $from;
@@ -61,7 +67,7 @@ class CorreoController extends Controller
 
 
 
-            Mail::to($to)->queue(new MessageReceived($from));
+            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo));
 
             return redirect()->back()->withSuccess('¡Correo Enviado!');
             //return view('contact')->with('success','¡Correo Enviado!');
@@ -99,6 +105,27 @@ class CorreoController extends Controller
             return redirect()->back()->withSuccess('¡Correo Enviado!');
             //return view('contact')->with('success','¡Correo Enviado!');
 
+    }
+
+    public function getInformation($url){
+        $this->ciudades  = ciudad::get();
+        $this->categorias = Categoria::get();
+        $this->tamanio_empresa = TamanioEmpresa::get();
+        $this->proveedor = Proveedor::join("ciudad","ciudad.id", "=", "proveedor.ciudad_id")
+                              ->join("tamanio_empresa","tamanio_empresa.id","=","proveedor.tamanio_empresa_id")
+                              ->join("categoria","categoria.id","=","proveedor.categoria_id")
+                              ->select("rut","proveedor.nombre as nombre","sitio_web","direccion","url","email","descripcion","ciudad.nombre as ciudad","tamanio_empresa.nombre as tamanio_empresa","categoria.nombre as categoria","imagen","ciudad_id","tamanio_empresa_id","categoria_id")
+                              ->where("url", "=", $url)->first();
+         
+        $this->telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"telefono","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();
+
+        $this->correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id")
+                              ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
 
 

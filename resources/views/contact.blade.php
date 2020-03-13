@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <section class="breadcrumbs-custom">
-  <img src="images/img/contact.jpg">
+  <img src="images/banners/contact.jpg">
     <div class="parallax-content">
       <div class="container">
         <div class="row justify-content-center">
@@ -41,7 +41,7 @@
 
           <div class="inset-1">
             <h2>Nuestro contacto</h2>
-            <p class="big">Visaitanos a nuestra oficina.</p>
+            <p class="big">Visitanos a nuestra oficina.</p>
             <div class="row row-50">
               <div class="col-sm-6 col-xl-12">
                 <p class="heading-7">Oficina Cidere</p>
@@ -53,7 +53,7 @@
                     <div class="unit-body"><a href="tel:51-2223090">51-2223090</a></div>
                   </li>
                   <li class="unit"><span class="unit-left icon icon-sm text-primary mdi mdi-email-outline"></span>
-                    <div class="unit-body"><a class="text-primary" href="mailto:proyectobpe@cidere.cl">proyectobpe@cidere.cl</a></div>
+                    <div class="unit-body"><a class="text-primary" href="mailto:proyectobp@cidere.cl">proyectobp@cidere.cl</a></div>
                   </li>
                 </ul>
               </div>

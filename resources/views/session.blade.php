@@ -1,5 +1,21 @@
 @extends('layout')
 @section('content')
+
+@if (Auth::check())
+    
+
+  <?php
+  header("Location: http://espaciominero.test");
+  exit;
+  ?>
+  @endif
+@if (Auth::guard('admin')->check())
+  <?php
+  header("Location: http://espaciominero.test");
+  exit;
+  ?>
+    
+@endif
 <!-- Get in Touch-->
 <div class="bg-light py-4">
   <h3 class="text-center">Iniciar Sesión</h3>

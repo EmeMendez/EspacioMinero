@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MineraCorreo;
+use App\CiaMineraUsuario;
+use App\MineraTelefono;
 
 class MineraCorreoController extends Controller
 {
+
+    protected $minera = null;
+    protected $correosh = null;
+    protected $telefono = null;
+
     /**
      * Display a listing of the resource.
      *
@@ -70,7 +77,7 @@ class MineraCorreoController extends Controller
     public function update()
     {
         $rut = auth()->guard('admin')->user()->rut;
-        //$telefono =  ProveedorTelefono::where("proveedor_rut","=",$rut)->get();
+        $url = auth()->guard('admin')->user()->url;
 
         $correo1 = request('correo-1');
         $correo2 = request('correo-2');
@@ -79,20 +86,18 @@ class MineraCorreoController extends Controller
 
         MineraCorreo::where('tipo_contacto_id', 1)
                     ->where('minera_rut', $rut)
-                    ->update(['email' => $correo1]);
+                    ->update(['correo' => $correo1]);
 
         MineraCorreo::where('tipo_contacto_id', 2)
                     ->where('minera_rut', $rut)
-                    ->update(['email' => $correo2]);
+                    ->update(['correo' => $correo2]);
                     
         MineraCorreo::where('tipo_contacto_id', 3)
                     ->where('minera_rut', $rut)     
-                    ->update(['email' => $correo3]);          
+                    ->update(['correo' => $correo3]);          
                     
-                    
-                         
-
-        return redirect()->route('home')->with('success','¡Actualización Exitosa!'); 
+        $this->getInformation($url);
+        return redirect()->route('minera.edit',[$this->minera->url])->with('success','¡Actualizacion Exitosa!'); 
     }
 
     /**
@@ -104,5 +109,23 @@ class MineraCorreoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getInformation($url){
+        $this->minera = CiaMineraUsuario::join("cia_minera","cia_minera.id", "=", "cia_minera_usuario.cia_minera_id")
+                              ->join("estado","estado.id","=","cia_minera_usuario.estado_id")
+                              ->join("usuario_tipo","usuario_tipo.id","=","cia_minera_usuario.usuario_tipo")
+                              ->select("rut","cia_minera_usuario.nombre_usuario as nombre","sitio_web","url","imagen","cia_minera.nombre as nombreminera","estado.nombre as nombreestado","usuario_tipo.nombre as usuariotipo","cia_minera_usuario.cia_minera_id","cia_minera_usuario.estado_id","cia_minera_usuario.usuario_tipo")
+                              ->where("url", "=", $url)->first();
+         
+        $this->telefono = MineraTelefono::join("cia_minera_usuario","cia_minera_usuario.rut", "=", "minera_telefono.minera_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","minera_telefono.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"telefono","cia_minera_usuario.rut","tipo_contacto_id as tipo_id")
+                              ->where("minera_rut", "=", auth()->guard('admin')->user()->rut)->get();
+
+        $this->correosh = MineraCorreo::join("cia_minera_usuario","cia_minera_usuario.rut", "=", "minera_correo.minera_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","minera_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"minera_correo.correo","minera_rut","tipo_contacto_id as tipo_id")
+                              ->where("minera_rut", "=", auth()->guard('admin')->user()->rut)->get();                                 
     }
 }

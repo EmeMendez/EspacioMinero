@@ -42,10 +42,16 @@ class ProveedorController extends Controller
     public function getProveedoresByName($parameter)
     {
         if($parameter =='*'){
-            $proveedor = Proveedor::orderBy('nombre','ASC')->paginate(10);
+            $proveedor = Proveedor::join('ciudad','ciudad.id','proveedor.ciudad_id')
+                                  ->select('rut','proveedor.nombre as nombre', 'descripcion','imagen' ,'url','ciudad.nombre as ciudad_nombre')
+                                  ->orderBy('proveedor.nombre','ASC')
+                                  ->paginate(10);
         }
         else{
-            $proveedor = Proveedor::where('nombre','LIKE', '%' . $parameter . '%')->orderBy('nombre','ASC')->paginate(10);
+            $proveedor = Proveedor::join('ciudad','ciudad.id','proveedor.ciudad_id')
+                                  ->select('rut','proveedor.nombre as nombre', 'descripcion','imagen','url' ,'ciudad.nombre as ciudad_nombre')
+                                  ->where('proveedor.nombre','LIKE', '%' . $parameter . '%')
+                                  ->orderBy('nombre','ASC')->paginate(10);
         }
         return ['pagination' => [
                  'total' => $proveedor->total(),
@@ -149,7 +155,7 @@ class ProveedorController extends Controller
 
         $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
         ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-        ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id","proveedor.nombre as nombre")
+        ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id","proveedor.nombre as nombre","proveedor.url as url")
         ->where("proveedor_rut", "=", $url->rut)->get();   
 
         $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
@@ -204,7 +210,7 @@ class ProveedorController extends Controller
         $proveedor->direccion          = request('user-address');
         $proveedor->categoria_id       = request('user-cat');
         $proveedor->ciudad_id          = request('user-city');
-        //$proveedor->correo             = request('user-email');
+        $proveedor->email             = request('user-email');
         $proveedor->tamanio_empresa_id = request('user-tamanio');
         $proveedor->url                = str_replace(" ","-",strtolower(request('user-name')));
 
@@ -246,17 +252,17 @@ class ProveedorController extends Controller
 
 
     public function update_imagen(Request $r){
-
-        $rut = auth()->user()->rut;
         $url = auth()->user()->url;
+        $old_image = auth()->user()->imagen;
         if($r->hasFile('user-imagen')){
-            $imagen = $r->file('user-imagen')->store('public');
-            Proveedor::where('rut', $rut)
-                    ->update(['imagen' => $imagen]);  
+            $image = Storage::disk('public')->put('/images/avatars/proveedor',$r->file('user-imagen'));
+            if($old_image != 'images/avatars/proveedor/default-avatar.png'){
+                unlink(public_path() . '/'.$old_image);
+            }
+            Proveedor::where('url', $url)
+                    ->update(['imagen' => $image]);  
             $this->getInformation($url);
             return redirect()->route('proveedor.edit',[$this->proveedor])->with('success','¡Actualizacion Exitosa!'); 
-                   
-
         }else{
             $this->getInformation($url);
         return redirect()->route('proveedor.edit',[$this->proveedor])->with('error','¡Actualizacion Exitosa!'); 
@@ -270,6 +276,8 @@ class ProveedorController extends Controller
         $imagen = Proveedor::find($rut);
         return $imagen->imagen;
     }
+
+    
 
     /**
      * Elimina un recurso especifico por identificador (proveedor)
@@ -306,5 +314,21 @@ class ProveedorController extends Controller
                               ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id")
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
+
+    public function getPost(Request $request){
+        $array = $request->get('toSearch');
+        $new_array = [];
+        // foreach($array as $key => $a){
+        //     $proveedor = ProveedorTag::join('tag','tag.id','=','proveedor_tag.tag_id')
+        //                              ->join('proveedor')
+
+        //     array_push($new_array,$array[$key]);
+        // }                          
+    
+        return $array;
+    }
+
+
+
 }
 

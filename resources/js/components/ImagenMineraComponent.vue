@@ -13,7 +13,7 @@
     export default {
         data(){
             return {
-                imagenMiniatura: '/storage/default-avatar-image.png' ,
+                imagenMiniatura: '/images/avatars/minera/default-avatar.png' ,
                 imagen: ''
             }
         },
@@ -24,7 +24,7 @@
             getImagenUpdate(){
                 axios.get('/imagen/minera').then(res =>{
                     var img = res.data
-                    this.imagenMiniatura = '/storage/' + img.substr(7)  
+                    this.imagenMiniatura = '/' + img 
                     return this.imagenMiniatura 
                 }) 
             },

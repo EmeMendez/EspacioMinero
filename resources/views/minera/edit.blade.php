@@ -10,22 +10,37 @@
       <!-- Fin Buscador -->
 <hr>
 
-    @if(count($errors)> 0)
-        <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
+@if(count($errors)> 0)
+<div class="alert alert-danger">
+    <ul>
+         @foreach ($errors->all() as $error)
             <li>{{$error}}</li>
-                
-            @endforeach
-        </ul>
-        </div>
-    @endif
+    
+        @endforeach
+    </ul>
+</div>
+@endif
 
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-        <p>{{\Session::get('success')}}</p>
-        </div>
-    @endif
+@if (\Session::has('success'))
+<script>
+                
+    Swal.fire({
+    icon: 'success',
+    title: '¡Actualización Exitosa!',
+    text: 'Sus datos se han actualizado correctamente',
+    })
+</script>
+@elseif(\Session::has('error'))
+<script>
+                
+Swal.fire({
+icon: 'error',
+title: '¡Ha habido un Error!',
+text: 'Algo ha salido mal. Intentelo denuevo',
+})
+</script>
+
+@endif
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +67,7 @@
         <div class="row mt-4 ">
             <div class="col-12 col-md-3 d-none d-md-block">
                 <div class=" text-center">
-                    <img class="rounded border border-light img-fluid" height="150" width="150" src="{{ Storage::url($minera->imagen)}}"  />
+                    <img class="rounded border border-light img-fluid" height="150" width="150" src="/{{ $minera->imagen }}"  />
                 </div>
 
                  <div class="nav flex-column nav-pills mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">

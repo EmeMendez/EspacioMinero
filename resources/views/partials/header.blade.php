@@ -27,8 +27,8 @@
             <ul class="rd-navbar-nav ">
                         
                 <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
-                    <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >MATCH</a> </li>
-                    <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}" >Minera</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}">MINERAS</a> </li>
                     <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                     
             </ul>
@@ -36,7 +36,7 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"><a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
+                    <li class="rd-nav-item {{setActive('minera.edit')}}"><a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>

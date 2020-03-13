@@ -1,19 +1,18 @@
 <template>
-  
-                <div class="image-container">
-                    <img class="proveedor-image" :src="imagensita"/>
-                    <div class="middle">
-                      <button class="btn btn-primary text">Cambiar mi Logo</button>
-                      <input name="user-imagen" @change="getImagen" type="file" accept=".png, .jpeg, .jpg"/>
-                    </div>           
-                </div>     
+        <div class="image-container">
+            <img class="proveedor-image" :src="imagensita"/>
+            <div class="middle">
+                <button class="btn btn-primary text">Cambiar mi Logo</button>
+                <input name="user-imagen" @change="getImagen" type="file" accept=".png, .jpeg, .jpg"/>
+            </div>           
+        </div>     
 </template>
 
 <script>
     export default {
         data(){
             return {
-                imagenMiniatura: '/storage/default-avatar-image.png' ,
+                imagenMiniatura: '/images/avatars/proveedor/default-avatar.png' ,
                 imagen: ''
             }
         },
@@ -24,7 +23,7 @@
             getImagenUpdate(){
                 axios.get('/imagen/proveedor').then(res =>{
                     var img = res.data
-                    this.imagenMiniatura = '/storage/' + img.substr(7)  
+                    this.imagenMiniatura = '/' + img 
                     return this.imagenMiniatura 
                 }) 
             },
