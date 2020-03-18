@@ -8,25 +8,31 @@
 </section>
       <!-- Fin section -->
 
-<div class="container mt-5">
+<div class="container mt-md-5 mt-2">
   <div class="row">
 
-    <div class="col-3">
-      <div class="col-12 text-center">
-        <img height="255" width="255" src="/{{ $minera->imagen}}"  />
+      <div class="col-md-3 col-12">
+        <div class="col-12 text-center">
+          <img height="255" width="255" src="/{{ $minera->imagen}}"  />
+        </div>
+        <div class="col-12 d-md-none d-block">
+          <h3 class="" style="font-size: 25px">{{ $minera->nombre }} </h3>
+        </div>
+        <div class="col-12 text-justify mt-4 pb-5">
+          {{ $minera->descripcion}} 
+        </div>      
       </div>
-      <div class="col-12 text-justify mt-4 pb-5">
-        {{ $minera->descripcion}} 
-      </div>      
-    </div>
-    {{-- fin columna 1 --}}
-    <div class="col-6">
-    <div class="col-12">
-      <h3 class="">{{ $minera->nombre }} </h3>
-    </div>
-    <div class="col-12">
-      <hr class="my-3 text-dark">
 
+    {{-- fin columna 1 --}}
+    <div class="col-md-6 col-12">
+
+      <div class="col-12">
+        <h3 class="d-none d-md-block" style="font-size: 35px">{{ $minera->nombre }} </h3>
+      </div>
+
+    <div class="col-12">
+
+      <hr class="my-3 text-dark">
         <div class="col-12 mt-5">
           <p class="h4 ">Correo</p>
             <?php
@@ -54,10 +60,21 @@
                   <input type="hidden" name="prov-nom" value="{{ $em->nombre }}">
               
                 </div>
-                <div class="col-4">
-                  <button id="button-addon1" onclick="event.preventDefault()" class=" button button-block button-primary px-2 py-2"  data-toggle="modal" data-target="#{{$oli.$contador}}">MATCH</button>
-                  </div>
-                </div>  
+
+                @if(Auth::guard('admin')->check())
+
+                  @if ($em->minera_rut == auth()->guard('admin')->user()->rut)
+                
+
+                  @else
+                    <div class="col-4">
+                      <button id="button-addon1" onclick="event.preventDefault()" class=" button button-block button-primary px-2 py-2"  data-toggle="modal" data-target="#{{$oli.$contador}}">MATCH</button>
+                    </div>
+                  @endif
+
+                @endif
+
+
 
                 <div class="modal fade" id="{{$oli.$contador}}" tabindex="-1" role="dialog" aria-labelledby="{{$chale.$contador2}}" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -80,15 +97,16 @@
                 </div>
               @else
               <div class="row my-0">
-              <div class="col-8">
-                <p class="mt-1">Correo {{$em->des}}</p>
+              <div class="col-md-8 col-12">
+                <p class="mt-2">Correo {{$em->des}}</p>
               </div>
-              <div class="col-4">
-                <input disabled class=" button button-block button-primary px-2 py-2 bg-light text-primary" value="MATCH">
+              <div class="col-md-4 col-12">
+                <input disabled class=" button button-block button-primary px-2 ml-0 py-1 mt-md-0 mt-1" value="Sin Registrar">
               </div>
             </div>            
             @endif
             </div> 
+          </div> 
         </form>
         </div>
           @endforeach
@@ -102,53 +120,54 @@
 
 
 
-    </div>
+      </div>
+      <div class="col-md-3 col-12 ">
+        <h5 class="text-md-left text-center">Datos de Minera</h5>
+        <div class="row my-2 my-md-3">
+          <div class="col-6 col-md-12">
+            <b>Sitio Web</b>
+          </div>
+          <div class="col-6 col-md-12">
+            <span>{{ $minera->sitio_web }}</span>               
+          </div>
+        </div>
+
+
+
+        <div class="row my-2 my-md-3">
+          <div class="col-6 col-md-12 ">
+            <b>Dirección</b>
+          </div>
+          <div class="col-6 col-md-12">
+            <span>{{ $minera->direccion }}</span>               
+          </div>
+        </div>
+
+
+
+  
+        <div class="row my-2 my-md-3">
+          <div class="col-12">
+            <b>Teléfonos de contacto</b>
+          </div>
+          @foreach ($telefono as $tel)
+            <div class="col-7 col-md-12 mt-1 pr-0 ">
+            <strong style="color: #757575">{{$tel->des}}: </strong> 
+            </div>
+            <div class="col-5 col-md-12 pl-0 pl-md-2">
+              <a href="tel:{{$tel->telefono}}">{{$tel->telefono}}</a>
+            </div>
+          @endforeach
+                          
+          
+        </div>
+      </div>
     </div>
     {{-- fin columna 2 --}}
 
         {{-- fin columna 2 --}}
 
-        <div class="col-3">
-          <h5 class="text-md-left text-center">Datos de Minera</h5>
-          <div class="row my-2 my-md-3">
-            <div class="col-6 col-md-12">
-              <b>Sitio Web</b>
-            </div>
-            <div class="col-6 col-md-12">
-              <span>{{ $minera->sitio_web }}</span>               
-            </div>
-          </div>
-    
-
-    
-          <div class="row my-2 my-md-3">
-            <div class="col-6 col-md-12 ">
-              <b>Dirección</b>
-            </div>
-            <div class="col-6 col-md-12">
-              <span>{{ $minera->direccion }}</span>               
-            </div>
-          </div>
-    
-
-    
-     
-          <div class="row my-2 my-md-3">
-            <div class="col-6 col-md-12 ">
-              <b>Teléfonos de contacto</b>
-            </div>
-            @foreach ($telefono as $tel)
-            <div class="col-6 col-md-12 mt-1">
-             <strong style="color: #757575">{{$tel->des}}: </strong> 
-            </div>
-            <div class="col-6 col-md-12">
-              <a href="tel:{{$tel->telefono}}">{{$tel->telefono}}</a>
-            </div>
-            @endforeach
-                             
-            
-          </div>
-        </div>
+ 
 
 
 
