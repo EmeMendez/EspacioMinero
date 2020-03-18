@@ -38,20 +38,51 @@ class TagController extends Controller
      */   
     public function store(Request $request){
 
-        $tag = new Tag;
-        $tag->nombre = $request->nombre;
-        $tag->timestamps = false;
-        $tag->save();
-        $proveedor_tag = new ProveedorTag;
-        $proveedor_tag->tag_id = $tag->id;
-        $proveedor_tag->proveedor_rut = auth()->user()->rut;
-        $proveedor_tag->timestamps = false;
-        $proveedor_tag->save();
+        $tag = Tag::where('nombre',$request->nombre)->first();
+        if(!$tag){
+            $tag = new Tag;
+            $tag->nombre = $request->nombre;
+            $tag->timestamps = false;
+            $tag->save();
+
+
+            $proveedor_tag = new ProveedorTag;
+            $proveedor_tag->tag_id = $tag->id;
+            $proveedor_tag->proveedor_rut = auth()->user()->rut;
+            $proveedor_tag->timestamps = false;
+            $proveedor_tag->save();
+           
+        }else{
+            $proveedor_tag =ProveedorTag::join('tag','tag.id','=','proveedor_tag.tag_id')
+                                        ->where('tag.nombre','=',$request->nombre)->first();
+            if(!$proveedor_tag){
+                $proveedor_tag = new ProveedorTag;
+                $proveedor_tag->tag_id = $tag->id;
+                $proveedor_tag->proveedor_rut = auth()->user()->rut;
+                $proveedor_tag->timestamps = false;
+                $proveedor_tag->save();  
+            } else{
+                return 'false';
+            }         
+        }
+
         return $proveedor_tag;
     }
 
     public function getTagsTodos(){
         $tags = Tag::get();
         return $tags;
+    }
+
+      /**
+     * chck if tag exist
+     * return a boolean .
+     */  
+    public function exist($tag_name){
+        if(Tag::where('nombre',$tag_name)->first()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

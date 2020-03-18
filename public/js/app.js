@@ -2007,7 +2007,9 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'application/json'
         }
       }).then(function (response) {
-        console.log(response);
+        if (response.status == 200) {
+          toastr.info('Ya añadió este servicio');
+        }
 
         if (response.status == 201) {
           toastr.success('Servicio añadido');
@@ -2048,6 +2050,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response);
 
           if (response.status == 200) {
+            console.log(response);
             toastr.success('Servicio añadido');
 
             _this3.getProveedorTags();
@@ -2068,6 +2071,8 @@ __webpack_require__.r(__webpack_exports__);
 
             _this3.inputValue = '';
           }
+
+          console.log(error);
         });
       } else {
         toastr.error('Ya no puedes añadir más servicios');
@@ -37195,8 +37200,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

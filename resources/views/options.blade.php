@@ -25,7 +25,7 @@
         overflow: hidden; 
         }
         .img-hover-zoom img {
-        transition: transform .5s ease;
+        transition: transform .4s ease;
         }
         /* [3] Finally, transforming the image when container gets hovered */
         .img-hover-zoom:hover img {

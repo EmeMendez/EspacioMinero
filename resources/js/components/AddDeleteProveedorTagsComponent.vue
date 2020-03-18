@@ -98,8 +98,9 @@
                         'Content-Type': 'application/json'
                         }                    
                     }).then(response => {
-                        console.log(response);                  
-
+                        if(response.status==200){  
+                           toastr.info('Ya añadió este servicio')
+                        }
                         if(response.status==201){  
                            toastr.success('Servicio añadido')
                             this.getProveedorTags()
@@ -132,7 +133,8 @@
                         }                    
                     }).then(response => {
                         console.log(response);
-                        if(response.status==200){                    
+                        if(response.status==200){ 
+                            console.log(response);                   
                             toastr.success('Servicio añadido')
                             this.getProveedorTags()
                             this.getTags()
@@ -147,6 +149,8 @@
                             this.storeTag();
                             this.inputValue='';
                         }
+                        console.log(error);                   
+
  
                 });
                 }else{
