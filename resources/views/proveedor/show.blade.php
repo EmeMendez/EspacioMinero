@@ -8,13 +8,16 @@
 </section>
       <!-- Fin section -->
 
-<div class="container mt-5">
+<div class="container mt-md-5 mt-2">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-md-3 col-12">
       <div class="col-12 text-center">
         <img height="255" width="255" src="/{{ $proveedor->imagen}}"  />
       </div>
+        <div class="col-12 d-md-none d-block">
+          <h3 class="" style="font-size: 25px">{{ $proveedor->nombre }} </h3>
+        </div>
       <div class="col-12 text-justify mt-4">
         {{ $proveedor->descripcion}} 
 
@@ -29,9 +32,9 @@
       </div>      
     </div>
     {{-- fin columna 1 --}}
-    <div class="col-6">
+    <div class="col-md-6 col-12">
     <div class="col-12">
-      <h3 class="">{{ $proveedor->nombre }} </h3>
+      <h3 class="d-none d-md-block" style="font-size: 35px">{{ $proveedor->nombre }} </h3>
     </div>
     <div class="col-12">
       <hr class="my-3 text-dark">
@@ -45,6 +48,10 @@
             </p>
           @endforeach
 
+          @if(count($certificacion) == 0)
+            <h5>El proveedor no registra certificaciones</h5>
+          @endif
+
 
 
       </div>
@@ -54,7 +61,7 @@
 
       @else
 
-        <div class="col-12 mt-5">
+        <div class="col-12 mt-5 pb-5">
           <p class="h4 ">Correo</p>
           <?php
           $contador = 0;
@@ -80,9 +87,24 @@
                       <input  type="hidden" name="rut" value="{{ $em->proveedor_rut }}">
                       <input type="hidden" name="prov-nom" value="{{ $em->nombre }}">
                     </div>
-                    <div class="col-4">
-                    <button id="button-addon1" onclick="event.preventDefault()" class=" button button-block button-primary px-2 py-2"  data-toggle="modal" data-target="#{{$oli.$contador}}">MATCH</button>
-                    </div>
+
+                    @if(Auth::check())
+
+                      @if ($em->proveedor_rut == auth()->user()->rut)
+                    
+
+                      @else
+                        <div class="col-4">
+                          <button id="button-addon1" onclick="event.preventDefault()" class=" button button-block button-primary px-2 py-2"  data-toggle="modal" data-target="#{{$oli.$contador}}">MATCH</button>
+                        </div>
+                      @endif
+
+                    @endif
+
+
+
+
+
                   </div>  
 
                   <div class="modal fade" id="{{$oli.$contador}}" tabindex="-1" role="dialog" aria-labelledby="{{$chale.$contador2}}" aria-hidden="true">
@@ -107,11 +129,11 @@
 
                   @else
                   <div class="row my-0">
-                  <div class="col-8">
-                    <input class="form-input" readonly class="pt-3 pb-3 pl-0" name="correo" value="Sin registrar">
+                  <div class="col-md-8 col-12">
+                    <p class="mt-2">Correo {{$em->des}}</p>
                   </div>
-                  <div class="col-4">
-                    <input disabled class=" button button-block button-primary px-2 py-3 bg-light text-primary" value="MATCH">
+                  <div class="col-md-4 col-12">
+                    <input disabled class=" button button-block button-primary px-2 ml-0 py-1 mt-md-0 mt-1" value="Sin Registrar">
                   </div>
                 </div>            
                 @endif
@@ -150,7 +172,7 @@
 
         {{-- fin columna 2 --}}
 
-        <div class="col-3">
+        <div class="col-md-3 col-12">
           <h5 class="text-md-left text-center">Datos del Proveedor</h5>
           <div class="row my-2 my-md-3">
             <div class="col-6 col-md-12">
@@ -198,16 +220,16 @@
             </div>
           </div>      
           <div class="row my-2 my-md-3">
-            <div class="col-6 col-md-12 ">
+            <div class="col-12">
               <b>Teléfonos de contacto</b>
             </div>
             @foreach ($telefono as $tel)
-            <div class="col-6 col-md-12 mt-1">
-             <strong style="color: #757575">{{$tel->des}}: </strong> 
-            </div>
-            <div class="col-6 col-md-12">
-              <a href="tel:{{$tel->telefono}}">{{$tel->telefono}}</a>
-            </div>
+              <div class="col-7 col-md-12 mt-1 pr-0 ">
+              <strong style="color: #757575">{{$tel->des}}: </strong> 
+              </div>
+              <div class="col-5 col-md-12 pl-0 pl-md-2">
+                <a href="tel:{{$tel->telefono}}">{{$tel->telefono}}</a>
+              </div>
             @endforeach
                              
             
