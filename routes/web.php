@@ -8,6 +8,7 @@ Route::get('/','bannerController@index')->name("home");
 Route::view('/acerca-de','about')->name("about");
 Route::view('/typography','typography')->name('typo');
 Route::view('/contacto','contact')->name('contact');
+Route::view('/choice', 'options')->name('options');
 /*====  cambio equis de  */
 /*====  RUTAS DEL HEADER   */
 
@@ -23,7 +24,7 @@ Route::get('/proveedor/registrarse','ProveedorController@create')->name('proveed
 Route::get('/proveedor/vista-perfil/{url}','ProveedorController@edit')->name('proveedor.edit');
 Route::patch('/proveedor/vista-perfil/{proveedor}','ProveedorController@update')->name('proveedor.update');
 Route::patch('/imagen/update', 'ProveedorController@update_imagen')->name('proveedor.update_imagen');
-Route::post('/proveedor/proveedores', 'ProveedorController@store')->name('proveedor.store');
+Route::post('/proveedor/proveedores/registro', 'ProveedorController@store')->name('proveedor.store');
 Route::get('/proveedor/proveedores','ProveedorController@index')->name('proveedor.index');
 Route::get('/proveedor/perfil/{url}','ProveedorController@show')->name('proveedor.show');
 Route::get('/recursos','ProveedorController@recursos')->name('proveedor.recursos');
@@ -87,6 +88,7 @@ Route::post('password/reset/{token}', 'Auth\ForgotPasswordController@showResetFo
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 Route::post('/sendmailcontact', 'CorreoController@contact')->name('sendcontact');
 Route::post('/sendmail', 'CorreoController@send')->name('send');
+Route::post('/sendmailminer', 'CorreoController@sendminer')->name('sendminer');
 
 /*====  RUTAS DEL CORREOS ELECTRONICOS   ========*/
 
@@ -96,10 +98,14 @@ Route::post('/sendmail', 'CorreoController@send')->name('send');
 ======================================*/
 Route::get('/minera/vista-perfil/{url}','CiaMineraUsuarioController@edit')->name('minera.edit');
 Route::patch('/minera/vista-perfil/{url}','CiaMineraUsuarioController@update')->name('minera.update');
+Route::get('/minera/perfil/{url}','CiaMineraUsuarioController@show')->name('minera.show');
+Route::get('/minera/mineras','CiaMineraUsuarioController@index')->name('minera.index');
 Route::patch('/imagenminera/update', 'CiaMineraUsuarioController@update_imagen')->name('minera.update_imagen');
 Route::patch('/telefonominera/update', 'MineraTelefonoController@update')->name('telefonominera.update');
 Route::patch('/correominera/update', 'MineraCorreoController@update')->name('correominera.update');
 Route::get('/imagen/minera','CiaMineraUsuarioController@image')->name('imagenminera.return');
+Route::get('/minera/mineras/json/getmineras/{parameter}','CiaMineraUsuarioController@getMinerasByName')->name('getMinerasByName');
+
 
 /*====  RUTAS DEL MINERA   */
 
@@ -142,6 +148,30 @@ Route::delete('/proveedor_tag/delete/tag','ProveedorTagController@destroy');
 Route::get('/tag/tags','TagController@index');
 Route::post('/tag/store/tag','TagController@store');
 Route::get('/tag/{tag_name}','TagController@getTags');
-Route::post('/proveedor/post/proveedores','ProveedorController@getPost');
+Route::get('/proveedor/filter/proveedores/{parameter}','ProveedorController@filter');
+
+Route::get('/tag/tags/todos','TagController@getTagsTodos');
 
 /*====  RUTA TAGS   */
+
+
+/*========================================
+=            RUTAS PERSONA NATURAL        =
+=========================================*/
+
+Route::get('/personanatural/registrarse','GuestController@create')->name('guest.create');
+Route::post('/personanatural/guest', 'GuestController@store')->name('guest.store');
+
+/*=======  RUTA PERSONA NATURAL   =======*/
+
+/*========================================
+=            RUTAS RECURSOS        =
+=========================================*/
+
+Route::view('/bliblioteca','recursos.biblioteca')->name("biblioteca");
+Route::view('/requerimiento-minera','recursos.requemine')->name('requerimientominera');
+Route::view('/formato-licitaciones','recursos.formatolici')->name('formatolicitaciones');
+Route::view('/formato-prevension-de-riesgos', 'recursos.formatoriesgo')->name('formatoprevension');
+Route::view('/formato-calificacion-proveedores', 'recursos.formatocali')->name('formatocalificacion');
+
+/*=======  RUTA RECURSOS   =======*/

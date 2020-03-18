@@ -15,6 +15,14 @@
   exit;
   ?>
     
+
+@endif
+@if (Auth::guard('invitado')->check())
+  <?php
+  header("Location: http://espaciominero.test");
+  exit;
+  ?>
+    
 @endif
 <!-- Get in Touch-->
 <div class="bg-light py-4">

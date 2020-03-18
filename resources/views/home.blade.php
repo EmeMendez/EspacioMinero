@@ -56,60 +56,78 @@ text: 'Algo ha salido mal. Intentelo denuevo',
     </a>
 </div>
 
-<!-- Our Solutions-->
-<section class="section section-lg bg-gray-100 text-center" id="solutions">
-<div class="container">
-    <h3 class="wow fadeIn" data-wow-delay=".1s">Professional Marketing Solutions</h3>
-    <div class="row row-30 row-md-50 row-xl-60">
-    <div class="col-sm-6 col-lg-4 wow fadeIn">
-        <!-- Box Modern-->
-        <article class="box-modern" data-anime="circles-1">
-        <div class="box-modern-media">
-            <div class="box-modern-icon mdi mdi-comment-text"></div>
-            <div class="box-modern-circle box-modern-circle-1"></div>
-            <div class="box-modern-circle box-modern-circle-2"></div>
+<!-- Services-->
+<section class="section text-center">
+    
+    <div class="container">
+        <hr class="mt-5">
+      <div class="list-blocks-outer">
+        <div class="list-blocks">
+          <div class="list-blocks-item">
+            <div class="list-blocks-item-inner">
+              <div class="icon novi-icon icon-primary icon-xl mdi mdi-email-outline"></div>
+              <p class="list-blocks-title">¡Haz Match!</p>
+              <p>Contactate con un proveedor y empieza a expandir tu red</p>
+            </div>
+          </div>
+          <div class="list-blocks-item">
+            <div class="list-blocks-item-inner">
+              <div class="icon novi-icon icon-primary icon-xl mdi mdi mdi-magnify"></div>
+              <p class="list-blocks-title">Busca proveedores</p>
+              <p>Puedes buscar y comparar tipos de proveedores</p>
+            </div>
+          </div>
+          <div class="list-blocks-item list-blocks-item_caption">
+            <div class="list-blocks-item-inner-check">
+              
+                @if(Auth::guard('admin')->check() || Auth::check() || Auth::guard('invitado')->check())
+              
+              
+                    <h3>¿Tienes alguna duda?</h3>            
+                    <p>¡Por cualquier consulta, no dudes en contactarnos!</p><a class="button button-primary button-winona" href="{{ route('contact') }}">Contactar</a>
+                    
+                    
+                @else
+                    
+                    <h3>Sé parte de nosotros</h3>            
+                    <p>Registrate y sé parte de esta comunidad</p><a class="button button-primary button-winona" href="{{ route('proveedor.create') }}">Registrarse</a>
+  
+                @endif
+            
+            </div>
+          </div>
+          <div class="list-blocks-item">
+            <div class="list-blocks-item-inner">
+              <div class="icon novi-icon icon-primary icon-xl mdi mdi-filter-outline"></div>
+              <p class="list-blocks-title">Filtra proveedores</p>
+              <p>Filtra por las categorias que tu necesitas</p>
+            </div>
+          </div>
+          <div class="list-blocks-item">
+            <div class="list-blocks-item-inner">
+              <div class="icon novi-icon icon-primary icon-xl mdi mdi-tooltip-edit"></div>
+              <p class="list-blocks-title">Edita tu perfil</p>
+              <p>Edita tu perfil y posicionate entre las principales busquedas</p>
+            </div>
+          </div>
+          <div class="list-blocks-item">
+            <div class="list-blocks-item-inner">
+              <div class="icon novi-icon icon-primary icon-xl mdi mdi-download"></div>
+              <p class="list-blocks-title">Descarga recursos</p>
+              <p>Como proveedor, descarga información de lo que te interese</p>
+            </div>
+          </div>
         </div>
-        <p class="box-modern-title">Copywriting</p>
-        <div class="box-modern-text">
-            <p>Our copywriters can provide your website with proper texts.</p>
-        </div>
-        </article>
+      </div>
     </div>
-    <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".1s">
-        <!-- Box Modern-->
-        <article class="box-modern box-modern_alternate" data-anime="circles-2">
-        <div class="box-modern-media">
-            <div class="box-modern-icon mdi mdi-chart-pie"></div>
-            <div class="box-modern-circle box-modern-circle-1"></div>
-            <div class="box-modern-circle box-modern-circle-2"></div>
-        </div>
-        <p class="box-modern-title">Analytics & Research</p>
-        <div class="box-modern-text">
-            <p>A&R services of LeadGen guarantee successful marketing results.</p>
-        </div>
-        </article>
-    </div>
-    <div class="col-sm-6 col-lg-4 wow fadeIn" data-wow-delay=".2s">
-        <!-- Box Modern-->
-        <article class="box-modern" data-anime="circles-1">
-        <div class="box-modern-media">
-            <div class="box-modern-icon mdi mdi-basket"></div>
-            <div class="box-modern-circle box-modern-circle-1"></div>
-            <div class="box-modern-circle box-modern-circle-2"></div>
-        </div>
-        <p class="box-modern-title">Sales Growth</p>
-        <div class="box-modern-text">
-            <p>Our innovative marketing tools provide great sales growth.</p>
-        </div>
-        </article>
-    </div>
-    </div>
-</div>
-</section>
+  </section>
+  
+  <!-- Our Team-->
 
 <!-- Counters-->
 <section class="section section-md text-center">
     <div class="container">
+        <hr class="mb-3">
         <div class="layout-bordered-1">
         <div class="layout-bordered-1-item">
             <!-- Counter Classic-->
@@ -145,45 +163,6 @@ text: 'Algo ha salido mal. Intentelo denuevo',
     </div>
     </section>
 
-<!-- What We Do-->
-<section class="section section-xl bg-gray-900" id="what-we-do">
-<div class="container">
-    <div class="row row-50 justify-content-center justify-content-xl-between align-items-center">
-    <div class="col-sm-10 col-lg-5">
-        <h3>Let Us Help You Attract More Clients</h3>
-        <!-- Bootstrap tabs-->
-        <div class="tabs-custom tabs-horizontal tabs-line tabs-line_1 block-8" id="tabs-1">
-        <!-- Nav tabs-->
-        <ul class="nav nav-tabs">
-            <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>What You Get</span></a></li>
-            <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>How We Work</span></a></li>
-        </ul>
-        <!-- Tab panes-->
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="tabs-1-1">
-            <p class="big">Working with us you can lift the web reputation of your company higher than ever. We can offer you all advantages of e-marketing including:</p>
-            <ul class="list-marked list-marked_secondary">
-                <li>Faster response to the end user;</li>
-                <li>Increased exposure of products and services;</li>
-                <li>Boundless universal accessibility.</li>
-            </ul><a class="button button-default button-winona" href="#">Learn More</a>
-            </div>
-            <div class="tab-pane fade" id="tabs-1-2">
-            <p class="big">Our agency works to ensure the best quality of marketing solutions for our clients and their businesses. Our approach features:</p>
-            <ul class="list-marked list-marked_secondary">
-                <li>Initial consultation with the client;</li>
-                <li>Planning & analysis;</li>
-                <li>Marketing campaign implementation.</li>
-            </ul><a class="button button-default button-winona" href="#">Learn More</a>
-            </div>
-        </div>
-        </div>
-    </div>
-    <div class="col-sm-10 col-lg-7 wow fadeIn text-center" data-wow-delay=".2s"><img src="/images/home-02-594x493.png" alt="" width="594" height="493"/>
-    </div>
-    </div>
-</div>
-</section>
 
 <!-- Our Clients-->
 <section class="section section-xxl text-center bg-white" id="clients">

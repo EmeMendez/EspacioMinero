@@ -12,6 +12,8 @@ use App\Categoria;
 use App\ProveedorTelefono;
 use App\ProveedorCorreo;
 use App\ProveedorCertificacion;
+use App\ProveedorTag;
+use DB;
 
 class ProveedorController extends Controller
 {
@@ -24,7 +26,7 @@ class ProveedorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show','create','getProveedoresByName','store');
+        $this->middleware('auth')->except('index','show','create','filter','store','recursos');
     }
 
     /**
@@ -39,31 +41,7 @@ class ProveedorController extends Controller
     }
 
 
-    public function getProveedoresByName($parameter)
-    {
-        if($parameter =='*'){
-            $proveedor = Proveedor::join('ciudad','ciudad.id','proveedor.ciudad_id')
-                                  ->select('rut','proveedor.nombre as nombre', 'descripcion','imagen' ,'url','ciudad.nombre as ciudad_nombre')
-                                  ->orderBy('proveedor.nombre','ASC')
-                                  ->paginate(10);
-        }
-        else{
-            $proveedor = Proveedor::join('ciudad','ciudad.id','proveedor.ciudad_id')
-                                  ->select('rut','proveedor.nombre as nombre', 'descripcion','imagen','url' ,'ciudad.nombre as ciudad_nombre')
-                                  ->where('proveedor.nombre','LIKE', '%' . $parameter . '%')
-                                  ->orderBy('nombre','ASC')->paginate(10);
-        }
-        return ['pagination' => [
-                 'total' => $proveedor->total(),
-                 'current_page' => $proveedor->currentPage(),
-                 'per_page' => $proveedor->perPage(),
-                 'last_page' => $proveedor->lastPage(),
-                 'from' => $proveedor->firstItem(),
-                 'to' => $proveedor->lastPage(),
-                 ],
-                'proveedores' => $proveedor];
-        
-    }
+ 
     /**
      * Mostrar el formulario para crear un nuevo proveedor 
      *
@@ -82,6 +60,13 @@ class ProveedorController extends Controller
         }
 
     }
+
+        function quitar_tildes($cadena) {
+        $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+        $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+        $texto = str_replace($no_permitidas, $permitidas ,$cadena);
+        return $texto;
+        }
     /**
      * Para guardar el recurso desde el create(como un insert)
      *
@@ -90,14 +75,82 @@ class ProveedorController extends Controller
      */
     public function store(Request $r)
     {
-        //$r->file('user-imagen')->store('public');
+        $paso1 = false;
+        $paso2 = false;
+        $paso3 = false;
+
+        $proveedor = DB::select('select * from proveedor where rut = ?', [request('user-rut')]);
+        $ciaminerauser = DB::select('select * from cia_minera_usuario where rut = ?', [request('user-rut')]); 
+        $invitado = DB::select('select * from users where rut = ?', [request('user-rut')]); 
+        $proveedor2 = DB::select('select * from proveedor where email = ?', [request('user-email')]);
+        $ciaminerauser2 = DB::select('select * from cia_minera_usuario where email = ?', [request('user-email')]); 
+        $invitado2 = DB::select('select * from users where email = ?', [request('user-email')]); 
+        $proveedor3 = DB::select('select * from proveedor where nombre = ?', [request('user-name')]);
+        $ciaminerauser3 = DB::select('select * from cia_minera_usuario where nombre_usuario = ?', [request('user-name')]); 
+        $invitado3 = DB::select('select * from users where nombre = ?', [request('user-name')]); 
+        
+        if(count($proveedor) == 0 and count($ciaminerauser) == 0 and count($invitado) == 0  ){
+            $paso1 = true;
+            
+            //return back()->with('error','¡Actualizacion Erronea! Algo ha salido mal')->withInput()->with('error2','error de nombre')->with('error3','error de email');
+        }
+        
+        if(count($proveedor2) == 0 and count($ciaminerauser2) == 0 and count($invitado2) == 0){
+            $paso3 = true;
+        }
+        if(count($proveedor3) == 0 and count($ciaminerauser3) == 0 and count($invitado3) == 0){
+            $paso2 = true;
+        }
+        
+        if($paso1 == false or $paso2 == false or $paso3 == false){
+            if(!$paso1){
+                if(!$paso2){
+                    if(!$paso3){
+                        return back()->with('error','¡Actualizacion Erronea! Algo ha salido mal')->withInput()->with('error2','error de nombre')->with('error3','error de email');
+                    }
+                    else{
+                        return back()->with('error','¡Actualizacion Erronea! Algo ha salido mal')->withInput()->with('error2','error de nombre');
+                    }
+                }
+                else{
+                    if(!$paso3){
+                        return back()->with('error','¡Actualizacion Erronea! Algo ha salido mal')->withInput()->with('error3','error de nombre');
+                    }
+                    else{
+                        return back()->with('error','¡Actualizacion Erronea! Algo ha salido mal')->withInput();
+                    }
+                }
+            }
+            else{
+                if(!$paso2){
+                    if(!$paso3){
+                        return back()->with('error2','¡Actualizacion Erronea! Algo ha salido mal')->withInput()->with('error3','¡Actualizacion Erronea! Algo ha salido mal');
+                    }
+                    else{
+                        return back()->with('error2','¡Actualizacion Erronea! Algo ha salido mal')->withInput();
+                    }
+                }
+                else{
+                    if(!$paso3){
+                        return back()->with('error3','¡Actualizacion Erronea! Algo ha salido mal')->withInput();
+                    }
+                    else{
+                        return back()->with('error','¡Actualizacion Erronea! Algo ha salido mal')->withInput();
+                    }
+                }
+            }
+
+        }
+        else{
+
+                
         $p = new Proveedor;
         
-
+            $nombre = $this->quitar_tildes(request('user-name'));
         
 
         $p->rut                = request('user-rut');
-        $p->nombre             = request('user-name');
+        $p->nombre             = $nombre;
         $p->sitio_web          = request('user-sitio');
         $p->descripcion        = request('user-descripcion');
         $p->direccion          = request('user-address');
@@ -108,7 +161,7 @@ class ProveedorController extends Controller
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id          = request('user-status');
         $p->url                = str_replace(" ","-",strtolower(request('user-name')));
-        $p->imagen             = 'public/default-avatar-image.png';
+        $p->imagen             = 'images/avatars/proveedor/default-avatar.png';
         $p->save();
 
         $tele = array();
@@ -135,9 +188,13 @@ class ProveedorController extends Controller
 
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
 
-
-
+                
+            
+        }
+    
     }
+
+
 
     /**
      * Se muestra un recurso especifico por ejemplo por id
@@ -155,8 +212,10 @@ class ProveedorController extends Controller
 
         $correosh = ProveedorCorreo::join("proveedor","proveedor.rut", "=", "proveedor_correo.proveedor_rut")
         ->join("tipo_contacto","tipo_contacto.id","=","proveedor_correo.tipo_contacto_id")
-        ->select('tipo_contacto.descripcion as des',"proveedor_correo.email","proveedor_rut","tipo_contacto_id as tipo_id","proveedor.nombre as nombre","proveedor.url as url")
-        ->where("proveedor_rut", "=", $url->rut)->get();   
+        ->select('tipo_contacto.descripcion as des',"proveedor_correo.email as email","proveedor_rut","tipo_contacto_id as tipo_id","proveedor.nombre as nombre","proveedor.url as url")
+        ->where("proveedor_rut", "=", $url->rut)->get();  
+        
+       
 
         $telefono = ProveedorTelefono::join("proveedor","proveedor.rut", "=", "proveedor_telefono.proveedor_rut")
         ->join("tipo_contacto","tipo_contacto.id","=","proveedor_telefono.tipo_contacto_id")
@@ -167,10 +226,14 @@ class ProveedorController extends Controller
         ->join("certificacion","certificacion.id","=","proveedor_certificacion.certificacion_id")
         ->select("certificacion.nombre")
         ->where("proveedor_rut", "=", $url->rut)->get();
+
+        $proveedor_tags = ProveedorTag::join("tag","tag.id","=","proveedor_tag.tag_id")
+                                        ->select('tag.nombre as nombre','tag_id')
+                                        ->where('proveedor_rut', $url->rut)->get();
         
         
 
-        return view('proveedor.show',['proveedor'=>$proveedor, 'correo'=>$correosh, 'certificacion'=>$certificacion, 'telefono'=>$telefono]);                                 
+        return view('proveedor.show',['proveedor'=>$proveedor, 'correo'=>$correosh, 'certificacion'=>$certificacion, 'telefono'=>$telefono, 'tags'=>$proveedor_tags]);                                 
                             
 
     }
@@ -315,19 +378,48 @@ class ProveedorController extends Controller
                               ->where("proveedor_rut", "=", auth()->user()->rut)->get();                              
     }
 
-    public function getPost(Request $request){
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  String  $parameter
+     * @return \Illuminate\Http\Response
+     */
+     public function filter(Request $request,$parameter){
         $array = $request->get('toSearch');
-        $new_array = [];
-        // foreach($array as $key => $a){
-        //     $proveedor = ProveedorTag::join('tag','tag.id','=','proveedor_tag.tag_id')
-        //                              ->join('proveedor')
+        $categoria = $request->get('categoria');
+        $tamanio_empresa = $request->get('tamanio_empresa');
 
-        //     array_push($new_array,$array[$key]);
-        // }                          
-    
-        return $array;
+        if($parameter == 'all'){
+            $proveedores = Proveedor::join('ciudad','ciudad.id','=','proveedor.ciudad_id')
+                                    ->join('categoria','categoria.id','=','proveedor.categoria_id')
+                                    ->join('tamanio_empresa','tamanio_empresa.id','=','proveedor.tamanio_empresa_id')
+                                    ->join('proveedor_tag','proveedor_tag.proveedor_rut','=','proveedor.rut')
+                                    ->join('tag','tag.id','=','proveedor_tag.tag_id')
+                                    ->select('rut','url','proveedor.nombre as nombre','descripcion','ciudad.nombre as ciudad_nombre','imagen')
+                                    ->distinct('rut')->paginate(10);            
+        }
+        else{  
+            $proveedores = Proveedor::join('ciudad','ciudad.id','=','proveedor.ciudad_id')            
+                                    ->join('categoria','categoria.id','=','proveedor.categoria_id')
+                                    ->join('tamanio_empresa','tamanio_empresa.id','=','proveedor.tamanio_empresa_id')
+                                    ->join('proveedor_tag','proveedor_tag.proveedor_rut','=','proveedor.rut')
+                                    ->join('tag','tag.id','=','proveedor_tag.tag_id')
+                                    ->select('rut','url','proveedor.nombre as nombre','descripcion','ciudad.nombre as ciudad_nombre','imagen')
+                                    ->categoria($categoria)
+                                    ->tamanio($tamanio_empresa)
+                                    ->tag($array)
+                                    ->distinct('rut')->paginate(10);
+        }
+        return ['pagination' => [
+                'total' => $proveedores->total(),
+                'current_page' => $proveedores->currentPage(),
+                'per_page' => $proveedores->perPage(),
+                'last_page' => $proveedores->lastPage(),
+                'from' => $proveedores->firstItem(),
+                'to' => $proveedores->lastPage(),
+                ],
+                'proveedores' => $proveedores];    
     }
-
 
 
 }

@@ -1,10 +1,9 @@
 @extends('layout')
 @section('content')
 <!-- Get in Touch-->
-<section class="section section-md bg-gray-100">
+<section class="section section-md bg-gray-100 pt-4">
   <div class="container">
-    <h3 class="text-center">Buscar Proveedor</h3><br>
-
+    <h3 class="text-center my-3 py-0">Buscar Proveedor</h3>
     <div id="app">
         <proveedores-component></proveedores-component> 
     </div>{{-- end app --}}

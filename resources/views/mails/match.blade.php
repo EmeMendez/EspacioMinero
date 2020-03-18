@@ -13,7 +13,7 @@
             <img class="logo" src="https://espacioindustria.cl/recursos/images/logo_blanco.png">
             <h1><span><b>¡Felicitaciones!</b> </span></h1>
             <div class="sub-titulo">
-                <h2><span>@if($tip == 1) Una Empresa Minera quiere contactarse contigo @else Un proveedor quiere contactarse contigo @endif </span> </h3>
+                <h2><span>@if($tip == 1) Una Empresa Minera quiere contactarse contigo @else Un proveedor quiere contactarse contigo  @endif </span> </h3>
             </div>
 
             <div class="nombre">
@@ -22,7 +22,7 @@
             
             <div class="center">
                 <div class="contacto">
-                    <span style="color:white">@if($tip == 1) la Empresa Minera <b>{{$fromnme}} </b> @else  el Proveedor {{$fromnme}}  @endif quiere contactarse contigo. A continuacion la información necesaria de la empresa:</span>
+                    <span style="color:white">@if($tip == 1) la Empresa Minera <b>{{$fromnme}} </b> @else el Proveedor {{$fromnme}}  @endif quiere contactarse contigo. A continuacion la información necesaria de la empresa:</span>
                 </div>
                 <div class="foot">
                     <div class="correo">
@@ -31,6 +31,21 @@
                     <div class="web">
                         <h4><span>Sitio Web: <a href="http://{{$sw}}">{{$sw}}</a> </span></h4>
                     </div>
+
+                    @if($msj!='')
+
+                    <div class="mensaje">
+                        <h3 style="color:white">La Empresa ha querido añadir: </h3>
+                        <p style="color:white">{{$msj}}</p>
+
+                    </div>
+
+
+                    @else
+                        
+
+                    @endif
+
                 </div>
             </div>
 
@@ -46,7 +61,7 @@
     .fondo {
         background-image: url(https://espacioindustria.cl/recursos/images/correo.jpg);
         width: 620px;
-        height: 650px;
+        height: auto + 10%;
         margin: auto;
     }
     a{
@@ -95,6 +110,10 @@
         width: 350px;
         margin: auto;
     }
+    .mensaje{
+        width: 350px;
+        margin: auto;
+    }
     .correo{
         width: 350px;
         margin: auto;
@@ -104,7 +123,8 @@
         margin: auto;
     }
     .foot{
-        margin-top: 80px;
+        margin-top: 50px;
+        padding-bottom: 5%;
     }
 
 </style>

@@ -50,6 +50,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'invitado' => [
+            'driver' => 'session',
+            'provider' => 'invitados',
+        ],
     ],
 
     /*
@@ -75,10 +79,11 @@ return [
             'model' => App\Proveedor::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        
+        'invitados' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
 
         'admins'  => [
         'driver' => 'eloquent',
@@ -110,6 +115,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 30,
+            'throttle' => 30,
+        ],
+        'invitados' => [
+            'provider' => 'invitados',
             'table' => 'password_resets',
             'expire' => 30,
             'throttle' => 30,

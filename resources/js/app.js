@@ -30,6 +30,8 @@ Vue.component('provincia-component', require('./components/ProvinciaComponent.vu
 Vue.component('ciudad-component', require('./components/CiudadComponent.vue').default);
 Vue.component('proveedor-tags-component',require('./components/ProveedorTagsComponent.vue').default);
 Vue.component('add-delete-proveedor-tags-component',require('./components/AddDeleteProveedorTagsComponent.vue').default);
+Vue.component('mineras-component',require('./components/ListaMineraComponent.vue').default);
+
 
 
 /**

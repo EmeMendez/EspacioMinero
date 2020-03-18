@@ -8,6 +8,7 @@ use App\Mail\MessageReceived;
 use App\Mail\ContactMail;
 use Auth;
 use App\Match;
+use App\MatchMinera;
 use App\MatchProveedores;
 use App\Soporte;
 
@@ -27,14 +28,14 @@ class CorreoController extends Controller
     public function send(){
 
         if(auth()->guard('admin')->check()){
-
             $m = new Match;
             $url = request('prov-url');
             $from =  auth()->guard('admin')->user()->email;
             $fromname = auth()->guard('admin')->user()->nombre_usuario;
             $sitio = auth()->guard('admin')->user()->sitio_web;
-            $to = request('correo');
+            $to = request('user-correo');
             $nombre = request('prov-nom');
+            $mensaje = request('user-mensaje');
             $tipo = 1;
             $m->proveedor_rut = request('rut');
             $m->cia_minera_usuario_rut = auth()->guard('admin')->user()->rut;
@@ -44,7 +45,7 @@ class CorreoController extends Controller
 
 
 
-            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo));
+            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo,$mensaje));
 
             return redirect()->back()->with('¡Correo Enviado!');
             //return view('contact')->with('success','¡Correo Enviado!');
@@ -56,27 +57,60 @@ class CorreoController extends Controller
             $from =  auth()->user()->email;
             $fromname = auth()->user()->nombre;
             $sitio = auth()->user()->sitio_web;
-            $to = request('correo');
+            $mensaje = request('user-mensaje');
+            $to = request('user-correo');
             $nombre = request('prov-nom');
             $tipo = 2;
             $m->proveedor_rut_emisor = auth()->user()->rut;
             $m->proveedor_rut_remitente = request('rut');
             $m->proveedor_correo_emisor = $from;
             $m->proveedor_correo_remitente = $to;
+            $m->mensaje = $mensaje;
             $m->save();
 
 
 
-            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo));
+            Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo,$mensaje));
 
             return redirect()->back()->withSuccess('¡Correo Enviado!');
             //return view('contact')->with('success','¡Correo Enviado!');
-
         }
 
  
 
     }
+
+
+        public function sendminer(){
+
+
+                $m = new MatchMinera;
+                $url = request('prov-url');
+                $from =  auth()->guard('admin')->user()->email;
+                $fromname = auth()->guard('admin')->user()->nombre_usuario;
+                $sitio = auth()->guard('admin')->user()->sitio_web;
+                $mensaje = request('user-mensaje');
+                $to = request('user-correo');
+                $nombre = request('prov-nom');
+                $tipo = 1;
+                $m->minera_rut_emisor = auth()->guard('admin')->user()->rut;
+                $m->minera_rut_remitente = request('rut');
+                $m->minera_correo_emisor = $from;
+                $m->minera_correo_remitente = $to;
+                $m->save();
+
+
+
+                Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo,$mensaje));
+
+                return redirect()->back()->withSuccess('¡Correo Enviado!');
+                //return view('contact')->with('success','¡Correo Enviado!');
+
+
+
+
+    }
+
 
     public function contact(){
 

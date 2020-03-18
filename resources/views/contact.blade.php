@@ -1,5 +1,9 @@
 @extends('layout')
 @section('content')
+<style>
+
+
+</style>
 <section class="breadcrumbs-custom">
   <img src="images/banners/contact.jpg">
     <div class="parallax-content">
@@ -70,12 +74,32 @@
       ======================================-->
 
       <div class="col-xl-7">
-        <div class="google-map-container" data-center="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-zoom="5" data-styles="[{&quot;featureType&quot;:&quot;administrative&quot;,&quot;elementType&quot;:&quot;labels.text.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#444444&quot;}]},{&quot;featureType&quot;:&quot;landscape&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#f2f2f2&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;road&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:45}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;elementType&quot;:&quot;labels.icon&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;all&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#46bcec&quot;},{&quot;visibility&quot;:&quot;on&quot;}]}]" data-icon="images/gmap_marker.png" data-icon-active="images/gmap_marker_active.png">
-          <div class="google-map"></div>
-          <ul class="google-map-markers"> 
-            <li data-location="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-description="9870 St Vincent Place, Glasgow"></li>
-          </ul>
-        </div>
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+ 
+        <script>
+          function myMap() {
+            var mapProp= {
+              center:new google.maps.LatLng(-29.9024534,-71.2527487),
+              zoom:18,
+            };
+            
+            
+            
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var marker1 = new google.maps.Marker({
+            position: {lat: -29.9024534, lng: -71.2527487},
+            draggable: false
+            });
+            marker1.setMap(map);
+          }
+        
+        </script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5J42TvVKRN9wyzD99G2kdBCXiFqLSUJM&callback=myMap"></script>
+
+       
+
+        
       </div>
 
       <!--==== FIN API DE GOOGLE MAPS  ====-->

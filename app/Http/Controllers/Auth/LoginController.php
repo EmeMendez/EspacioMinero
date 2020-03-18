@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use App\CiaMineraUsuario;
 use App\Http\Controllers\LogController ;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -23,7 +24,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    
+    protected  $ciaminerauser = null;
     use AuthenticatesUsers;
 
     /**
@@ -48,65 +49,74 @@ class LoginController extends Controller
     }
 
 
-        public function login(){
-        
-            $date = Carbon::now()->toDateTimeString();
-        if (Auth::attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
-            
-            DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,3]);
-            return redirect()->route('home');
+    public function login(){
+        $ciaminerauser = null;
+        $date = Carbon::now()->toDateTimeString();
+    if (Auth::attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+        DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,3]);
+        return redirect()->route('home');
 
-        }else{
-            $primero = "0";
-            $tiop = DB::select("SELECT `tipo` FROM `cia_minera_usuario` WHERE `rut` = '".request('user-name')."'", [1]);
-            
-            foreach ($tiop as $tp) {
-                if(strval($tp->tipo) == '1'){
-                    $primero = "1";
-                }
-            }
-
-            if($primero == '0'){
-                
-                DB::update('update cia_minera_usuario set password = "'.Hash::make(request('user-pass')).'", tipo = 1 where rut = ?', [request('user-name')]);
-                if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
-                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
-                    return redirect()->route('home');
-                }
-                else{
-                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
-                    return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
-                }
+    }else{
+        if(Auth::guard('invitado')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,4]);
+                return redirect()->route('home');
             }
             else{
+                $ciaminerauser = DB::select('select * from cia_minera_usuario where rut = ? and password = ? and tipo = 0', [request('user-name'), md5(request('user-pass'))]);
                 
-                if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
-                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
-                    return redirect()->route('home');
-                }
-                else{
-                    DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
-                    return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
-                }
+
+                if(count($ciaminerauser)>0){
+                    
+                    DB::update('update cia_minera_usuario set password = ? , tipo = 1 where rut = ?', [Hash::make(request('user-pass')),request('user-name')]);
+
+                    if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                        DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                        return redirect()->route('home');
+                    }
+                    else{
+                        return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
+                    }    
+                
             }
-            
-            
+                else{
                 
-               
+                    if(Auth::guard('admin')->attempt(['rut'=> request('user-name') , 'password' => request('user-pass') ] )){
+                        DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+                        return redirect()->route('home');
+                    }
+                    else{
+
+                    return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
+                    }  
+                }
+                
+
+
+
         
-    }
-    }
+        
+        
+              
+    //         DB::insert('insert into log (id, fecha,id_tipo) values (?, ?,?)', [null,$date ,1]);
+    //         return redirect()->route('session')->with('error','¡Rut y/o contraseña incorrecta. Vuelva a intentarlo!');;
+                    
+        }
+    } 
+} 
 
     public function TipoUsuario(){
         $proveedor = auth()->user();
-        $invitado = auth()->guest();
+        $guest = auth()->guest();
         $ciaminera = auth()->guard('admin')->check();
-        return ['proveedor'=> $proveedor, 'invitado'=>$invitado,'ciaminera'=> $ciaminera];
+        $invitado = auth()->guard('invitado')->check();
+        return ['proveedor'=> $proveedor, 'guest'=>$guest,'ciaminera'=> $ciaminera,'invitado'=>$invitado];
+        //return redirect()->route('home');
     }
     
     public function logout()
     {
         Auth::guard('admin')->logout();
+        Auth::guard('invitado')->logout();
         Auth::logout();
         return redirect()->route('home');
 

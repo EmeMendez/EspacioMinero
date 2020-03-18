@@ -26,7 +26,25 @@ class CiaMineraUsuarioController extends Controller
      */
      public function index()
     {
-        //
+        return view('minera.index');
+    }
+
+    public function getMinerasByName($parameter){
+        if($parameter =='*'){
+            $minera = CiaMineraUsuario::orderBy('nombre_usuario','ASC')->paginate(10);
+        }
+        else{
+            $minera = CiaMineraUsuario::where('nombre_usuario','LIKE', '%' . $parameter . '%')->orderBy('nombre_usuario','ASC')->paginate(10);
+        }
+        return ['pagination' => [
+                 'total' => $minera->total(),
+                 'current_page' => $minera->currentPage(),
+                 'per_page' => $minera->perPage(),
+                 'last_page' => $minera->lastPage(),
+                 'from' => $minera->firstItem(),
+                 'to' => $minera->lastPage(),
+                 ],
+                'mineras' => $minera];
     }
 
     /**
@@ -52,13 +70,31 @@ class CiaMineraUsuarioController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $url)
     {
-        //
+        
+        $minera = CiaMineraUsuario::join("cia_minera","cia_minera.id", "=", "cia_minera_usuario.cia_minera_id")
+                              ->join("estado","estado.id","=","cia_minera_usuario.estado_id")
+                              ->join("usuario_tipo","usuario_tipo.id","=","cia_minera_usuario.usuario_tipo")
+                              ->select("rut","cia_minera_usuario.nombre_usuario as nombre","sitio_web","direccion","descripcion","url","imagen","cia_minera.nombre as nombreminera","estado.nombre as nombreestado","usuario_tipo.nombre as usuariotipo","cia_minera_usuario.cia_minera_id","cia_minera_usuario.estado_id","cia_minera_usuario.usuario_tipo")
+                              ->where("url", "=", $url)->first();
+
+        $telefono = MineraTelefono::join("cia_minera_usuario","cia_minera_usuario.rut", "=", "minera_telefono.minera_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","minera_telefono.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"telefono","cia_minera_usuario.rut","tipo_contacto_id as tipo_id")
+                              ->where("minera_rut", "=", $minera->rut)->get();
+
+        $correosh = MineraCorreo::join("cia_minera_usuario","cia_minera_usuario.rut", "=", "minera_correo.minera_rut")
+                              ->join("tipo_contacto","tipo_contacto.id","=","minera_correo.tipo_contacto_id")
+                              ->select('tipo_contacto.descripcion as des',"minera_correo.correo as email","minera_rut","tipo_contacto_id as tipo_id", "cia_minera_usuario.nombre_usuario as nombre")
+                              ->where("minera_rut", "=", $minera->rut)->get(); 
+        
+        
+        return view('minera.show',['minera'=>$minera, 'correosh'=>$correosh, 'telefono'=>$telefono]); 
     }
 
     /**

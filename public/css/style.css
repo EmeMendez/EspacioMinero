@@ -2831,6 +2831,12 @@ html .list-inline-md > * {
 	border-bottom: 1px solid #ebebeb;
 }
 
+.list-blocks-item-inner-check{
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .list-blocks-item-inner {
 	max-width: 225px;
 	margin-left: auto;
@@ -3250,7 +3256,6 @@ hr {
 * Buttons
 */
 .button {
-	position: relative;
 	overflow: hidden;
 	display: inline-block;
 	padding: 14px 65px;
@@ -3288,7 +3293,9 @@ hr {
 .button-block {
 	display: block;
 	width: 100%;
+	position: inherit;
 }
+
 
 .button-default, .button-default:focus {
 	color: #8491a5;

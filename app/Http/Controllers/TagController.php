@@ -49,4 +49,9 @@ class TagController extends Controller
         $proveedor_tag->save();
         return $proveedor_tag;
     }
+
+    public function getTagsTodos(){
+        $tags = Tag::get();
+        return $tags;
+    }
 }

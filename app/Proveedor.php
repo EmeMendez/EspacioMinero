@@ -49,4 +49,24 @@ class Proveedor extends Model implements AuthenticatableContract ,CanResetPasswo
     {
         $this->notify(new UserResetPassword($token));
     }
+
+    public function scopeCategoria($query,$categoria)
+    {
+        if(!empty($categoria))
+            return $query->where('categoria.nombre','=',$categoria);
+    }
+
+    public function scopeTamanio($query,$tamanio_empresa)
+    {
+        if(!empty($tamanio_empresa))
+            return $query->where('tamanio_empresa.nombre','=',$tamanio_empresa);
+    }
+
+    public function scopeTag($query,$tag)
+    {
+        if(!empty($tag))
+            return $query->whereIn('tag.nombre',$tag);
+    }
+ 
+         
 }

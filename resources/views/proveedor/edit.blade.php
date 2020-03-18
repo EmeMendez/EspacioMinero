@@ -60,7 +60,6 @@
                 <a class="nav-link py-2" id="v-pills-services-tab" data-toggle="pill" href="#v-pills-services" role="tab" aria-controls="v-pills-services" aria-selected="false"><span class="ml-3">Rubro y Servicios</span></a>               
 
                 <a class="nav-link py-2" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span class="ml-3">Cambiar Contraseña</span></a>
-                <a class="nav-link py-2" id="v-pills-cancel-account-tab" data-toggle="pill" href="#v-pills-cancel-account" role="tab" aria-controls="v-pills-cancel-acount" aria-selected="false"><span class="ml-3">Cerrar Cuenta</span></a>               
             </div>               
           </ul>
         </div>
@@ -80,8 +79,7 @@
                     <a class="nav-link py-2 pl-3" id="v-pills-email-tab" data-toggle="pill" href="#v-pills-email" role="tab" aria-controls="v-pills-email" aria-selected="false"><span >Correos</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-certification" aria-selected="false"><span >Certificaciones</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-services-tab" data-toggle="pill" href="#v-pills-services" role="tab" aria-controls="v-pills-services" aria-selected="false"><span >Rubro y Servicios</span></a>               
-                    <a class="nav-link py-2 pl-3" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span >Cambiar Contraseña</span></a>
-                    <a class="nav-link py-2 pl-3" id="v-pills-cancel-account-tab" data-toggle="pill" href="#v-pills-cancel-account" role="tab" aria-controls="v-pills-cancel-acount" aria-selected="false"><span >Cerrar Cuenta</span></a>               
+                    <a class="nav-link py-2 pl-3" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span >Cambiar Contraseña</span></a>               
                 </div>
                  
             </div>
@@ -326,16 +324,7 @@
                     </div>
 
                         <!--====  End of PASSWORD  ====--> 
-                        
-                        <!--=====================================
-                        =            CAMBIAR CANCEL ACCOUNT          =
-                        ======================================-->
-
-                        <div class="tab-pane fade" id="v-pills-cancel-account" role="tabpanel" aria-labelledby="v-pills-cancel-account-tab">
-                            cancel account
-                        </div>
-
-                        <!--====  End of CANCEL ACCOUND ====-->                         
+                                              
 
                       </div>
                 </div> <!--====  End ROW ====-->  

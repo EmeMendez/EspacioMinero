@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use \Illuminate\Notifications\Notifiable;
+
 use App\Notifications\UserResetPassword;
 
 class User extends Authenticatable implements CanResetPasswordContract
@@ -15,7 +15,7 @@ class User extends Authenticatable implements CanResetPasswordContract
     
     use  Notifiable;
     use CanResetPassword;
-    protected $table = 'proveedor';
+    protected $table = 'users';
     protected $keyType = 'string';
     protected $primaryKey = 'url';
     protected $fillable = [

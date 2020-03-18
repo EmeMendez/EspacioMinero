@@ -25,13 +25,9 @@
         <div class="col-12 col-md-4">
           <h4 class="footer-classic-title">Enlaces rápidos</h4>
           <ul class="list footer-classic-list footer-classic-list_2-cols">
-            <li><a href="#">Iniciar Sesión</a></li>
-            <li><a href="#">Registrarse</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Testimonials</a></li>
-            <li><a href="#">Preguntas Frecuentes</a></li>
-            <li><a href="https://www.iubenda.com/privacy-policy/94717137" class="iubenda-white iubenda-embed" title="Privacy Policy ">Politica y privacidad</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></li>
-          </ul>
+            <li><a href="{{ route('about') }}">Nosotros</a></li>
+            <li><a href="{{ route('contact') }}">Contactanos</a></li>
+                    </ul>
         </div>
         
         <div class="col-12 col-md-4">
@@ -44,7 +40,7 @@
               </div>
             </div>
             <div class="col-6 col-sm-12 col-lg-4 col-xl-12 text-right text-sm-left">
-              <div class="group group-xs"><a class="link link-social-1 mdi mdi-linkedin" href="#"></a><a class="link link-social-1 mdi mdi-facebook" href="#"></a><a class="link link-social-1 mdi mdi-instagram" href="#"></a></div>
+              <div class="group group-xs"><a class="link link-social-1 mdi mdi-linkedin" href="#"></a><a class="link link-social-1 mdi mdi-instagram" href="#"></a></div>
             </div>
           </div>
         </div>

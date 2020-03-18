@@ -28,19 +28,21 @@ class MessageReceived extends Mailable
     public $sw;
     public $np;
     public $tip;
+    public $msj;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($from,$fromname,$sitio,$nombre,$tipo)
+    public function __construct($from,$fromname,$sitio,$nombre,$tipo,$mensaje)
     {
         $this->tip = $tipo;
         $this->np = $nombre;
         $this->frm = $from;
         $this->fromnme = $fromname;
         $this->sw = $sitio;
+        $this->msj = $mensaje;
     }
 
     /**

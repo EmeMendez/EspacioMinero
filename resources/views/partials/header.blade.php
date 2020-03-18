@@ -28,7 +28,7 @@
                         
                 <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
                     <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
-                    <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}">MINERAS</a> </li>
+                    <li class="rd-nav-item {{setActive('minera.index')}}">   <a class="rd-nav-link" href="{{ route('minera.index') }}">MINERAS</a> </li>
                     <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                     
             </ul>
@@ -36,7 +36,7 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('minera.edit')}}"><a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
+                    <li class="rd-nav-item {{setActive('minera.edit')}}"><img class="mr-2" src="/images/info-nose2.png" width="30px" height="30px"> <a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>
@@ -56,7 +56,7 @@
                     
                 <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
                 <li class="rd-nav-item {{setActive('proveedor.index')}}">  <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
-                <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}" >RECURSOS</a> </li>
+                <li class="rd-nav-item {{setActive('proveedor.recursos')}}">   <a class="rd-nav-link" href="{{ route('proveedor.recursos') }}" >BIBLIOTECA</a> </li>
                 <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                 
             </ul>
@@ -64,7 +64,7 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"><a class="rd-nav-link" href="{{route('proveedor.edit', auth()->user()->url )}}" >PERFIL</a> </li>
+                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"> <img class="mr-2" src="/images/provider2.png" width="30px" height="30px"><a class="rd-nav-link" href="{{route('proveedor.edit', auth()->user()->url )}}" >PERFIL</a> </li>
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>
@@ -78,12 +78,12 @@
         =            HEADER INVITADO            =
         ======================================-->
 
-            @else    
+        @elseif(Auth::guard('invitado')->check())    
             <ul class="rd-navbar-nav ">
                 
                 <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
-                <li class="rd-nav-item {{setActive('about')}}">  <a class="rd-nav-link" href="{{route('about')}}" >NOSOTROS</a> </li>
                 <li class="rd-nav-item {{setActive('proveedor.index')}}">   <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
+                <li class="rd-nav-item {{setActive('proveedor.recursos')}}">  <a class="rd-nav-link" href="{{route('proveedor.recursos')}}" >BIBLIOTECA</a> </li>
                 <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
                 
             </ul>
@@ -91,14 +91,43 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}" >INICIAR SESIÓN</a> </li>
-                    <li class="rd-nav-item {{setActive('proveedor.create')}}"><a class="rd-nav-link" href="{{route('proveedor.create')}}" >REGISTRARSE</a> </li>
+                    <li class="rd-nav-item"><span class="mr-1" style="color: #f5a800"><i class="fa fa-users">   </i> </span> <a class="rd-nav-link" href="#" onclick="event.preventDefault()">INVITADO</a> </li>
+                    
+                    <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>
 
-            </div>
-            @endif  
+            </div> 
+            
 
         <!--====  End of HEADER INVITADO   ====-->
+
+
+        <!--=====================================
+        =            HEADER GUEST            =
+        ======================================-->
+
+        @else    
+        <ul class="rd-navbar-nav ">
+            
+            <li class="rd-nav-item {{setActive('home')}}">   <a class="rd-nav-link" href="{{route('home')}}" >INICIO</a> </li>
+            <li class="rd-nav-item {{setActive('about')}}">  <a class="rd-nav-link" href="{{route('about')}}" >NOSOTROS</a> </li>
+            <li class="rd-nav-item {{setActive('proveedor.index')}}">   <a class="rd-nav-link" href="{{route('proveedor.index')}}" >PROVEEDORES</a> </li>
+            <li class="rd-nav-item {{setActive('contact')}}"><a class="rd-nav-link" href="{{route('contact')}}">CONTÁCTANOS</a> </li>
+            
+        </ul>
+
+        <div class="rd-navbar-tel">
+
+            <ul class="rd-navbar-nav">
+                <li class="rd-nav-item {{setActive('session')}}"><a class="rd-nav-link" href="{{route('session')}}" >INICIAR SESIÓN</a> </li>
+                <li class="rd-nav-item {{setActive('options')}} {{setActive('guest.create')}} {{setActive('proveedor.create')}}"><a class="rd-nav-link" href="{{route('options')}}" >REGISTRARSE</a> </li>
+            </ul>
+
+        </div>
+        @endif  
+
+    <!--====  End of HEADER GUEST   ====-->
 
 
 
