@@ -85,7 +85,7 @@ class ProveedorController extends Controller
         $proveedor2 = DB::select('select * from proveedor where email = ?', [request('user-email')]);
         $ciaminerauser2 = DB::select('select * from cia_minera_usuario where email = ?', [request('user-email')]); 
         $invitado2 = DB::select('select * from users where email = ?', [request('user-email')]); 
-        $proveedor3 = Proveedor::where('proveedor.nombre', $r->get('nombre'));
+        $proveedor3 = Proveedor::where('proveedor.nombre', [request('user-name')]);
         $ciaminerauser3 = DB::select('select * from cia_minera_usuario where nombre_usuario = ?', [request('user-name')]); 
         $invitado3 = DB::select('select * from users where nombre = ?', [request('user-name')]); 
         
@@ -98,7 +98,7 @@ class ProveedorController extends Controller
         if(count($proveedor2) == 0 and count($ciaminerauser2) == 0 and count($invitado2) == 0){
             $paso3 = true;
         }
-        if($proveedor3 and count($ciaminerauser3) == 0 and count($invitado3) == 0){
+        if(count($proveedor3) == 0 and count($ciaminerauser3) == 0 and count($invitado3) == 0){
             $paso2 = true;
         }
         
