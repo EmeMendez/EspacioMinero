@@ -55,6 +55,12 @@ class Proveedor extends Model implements AuthenticatableContract ,CanResetPasswo
         if(!empty($categoria))
             return $query->where('categoria.nombre','=',$categoria);
     }
+    
+    public function scopeRegion($query,$region)
+    {
+        if(!empty($region))
+            return $query->where('regiones.nombre','=',$region);
+    }
 
     public function scopeTamanio($query,$tamanio_empresa)
     {
@@ -68,5 +74,4 @@ class Proveedor extends Model implements AuthenticatableContract ,CanResetPasswo
             return $query->whereIn('tag.nombre',$tag);
     }
  
-         
 }
