@@ -3087,11 +3087,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       tamanio_empresa: '',
       categoria: '',
+      region: '',
       search_parameters: [],
       tags: [],
       selectedItem: {},
@@ -3110,7 +3136,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       resultados: 0,
       categorias: [],
-      tamanio_empresas: []
+      tamanio_empresas: [],
+      regiones: []
     };
   },
   mounted: function mounted() {
@@ -3186,6 +3213,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/regiones/provincias/ciudades/").then(function (res) {
         _this3.categorias = res.data.categorias;
         _this3.tamanio_empresas = res.data.tamanio_empresa;
+        _this3.regiones = res.data.regiones;
         _this3.tags = res.data.tags;
       });
     },
@@ -3235,12 +3263,13 @@ __webpack_require__.r(__webpack_exports__);
     getProveedores: function getProveedores(page) {
       var _this6 = this;
 
-      if (this.categoria != '' || this.tamanio_empresa != '' || this.search_parameters.length != 0) {
+      if (this.categoria != '' || this.region != '' || this.tamanio_empresa != '' || this.search_parameters.length != 0) {
         axios.get('/proveedor/filter/proveedores/search?page=' + page, {
           params: {
             toSearch: this.search_parameters,
             categoria: this.categoria,
-            tamanio_empresa: this.tamanio_empresa
+            tamanio_empresa: this.tamanio_empresa,
+            region: this.region
           }
         }, {
           headers: {
@@ -3273,6 +3302,8 @@ __webpack_require__.r(__webpack_exports__);
         this.categoria = '';
       } else if (option == 2) {
         this.tamanio_empresa = '';
+      } else if (option == 3) {
+        this.region = '';
       }
 
       this.getProveedores(1);
@@ -22403,6 +22434,7 @@ var render = function() {
               ),
               _vm.categoria == "" &&
               _vm.tamanio_empresa == "" &&
+              _vm.region == "" &&
               _vm.search_parameters.length == 0
                 ? _c(
                     "span",
@@ -22473,6 +22505,42 @@ var render = function() {
                               click: function($event) {
                                 $event.preventDefault()
                                 return _vm.rebobinar(2)
+                              }
+                            }
+                          },
+                          [_vm._v("x")]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.region != ""
+              ? _c(
+                  "li",
+                  { staticStyle: { float: "left", "margin-left": "1.25em" } },
+                  [
+                    _c(
+                      "span",
+                      {
+                        staticClass: "badge badge-primary py-2 mt-2",
+                        staticStyle: {
+                          "border-radius": "5px",
+                          "font-size": "10px"
+                        }
+                      },
+                      [
+                        _vm._v(_vm._s(_vm.region) + "   "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "text-danger",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.rebobinar(3)
                               }
                             }
                           },
@@ -22656,6 +22724,109 @@ var render = function() {
                       {
                         staticClass: "collapse",
                         attrs: {
+                          id: "collapseRegion",
+                          "aria-labelledby": "headingRegion",
+                          "data-parent": "#accordionExample"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "card-body" },
+                          [
+                            _vm._l(_vm.regiones, function(reg, index_reg) {
+                              return _c(
+                                "div",
+                                {
+                                  key: "r" + index_reg,
+                                  staticClass: "form-group form-check mb-0"
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.region,
+                                        expression: "region"
+                                      }
+                                    ],
+                                    staticClass: "form-check-input mb-0",
+                                    attrs: {
+                                      type: "radio",
+                                      id: "reg" + reg.id
+                                    },
+                                    domProps: {
+                                      value: reg.nombre,
+                                      checked: _vm._q(_vm.region, reg.nombre)
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        _vm.region = reg.nombre
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "form-check-label",
+                                      attrs: { for: "cat" + reg.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(reg.ordinal) +
+                                          " - " +
+                                          _vm._s(reg.nombre)
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-group form-check mb-0" },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "stretched-link text-primary",
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.rebobinar(3)
+                                      }
+                                    }
+                                  },
+                                  [_c("u", [_vm._v("Quitar filtro")])]
+                                )
+                              ]
+                            )
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "card",
+                    staticStyle: { "border-radius": "0px" }
+                  },
+                  [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "collapse",
+                        attrs: {
                           id: "collapseThree",
                           "aria-labelledby": "headingThree",
                           "data-parent": "#accordionExample"
@@ -22768,7 +22939,7 @@ var render = function() {
                       key: "fake" + fake_index,
                       staticClass: "card  py-3 px-2"
                     },
-                    [_vm._m(3, true)]
+                    [_vm._m(4, true)]
                   )
                 })
               ],
@@ -22801,7 +22972,7 @@ var render = function() {
                           _vm._v("Filtros")
                         ]),
                         _vm._v(" "),
-                        _vm._m(4),
+                        _vm._m(5),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -22818,7 +22989,7 @@ var render = function() {
                                 staticStyle: { "border-radius": "0px" }
                               },
                               [
-                                _vm._m(5),
+                                _vm._m(6),
                                 _vm._v(" "),
                                 _c(
                                   "div",
@@ -22932,7 +23103,7 @@ var render = function() {
                                 staticStyle: { "border-radius": "0px" }
                               },
                               [
-                                _vm._m(6),
+                                _vm._m(7),
                                 _vm._v(" "),
                                 _c(
                                   "div",
@@ -23136,7 +23307,7 @@ var render = function() {
                                         staticClass:
                                           "button button-sm button-default-outline  ml-0  py-2 px-3 mt-0"
                                       },
-                                      [_vm._m(7, true)]
+                                      [_vm._m(8, true)]
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -23155,7 +23326,7 @@ var render = function() {
                                               href: "/proveedor/perfil/" + p.url
                                             }
                                           },
-                                          [_vm._m(8, true)]
+                                          [_vm._m(9, true)]
                                         )
                                       ]
                                     )
@@ -23275,7 +23446,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(9)
+    _vm._m(10)
   ])
 }
 var staticRenderFns = [
@@ -23320,6 +23491,33 @@ var staticRenderFns = [
               }
             },
             [_vm._v("Tipo de Servicio")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header p-0", attrs: { id: "headingRegion" } },
+      [
+        _c("h2", { staticClass: "mb-0" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-link",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#collapseRegion",
+                "aria-expanded": "true",
+                "aria-controls": "collapseRegion"
+              }
+            },
+            [_vm._v("Ubicación (región)")]
           )
         ])
       ]

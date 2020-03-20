@@ -85,7 +85,7 @@ class ProveedorController extends Controller
         $proveedor2 = DB::select('select * from proveedor where email = ?', [request('user-email')]);
         $ciaminerauser2 = DB::select('select * from cia_minera_usuario where email = ?', [request('user-email')]); 
         $invitado2 = DB::select('select * from users where email = ?', [request('user-email')]); 
-        $proveedor3 = DB::select('select * from proveedor where nombre = ?', [request('user-name')]);
+        $proveedor3 = Proveedor::where('proveedor.nombre', [request('user-name')]);
         $ciaminerauser3 = DB::select('select * from cia_minera_usuario where nombre_usuario = ?', [request('user-name')]); 
         $invitado3 = DB::select('select * from users where nombre = ?', [request('user-name')]); 
         
@@ -146,11 +146,10 @@ class ProveedorController extends Controller
                 
         $p = new Proveedor;
         
-            $nombre = $this->quitar_tildes(request('user-name'));
         
 
         $p->rut                = request('user-rut');
-        $p->nombre             = $nombre;
+        $p->nombre             = request('user-name');
         $p->sitio_web          = request('user-sitio');
         $p->descripcion        = request('user-descripcion');
         $p->direccion          = request('user-address');
@@ -160,7 +159,7 @@ class ProveedorController extends Controller
         $p->email              = request('user-email');
         $p->tamanio_empresa_id = request('user-tamanio');
         $p->estado_id          = request('user-status');
-        $p->url                = str_replace(" ","-",strtolower(request('user-name')));
+        $p->url                = str_replace(" ","-",strtolower($this->quitar_tildes(request('user-name'))));
         $p->imagen             = 'images/avatars/proveedor/default-avatar.png';
         $p->save();
 
@@ -275,11 +274,11 @@ class ProveedorController extends Controller
         $proveedor->ciudad_id          = request('user-city');
         $proveedor->email             = request('user-email');
         $proveedor->tamanio_empresa_id = request('user-tamanio');
-        $proveedor->url                = str_replace(" ","-",strtolower(request('user-name')));
+        $proveedor->url                = str_replace(" ","-",strtolower($this->quitar_tildes(request('user-name'))));
 
 
 
-        $nueva_url = str_replace(" ","-",strtolower(request('user-name')));
+        $nueva_url = str_replace(" ","-",strtolower($this->quitar_tildes(request('user-name'))));
 
         $proveedor->save();
         $this->getInformation($nueva_url);
@@ -387,10 +386,11 @@ class ProveedorController extends Controller
      public function filter(Request $request,$parameter){
         $array = $request->get('toSearch');
         $categoria = $request->get('categoria');
+        $region = $request->get('region');
         $tamanio_empresa = $request->get('tamanio_empresa');
 
         if($parameter == 'all'){
-            $proveedores = Proveedor::join('ciudad','ciudad.id','=','proveedor.ciudad_id')
+            $proveedores = Proveedor::join('ciudad','ciudad.id','=','proveedor.ciudad_id')           
                                     ->join('categoria','categoria.id','=','proveedor.categoria_id')
                                     ->join('tamanio_empresa','tamanio_empresa.id','=','proveedor.tamanio_empresa_id')
                                     ->join('proveedor_tag','proveedor_tag.proveedor_rut','=','proveedor.rut')
@@ -399,13 +399,16 @@ class ProveedorController extends Controller
                                     ->distinct('rut')->paginate(10);            
         }
         else{  
-            $proveedores = Proveedor::join('ciudad','ciudad.id','=','proveedor.ciudad_id')            
+            $proveedores = Proveedor::join('ciudad','ciudad.id','=','proveedor.ciudad_id')
+                                    ->join('provincias','provincias.id','=','ciudad.provincia_id')
+                                    ->join('regiones','regiones.id','=','provincias.region_id')           
                                     ->join('categoria','categoria.id','=','proveedor.categoria_id')
                                     ->join('tamanio_empresa','tamanio_empresa.id','=','proveedor.tamanio_empresa_id')
                                     ->join('proveedor_tag','proveedor_tag.proveedor_rut','=','proveedor.rut')
                                     ->join('tag','tag.id','=','proveedor_tag.tag_id')
                                     ->select('rut','url','proveedor.nombre as nombre','descripcion','ciudad.nombre as ciudad_nombre','imagen')
                                     ->categoria($categoria)
+                                    ->region($region)
                                     ->tamanio($tamanio_empresa)
                                     ->tag($array)
                                     ->distinct('rut')->paginate(10);

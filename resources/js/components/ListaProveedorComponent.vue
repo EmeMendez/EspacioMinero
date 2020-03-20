@@ -36,9 +36,10 @@
     <div class="row">
         <div class="col-12 pl-0 ml-0 bg-light pb-2">
             <ul >
-                <li style="float: left"><span class="badge py-2 mt-2 bg-light text-dark">Filtros de Busqueda : </span><span v-if="categoria=='' && tamanio_empresa=='' && search_parameters.length==0" class="badge py-2 mt-2 bg-light text-dark">Ninguno</span></li>
+                <li style="float: left"><span class="badge py-2 mt-2 bg-light text-dark">Filtros de Busqueda : </span><span v-if="categoria=='' && tamanio_empresa=='' && region=='' && search_parameters.length==0" class="badge py-2 mt-2 bg-light text-dark">Ninguno</span></li>
                 <li v-if="categoria!=''" style="float: left;margin-left:1.25em"><span class="badge badge-primary py-2 mt-2" style="border-radius:5px;font-size:10px">{{categoria}}&nbsp;&nbsp;&nbsp<a @click.prevent="rebobinar(1)" href="#" class="text-danger">x</a></span></li>
                 <li v-if="tamanio_empresa!=''" style="float: left;margin-left:1.25em"><span class="badge badge-primary py-2 mt-2" style="border-radius:5px;font-size:10px">{{tamanio_empresa}}&nbsp;&nbsp;&nbsp<a @click.prevent="rebobinar(2)" href="#" class="text-danger">x</a></span></li>  
+                <li v-if="region!=''" style="float: left;margin-left:1.25em"><span class="badge badge-primary py-2 mt-2" style="border-radius:5px;font-size:10px">{{region}}&nbsp;&nbsp;&nbsp<a @click.prevent="rebobinar(3)" href="#" class="text-danger">x</a></span></li>  
                 <li style="float: left;margin-left:1.25em" v-for="(s,sk) in search_parameters" :key="'a' + sk">      <span class="badge badge-primary py-2 mt-2" style="border-radius:5px;font-size:10px">{{s}}&nbsp;&nbsp;&nbsp<a @click.prevent="deleteItem(sk)" href="#" class="text-danger">x</a></span> </li>
             </ul>
         </div>
@@ -78,6 +79,30 @@
                     </div>
                   </div>
                 </div><!-- end Category (tipo empresa) -->
+
+
+
+                <!-- Cities -->
+                <div class="card" style="border-radius:0px;">
+                  <div class="card-header p-0" id="headingRegion">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseRegion" aria-expanded="true" aria-controls="collapseRegion">Ubicación (región)</button>
+                    </h2>
+                  </div>
+                  <div id="collapseRegion" class="collapse" aria-labelledby="headingRegion" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div v-for="(reg,index_reg) in regiones" :key="'r'+index_reg" class="form-group form-check mb-0">
+                            <input :value="reg.nombre" v-model="region" type="radio" class="form-check-input mb-0" :id="'reg'+reg.id">
+                            <label class="form-check-label" :for="'cat'+reg.id">{{reg.ordinal}} - {{reg.nombre}}</label>
+                        </div>
+                        <div class="form-group form-check mb-0">
+                          <a href="#" @click.prevent="rebobinar(3)" class="stretched-link text-primary"><u>Quitar filtro</u></a>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end Cities (ciuades) -->
+
+
 
                 <!-- start TamanioEmpresa -->                
                 <div class="card" style="border-radius:0px;">
@@ -283,6 +308,7 @@
             return {
                 tamanio_empresa: '',
                 categoria: '',
+                region:'',
 
                 search_parameters: [],
                 tags : [],
@@ -307,6 +333,7 @@
 
                 categorias:[],
                 tamanio_empresas:[],
+                regiones: []
             }
         },
         mounted(){
@@ -370,6 +397,7 @@
               axios.get("/regiones/provincias/ciudades/").then(res=>{
                 this.categorias=res.data.categorias;
                 this.tamanio_empresas=res.data.tamanio_empresa;
+                this.regiones=res.data.regiones;
                 this.tags = res.data.tags;
               })
             },
@@ -414,8 +442,8 @@
             },
 
             getProveedores(page){
-            if(this.categoria != '' || this.tamanio_empresa !='' || this.search_parameters.length !=0){  
-                axios.get('/proveedor/filter/proveedores/search?page='+page,{params:{toSearch: this.search_parameters,categoria: this.categoria,tamanio_empresa:this.tamanio_empresa}} ,
+            if(this.categoria != '' || this.region != '' || this.tamanio_empresa !='' || this.search_parameters.length !=0){  
+                axios.get('/proveedor/filter/proveedores/search?page='+page,{params:{toSearch: this.search_parameters,categoria: this.categoria,tamanio_empresa:this.tamanio_empresa,region: this.region}} ,
                                                                           {headers: {'Accept': 'application/json','Content-Type': 'application/json'}})
                       .then(res => {
                             this.proveedores = res.data.proveedores.data
@@ -441,6 +469,9 @@
           }
           else if(option==2){
             this.tamanio_empresa='';
+          }
+          else if(option==3){
+            this.region='';
           }
           this.getProveedores(1);
 
