@@ -124,7 +124,7 @@
             <div class="col-12 col-md-7 mx-auto">
               <div class="form-wrap">
                 <p class="pl-4 mb-2">Sitio web</p>                    
-                <input class="form-input" id="contact-web" type="text" name="user-sitio" value="{{ old('user-sitio') }}">
+                <input placeholder="www.example.cl" class="form-input" id="contact-web" type="text" name="user-sitio" value="{{ old('user-sitio') }}">
                 <p class="text-danger my-0 pb-1 pl-4 small" id="msgerror">&nbsp</p>                                                 
               </div>
             </div>
@@ -165,15 +165,15 @@
                   <div class="modal-body">
                     <p>Los proveedores ("Nosotros", "nos") del servicio provisto por este sitio web ("Servicio") no son responsables de ningún contenido generado por cualquier usuario ni de sus cuentas ("Contenido"). El contenido remitido expresa el punto de vista de su autor sólamente.</p>
 
-<p>Acepta no usar este servicio para publicar o enlazar a cualquier material difamatorio, abusivo, de odio, amenazador, spam o similar a spam, susceptible de ofender, sea contenido para adultos o censurable, contenga información personal de otros, infrinja los derechos de autor, estimule la actividad ilegal, o que viole de cualquier otra manera cualquier ley.</p>
+                      <p>Acepta no usar este servicio para publicar o enlazar a cualquier material difamatorio, abusivo, de odio, amenazador, spam o similar a spam, susceptible de ofender, sea contenido para adultos o censurable, contenga información personal de otros, infrinja los derechos de autor, estimule la actividad ilegal, o que viole de cualquier otra manera cualquier ley.</p>
 
 
-<p>Toda la información o contenido que se remita o suba puede ser revisado por los miembros de la Dirección o equipo. No debe remitir cualquier contenido o información que considere privada o confidencial.</p>
+                      <p>Toda la información o contenido que se remita o suba puede ser revisado por los miembros de la Dirección o equipo. No debe remitir cualquier contenido o información que considere privada o confidencial.</p>
 
-<p>Estos términos pueden cambiar en cualquier momento y sin aviso.</p>
+                      <p>Estos términos pueden cambiar en cualquier momento y sin aviso.</p>
 
-<p>Los datos que se soliciten ser fidedignos, solamente será utilizada para temas confidenciales del proyecto “Espacio Industrial Minero”. En ningún momento se hará público algun dato ingresado, ni será comercializado.</p>
-                  </div>
+                      <p>Los datos que se soliciten ser fidedignos, solamente será utilizada para temas confidenciales del proyecto “Espacio Industrial Minero”. En ningún momento se hará público algun dato ingresado, ni será comercializado.</p>
+                 </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                   </div>

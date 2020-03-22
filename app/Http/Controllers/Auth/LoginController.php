@@ -121,8 +121,11 @@ class LoginController extends Controller
         return redirect()->route('home');
 
     }
-    
+    public function showLoginForm(){
 
+        return redirect()->route('home');
+    }
+    
 
 
 }

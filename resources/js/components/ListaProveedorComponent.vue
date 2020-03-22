@@ -221,6 +221,26 @@
                   </div>
                 </div><!-- End Tamanio Empresa --> 
 
+                                <!-- Cities -->
+                <div class="card" style="border-radius:0px;">
+                  <div class="card-header p-0" id="headingRegion">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseRegion" aria-expanded="true" aria-controls="collapseRegion">Ubicación (región)</button>
+                    </h2>
+                  </div>
+                  <div id="collapseRegion" class="collapse" aria-labelledby="headingRegion" data-parent="#accordionExample">
+                    <div class="card-body text-left">
+                        <div v-for="(reg,index_reg) in regiones" :key="'r'+index_reg" class="form-group form-check mb-0">
+                            <input :value="reg.nombre" v-model="region" type="radio" class="form-check-input mb-0" :id="'reg'+reg.id">
+                            <label class="form-check-label" :for="'cat'+reg.id">{{reg.ordinal}} - {{reg.nombre}}</label>
+                        </div>
+                        <div class="form-group form-check mb-0">
+                          <a href="#" @click.prevent="rebobinar(3)" class="stretched-link text-primary"><u>Quitar filtro</u></a>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end Cities (ciuades) -->
+
 
                 </div>
               </nav>
@@ -251,8 +271,8 @@
                           <proveedor-tags-component :proveedor_rut="p.rut"/>
                       </div> 
                       <div class="text-center text-md-left">
-                          <button class="button button-sm button-default-outline  ml-0  py-2 px-3 mt-0" v-if="invitado"><a    data-toggle="modal" data-target="#exampleModalCenter"><span class="small"><b>Más Información</b></span></a></button>                      
-                          <button class="button button-sm button-default-outline  ml-0 py-2 px-3 mt-0" v-if="!invitado" ><a  :href="'/proveedor/perfil/' + p.url" ><span class="small"><b>Más Información</b></span></a></button>                      
+                          <button class="button button-sm button-default-outline  ml-0  py-2 px-3 mt-0" v-if="guest"><a    data-toggle="modal" data-target="#exampleModalCenter"><span class="small"><b>Más Información</b></span></a></button>                      
+                          <button class="button button-sm button-default-outline  ml-0 py-2 px-3 mt-0" v-if="!guest" ><a  :href="'/proveedor/perfil/' + p.url" ><span class="small"><b>Más Información</b></span></a></button>                      
                       </div>                     
                       
                     </div>
@@ -293,8 +313,8 @@
             Para poder ver la información de este proveedor, necesitas registrarte o si ya tienes una cuenta ¡Inicia Sesión! 
           </div>
           <div class="modal-footer">
-            <a href="/iniciar-sesion"> <button type="button" class="button button-primary py-2 px-5" data-dismiss="modal" >Inicia Sesión</button> </a>
-            <a href="/proveedor/registrarse"><button type="button" class="btn btn-secondary py-2 px-5">Regístrate</button></a>
+            <a href="/iniciar-sesion"> <button type="button" class="button button-primary py-2 px-md-5 px-4" data-dismiss="modal" >Inicia Sesión</button> </a>
+            <a href="/choice"><button type="button" class="btn btn-secondary py-2 px-md-5 px-4">Regístrate</button></a>
           </div>
         </div>
       </div>
@@ -316,7 +336,7 @@
                 inputValue: '',
                 itemList: [],
 
-                invitado: false,
+                guest: false,
                 loading: false,
                 proveedores: [],
 
@@ -381,15 +401,18 @@
             },
             tipoUsuario(){
                 axios.get('/tiposession').then(res=>{
+                var guest = res.data.guest;
                 var invitado = res.data.invitado;
                 var proveedor = res.data.proveedor;
                 if(res.data.ciaminera == true){
-                    this.invitado=false;       
+                    this.guest=false;       
                 }
                 else if(proveedor != null){
-                    this.invitado=false;       
+                    this.guest=false;       
+                }else if(invitado == true){
+                    this.guest=false;       
                 }else{
-                    this.invitado=true;       
+                  this.guest =true;
                 }
               })
             },

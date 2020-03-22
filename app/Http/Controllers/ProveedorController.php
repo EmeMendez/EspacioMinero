@@ -62,10 +62,10 @@ class ProveedorController extends Controller
     }
 
         function quitar_tildes($cadena) {
-        $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
-        $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
-        $texto = str_replace($no_permitidas, $permitidas ,$cadena);
-        return $texto;
+            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+            $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+            $texto = str_replace($no_permitidas, $permitidas ,$cadena);
+            return $texto;
         }
     /**
      * Para guardar el recurso desde el create(como un insert)
@@ -85,7 +85,7 @@ class ProveedorController extends Controller
         $proveedor2 = DB::select('select * from proveedor where email = ?', [request('user-email')]);
         $ciaminerauser2 = DB::select('select * from cia_minera_usuario where email = ?', [request('user-email')]); 
         $invitado2 = DB::select('select * from users where email = ?', [request('user-email')]); 
-        $proveedor3 = Proveedor::where('proveedor.nombre', [request('user-name')]);
+        $proveedor3 = DB::select('select * from proveedor where nombre = ?', [request('user-name')]);
         $ciaminerauser3 = DB::select('select * from cia_minera_usuario where nombre_usuario = ?', [request('user-name')]); 
         $invitado3 = DB::select('select * from users where nombre = ?', [request('user-name')]); 
         

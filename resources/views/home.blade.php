@@ -170,14 +170,14 @@ text: 'Algo ha salido mal. Intentelo denuevo',
     <h3>Participan</h3>
     <!-- Owl Carousel-->
     <div class="owl-carousel owl-carousel-centered" data-items="2" data-sm-items="3" data-md-items="4" data-lg-items="4" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="true" data-margin="30" data-mouse-drag="true">
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_cidere.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_adp.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_cap.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_corfo.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_crdp.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_mlp.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_sg.png" alt="" width="200" height="200"/></a></div>
-    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="#"><img src="/images/img/eim_teck.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="http://www.cidere.cl"><img src="/images/img/eim_cidere.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="http://www.altospunitaqui.cl/Home.php"><img src="/images/img/eim_adp.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="http://www.cap.cl"><img src="/images/img/eim_cap.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="https://www.corfo.cl/sites/cpp/home"><img src="/images/img/eim_corfo.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="http://crdp.cl/"><img src="/images/img/eim_crdp.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="http://web.pelambres.cl/"><img src="/images/img/eim_mlp.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="http://www.cmsg.cl/"><img src="/images/img/eim_sg.png" alt="" width="200" height="200"/></a></div>
+    <div class="wow clipInLeft" data-wow-delay=".1s"><a class="link-image-1" href="https://www.teck.com/operaciones-es/chile-es/operaciones-es/carmen-de-andacollo-es/default-es-es"><img src="/images/img/eim_teck.png" alt="" width="200" height="200"/></a></div>
     </div>
 
 </div>

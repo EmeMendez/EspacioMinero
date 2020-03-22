@@ -1,7 +1,8 @@
 @extends('layout')
 @section('content')
 <section class="breadcrumbs-custom">
-  <section class="section parallax-container breadcrumbs-custom-main context-dark" data-parallax-img="images/img/aso.jpg">
+  <section class="breadcrumbs-custom">
+    <img src="images/img/aso.jpg">
     <div class="parallax-content">
       <div class="container">
         <div class="row justify-content-center">
@@ -63,14 +64,14 @@
         </div>
       </div>
       
-      <div class="col-12 col-sm-6 col-md-8 isotope-item">
-        <div class="block-ratio block-ratio-3">
+      <div class="col-12 col-sm-6 col-md-4 isotope-item">
+        <div class="block-ratio block-ratio-1">
           <div class="block-ratio-dummy"></div>
           <div class="block-ratio-content bg-image" style="background-image: url(images/img/eim_cap.png);"></div><a href="http://www.cap.cl" target=_blank>Sitio Web</a> <!--770x426 -->
         </div>
       </div>
       <div class="col-12 col-sm-6 col-md-4 isotope-item">
-        <div class="block-ratio block-ratio-2">
+        <div class="block-ratio block-ratio-1">
           <div class="block-ratio-dummy"></div>
           <div class="block-ratio-content bg-image" style="background-image: url(images/img/eim_adp.png);"></div><a href="http://www.altospunitaqui.cl/Home.php" target=_blank>Sitio Web</a> <!--369x432 -->
         </div>
@@ -97,6 +98,18 @@
         <div class="block-ratio block-ratio-1">
           <div class="block-ratio-dummy"></div>
           <div class="block-ratio-content bg-image" style="background-image: url(images/img/eim_crdp.png);"></div><a href="http://crdp.cl/" target=_blank>Sitio Web</a> <!--370x251 -->
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 isotope-item">
+        <div class="block-ratio block-ratio-1">
+          <div class="block-ratio-dummy"></div>
+          <div class="block-ratio-content bg-image" style="background-image: url(images/img/eim_cidere.png);"></div><a href="http://www.cidere.cl/" target=_blank>Sitio Web</a> <!--370x251 -->
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 isotope-item">
+        <div class="block-ratio block-ratio-1">
+          <div class="block-ratio-dummy"></div>
+          <div class="block-ratio-content bg-image" style="background-image: url(images/img/eim_corfo1.jpg);"></div><a href="https://www.corfo.cl/sites/cpp/home" target=_blank>Sitio Web</a> <!--370x251 -->
         </div>
       </div>
     </div>

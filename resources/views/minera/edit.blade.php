@@ -57,7 +57,6 @@ text: 'Algo ha salido mal. Intentelo denuevo',
                 <a class="nav-link py-2" id="v-pills-phone-tab" data-toggle="pill" href="#v-pills-phone" role="tab" aria-controls="v-pills-phone" aria-selected="false"><span class="ml-3">Teléfonos</span></a>
                 <a class="nav-link py-2" id="v-pills-email-tab" data-toggle="pill" href="#v-pills-email" role="tab" aria-controls="v-pills-email" aria-selected="false"><span class="ml-3">Correos</span></a>
                 <a class="nav-link py-2" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span class="ml-3">Cambiar Contraseña</span></a>
-                <a class="nav-link py-2" id="v-pills-cancel-account-tab" data-toggle="pill" href="#v-pills-cancel-account" role="tab" aria-controls="v-pills-cancel-acount" aria-selected="false"><span class="ml-3">Cerrar Cuenta</span></a>               
             </div>               
           </ul>
         </div>
@@ -76,7 +75,6 @@ text: 'Algo ha salido mal. Intentelo denuevo',
                     <a class="nav-link py-2 pl-3" id="v-pills-phone-tab" data-toggle="pill" href="#v-pills-phone" role="tab" aria-controls="v-pills-phone" aria-selected="false"><span >Teléfonos</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-email-tab" data-toggle="pill" href="#v-pills-email" role="tab" aria-controls="v-pills-email" aria-selected="false"><span >Correos</span></a>
                     <a class="nav-link py-2 pl-3" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false"><span >Cambiar Contraseña</span></a>
-                    <a class="nav-link py-2 pl-3" id="v-pills-cancel-account-tab" data-toggle="pill" href="#v-pills-cancel-account" role="tab" aria-controls="v-pills-cancel-acount" aria-selected="false"><span >Cerrar Cuenta</span></a>               
                 </div>
                  
             </div>
@@ -216,36 +214,43 @@ text: 'Algo ha salido mal. Intentelo denuevo',
                         <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
                             <h3 class="text-center">Seguridad de la Cuenta</h3><br>
                         
+                        <form action="{{ route('minerachangepassword.update') }}" method="POST">
+                            @method('PATCH')
+                            @csrf
 
-                        <div class="col-12 pl-0 pt-3 mb-3">
-                            <p class="pl-4 mb-2">Contraseña Actual</p>
-                            <input class="form-input" size="40" type="password" value="" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3">
-                            <p class="pl-4 mb-2">Nueva contraseña</p>
-                            <input class="form-input" size="40" type="password" value="" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3">
-                            <p class="pl-4 mb-2">Confirmar nueva contraseña</p>
-                            <input  class="form-input" size="40" type="password" value="" name="user-name">
-                        </div>
-                        <div class="col-12 pl-0 mb-3 text-center pt-4">
-                            <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
-                        </div>                        
+
+                            <div class="col-12 pl-0 pt-3 mb-3 col-md-7 mx-auto">
+                                <div class="form-wrap">
+                                  <p class="pl-4 mb-2">Contraseña Actual</p>                    
+                                    <input class="form-input" id="user_pass_be" type="password" name="user-pass-be" >
+                                    <p id="user_pass_be_error" class="text-danger my-0 pb-1 pl-4 small" >&nbsp</p>                                                 
+                                </div>
+                            </div>
+
+                            <div class="col-12 pl-0 pt-3 mb-3 col-md-7 mx-auto">
+                                <div class="form-wrap">
+                                  <p class="pl-4 mb-2">Nueva Contraseña</p>                    
+                                    <input class="form-input" id="user_pass" type="password" name="user-password" >
+                                    <p id="user_pass_error" class="text-danger my-0 pb-1 pl-4 small" >&nbsp</p>                                                 
+                                </div>
+                            </div>
+
+                            <div class="col-12 pl-0 pt-3 mb-3 col-md-7 mx-auto">
+                                <div class="form-wrap">
+                                    <p class="pl-4 mb-2">Confirmar contraseña</p>                    
+                                    <input id="user_repass" class="form-input" type="password" name="user-repass" >
+                                    <p id="user_repass_error" class="text-danger my-0 pb-3 pl-4 small" >&nbsp</p>                                                 
+                                </div>
+                            </div>
+
+                            <div class="col-12 pl-0 mb-3 text-center pt-4">
+                                <button class="button button-block button-primary col-md-4 col-12 p-2 mx-auto" id="btnEnviar" type="submit">Guardar</button>
+                            </div>    
+                        </form>                    
                     </div>
 
                         <!--====  End of PASSWORD  ====--> 
                         
-                        <!--=====================================
-                        =            CAMBIAR CANCEL ACCOUNT          =
-                        ======================================-->
-
-                        <div class="tab-pane fade" id="v-pills-cancel-account" role="tabpanel" aria-labelledby="v-pills-cancel-account-tab">
-                            cancel account
-                        </div>
-
-                        <!--====  End of CANCEL ACCOUND ====-->                         
-
                       </div>
                 </div> <!--====  End ROW ====-->  
             </div><!--====  End COL-9 ====-->

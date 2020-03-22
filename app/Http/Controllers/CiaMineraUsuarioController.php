@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+
 use App\CiaMineraUsuario;
 use App\MineraTelefono;
 use App\MineraCorreo;
@@ -170,11 +172,29 @@ class CiaMineraUsuarioController extends Controller
 
     }
 
-    public function image(){
+
+    public function changepassword(){
+
         $rut = auth()->guard('admin')->user()->rut;
-        $imagen = CiaMineraUsuario::find($rut);
-        return $imagen->imagen;
-    }    
+        $url = auth()->guard('admin')->user()->url;
+        $minera =  CiaMineraUsuario::where("rut","=", $rut)->first();
+
+        $passwordAnterior = $minera->password;
+        $passwordAnteriorForm = request('user-pass-be');
+        $passwordNueva = Hash::make(request('user-password'));
+
+        if (Hash::check($passwordAnteriorForm, $passwordAnterior)) {
+            CiaMineraUsuario::where('rut', $rut)
+                    ->update(['password' => $passwordNueva]);  
+        $this->getInformation($url);
+        return redirect()->route('minera.edit',[$this->minera->url])->with('success','¡Actualizacion Exitosa!');
+                    
+        }else{
+            $this->getInformation($url);
+            return redirect()->route('minera.edit',[$this->minera->url])->with('error','¡Actualizacion Erronea! Algo ha salido mal');
+        }
+
+    }
 
     /**
      * Remove the specified resource from storage.

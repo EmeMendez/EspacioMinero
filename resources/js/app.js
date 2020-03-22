@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('proveedor-tags-component',require('./components/ProveedorTagsComponent.vue').default);
 Vue.component('proveedores-component', require('./components/ListaProveedorComponent.vue').default);
 Vue.component('imagen-component', require('./components/ImagenComponent.vue').default);
 Vue.component('uf-component', require('./components/ufComponent.vue').default);
@@ -28,7 +29,6 @@ Vue.component('imagen-minera-component', require('./components/ImagenMineraCompo
 Vue.component('certificacion-component', require('./components/CertificacionComponent.vue').default);
 Vue.component('provincia-component', require('./components/ProvinciaComponent.vue').default);
 Vue.component('ciudad-component', require('./components/CiudadComponent.vue').default);
-Vue.component('proveedor-tags-component',require('./components/ProveedorTagsComponent.vue').default);
 Vue.component('add-delete-proveedor-tags-component',require('./components/AddDeleteProveedorTagsComponent.vue').default);
 Vue.component('mineras-component',require('./components/ListaMineraComponent.vue').default);
 

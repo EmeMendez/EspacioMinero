@@ -120,47 +120,48 @@
 
 
 
+    </div>
+
+    </div>
+    <div class="col-md-3 col-12 ">
+      <h5 class="text-md-left text-center">Datos de Minera</h5>
+      <div class="row my-2 my-md-3">
+        <div class="col-6 col-md-12">
+          <b>Sitio Web</b>
+        </div>
+        <div class="col-6 col-md-12">
+          <span>{{ $minera->sitio_web }}</span>               
+        </div>
       </div>
-      <div class="col-md-3 col-12 ">
-        <h5 class="text-md-left text-center">Datos de Minera</h5>
-        <div class="row my-2 my-md-3">
-          <div class="col-6 col-md-12">
-            <b>Sitio Web</b>
-          </div>
-          <div class="col-6 col-md-12">
-            <span>{{ $minera->sitio_web }}</span>               
-          </div>
+
+
+
+      <div class="row my-2 my-md-3">
+        <div class="col-6 col-md-12 ">
+          <b>Dirección</b>
         </div>
-
-
-
-        <div class="row my-2 my-md-3">
-          <div class="col-6 col-md-12 ">
-            <b>Dirección</b>
-          </div>
-          <div class="col-6 col-md-12">
-            <span>{{ $minera->direccion }}</span>               
-          </div>
+        <div class="col-6 col-md-12">
+          <span>{{ $minera->direccion }}</span>               
         </div>
+      </div>
 
 
 
-  
-        <div class="row my-2 my-md-3">
-          <div class="col-12">
-            <b>Teléfonos de contacto</b>
-          </div>
-          @foreach ($telefono as $tel)
-            <div class="col-7 col-md-12 mt-1 pr-0 ">
-            <strong style="color: #757575">{{$tel->des}}: </strong> 
-            </div>
-            <div class="col-5 col-md-12 pl-0 pl-md-2">
-              <a href="tel:{{$tel->telefono}}">{{$tel->telefono}}</a>
-            </div>
-          @endforeach
-                          
-          
+
+      <div class="row my-2 my-md-3">
+        <div class="col-12">
+          <b>Teléfonos de contacto</b>
         </div>
+        @foreach ($telefono as $tel)
+          <div class="col-7 col-md-12 mt-1 pr-0 ">
+          <strong style="color: #757575">{{$tel->des}}: </strong> 
+          </div>
+          <div class="col-5 col-md-12 pl-0 pl-md-2">
+            <a href="tel:{{$tel->telefono}}">{{$tel->telefono}}</a>
+          </div>
+        @endforeach
+                        
+        
       </div>
     </div>
     {{-- fin columna 2 --}}

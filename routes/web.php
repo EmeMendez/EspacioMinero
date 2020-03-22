@@ -30,7 +30,7 @@ Route::get('/proveedor/perfil/{url}','ProveedorController@show')->name('proveedo
 Route::get('/recursos','ProveedorController@recursos')->name('proveedor.recursos');
 Route::patch('/telefono/update', 'ProveedorTelefonoController@update')->name('telefono.update');
 Route::patch('/correo/update', 'ProveedorCorreoController@update')->name('correo.update');
-Route::patch('/cambiar-password', 'ProveedorController@changepassword')->name('provedorchangepassword.update');
+Route::patch('/cambiar-password', 'ProveedorController@changepassword')->name('provedorchangepassword.update'); 
 
 
 /*=====================================
@@ -105,6 +105,7 @@ Route::patch('/telefonominera/update', 'MineraTelefonoController@update')->name(
 Route::patch('/correominera/update', 'MineraCorreoController@update')->name('correominera.update');
 Route::get('/imagen/minera','CiaMineraUsuarioController@image')->name('imagenminera.return');
 Route::get('/minera/mineras/json/getmineras/{parameter}','CiaMineraUsuarioController@getMinerasByName')->name('getMinerasByName');
+Route::patch('/cambiar-password-minera', 'CiaMineraUsuarioController@changepassword')->name('minerachangepassword.update'); 
 
 
 /*====  RUTAS DEL MINERA   */
@@ -154,9 +155,8 @@ Route::get('/tag/tags/todos','TagController@getTagsTodos');
 
 /*====  RUTA TAGS   */
 
-
 /*========================================
-=            RUTAS PERSONA NATURAL        =
+=            RUTAS PERSONA NATURAL        = 
 =========================================*/
 
 Route::get('/personanatural/registrarse','GuestController@create')->name('guest.create');

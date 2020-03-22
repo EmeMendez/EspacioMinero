@@ -125,35 +125,46 @@
           <form class="rd-mailform rd-form" action="{{ route('sendcontact') }}" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
             @csrf
             <div class="row row-x-16 row-20">
+
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
-                  <label class="form-label" for="contact-name">Nombre completo</label>
+                  <input class="form-input" id="user_name" type="text" name="name" >
+                  <label class="form-label" for="user_name">Nombre completo</label>
+                  <p id="user_name_error" class="text-danger my-0 pb-1 pl-4 small">&nbsp</p>    
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Required @Email">
-                  <label class="form-label" for="contact-email">Correo Electronico</label>
+                  <input class="form-input" id="user_email" type="email" name="email">
+                  <label class="form-label" for="user_email">Correo Electronico</label>
+                  <p id="user_email_error" class="text-danger my-0 pb-1 pl-4 small">&nbsp</p>    
                 </div>
               </div>
+
               <div class="col-12">
                 <div class="form-wrap">
-                  <label class="form-label" for="contact-message">Mensaje</label>
-                  <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                  <label class="form-label" for="user_mensaje">Mensaje</label>
+                  <textarea class="form-input" id="user_mensaje" name="message" ></textarea>
+                  <p id="user_mensaje_error" class="text-danger my-0 pb-1 pl-4 small">&nbsp</p>    
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="form-wrap">
-                  <input class="form-input" id="contact-phone" type="text" name="rut" data-constraints="@PhoneNumber @Required">
-                  <label class="form-label" for="contact-phone">Rut</label>
+                  <input class="form-input" id="user_rut" type="text" name="rut">
+                  <label class="form-label" for="user_rut">Rut</label>
+                  <p id="user_rut_error" class="text-danger my-0 pb-1 pl-4 small">&nbsp</p>    
                 </div>
               </div>
+
               <div class="col-md-6">
                 <div class="form-wrap form-button">
-                  <button class="button button-block button-primary" type="submit">Enviar Mensaje</button>
+                  <button id="user_button" class="button button-block button-primary ml-0" type="submit">Enviar Mensaje</button>
                 </div>
+                <p  id="user_button_error" class="text-danger my-0 pb-1 pl-4 small text-center font-weight-bold">&nbsp</p>
               </div>
+
             </div>
           </form>
 
@@ -164,5 +175,7 @@
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/js/contactform.js"></script>
 </section>
 @endsection

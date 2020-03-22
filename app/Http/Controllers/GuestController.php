@@ -27,9 +27,21 @@ class GuestController extends Controller
      */
     public function create()
     {
-        $tipos = Ocupacion::get();
+        $cuatro = 4;
+        $tipos = Ocupacion::where('ocupacion.id','<>', $cuatro)->get();
+        $solito = Ocupacion::where('ocupacion.id','=', $cuatro)->first();
+        $tipos->push($solito);
+
         return view('guest.create',compact('tipos'));
     }
+
+
+    function quitar_tildes($cadena) {
+            $no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+            $permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+            $texto = str_replace($no_permitidas, $permitidas ,$cadena);
+            return $texto;
+        }
 
     /**
      * Store a newly created resource in storage.
@@ -40,21 +52,11 @@ class GuestController extends Controller
     public function store(Request $request)
     {
         
-        $rules = $request->validate([
-            'user-rut' => 'required|max:11',
-            'user-name' => 'required|max:15',
-        ]);
-
-        // if ($rules->fails()) {
-        //     return redirect('personanatural/registrarse')
-        //                 ->withErrors($rules)
-        //                 ->withInput();
-        // }
+ 
 
         $paso1 = false;
         $paso2 = false;
         $paso3 = false;
-
         $proveedor = DB::select('select * from proveedor where rut = ?', [request('user-rut')]);
         $ciaminerauser = DB::select('select * from cia_minera_usuario where rut = ?', [request('user-rut')]); 
         $invitado = DB::select('select * from users where rut = ?', [request('user-rut')]); 
@@ -119,17 +121,35 @@ class GuestController extends Controller
         }
         else{
 
+        $otro = ucwords(strtolower($this->quitar_tildes(request('user-otro'))));
         $guest = new User;
+        $ocupacion = new Ocupacion;
+        
 
-        $guest->rut                   = request('user-rut');
-        $guest->nombre                = request('user-name');
-        $guest->email                 = request('user-email');
-        $guest->password              = bcrypt(request('user-pass'));
-        $guest->telefono              = request('user-phone');
-        $guest->id_ocupacion          = request('user-ocupacion');
-        $guest->url                   = str_replace(" ","-",strtolower(request('user-name')));
-
-        $guest->save();
+        if(!$otro){
+            
+            $guest->rut                   = request('user-rut');
+            $guest->nombre                = request('user-name');
+            $guest->email                 = request('user-email');
+            $guest->password              = bcrypt(request('user-pass'));
+            $guest->telefono              = request('user-phone');
+            $guest->id_ocupacion          = request('user-ocupacion');
+            $guest->url                   = str_replace(" ","-",strtolower($this->quitar_tildes(request('user-name'))));
+            $guest->save();
+        }else{
+            $ocupacion->timestamps        = false;
+            $ocupacion->nombre            = $otro; 
+            $ocupacion->save();
+            $guest->rut                   = request('user-rut');
+            $guest->nombre                = request('user-name');
+            $guest->email                 = request('user-email');
+            $guest->password              = bcrypt(request('user-pass'));
+            $guest->telefono              = request('user-phone');
+            $guest->id_ocupacion          = $ocupacion->id;
+            $guest->url                   = str_replace(" ","-",strtolower($this->quitar_tildes(request('user-name'))));
+            $guest->save();
+        }
+        
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
                 }
     }

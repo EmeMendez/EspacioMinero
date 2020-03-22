@@ -2687,6 +2687,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3112,6 +3120,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3123,7 +3151,7 @@ __webpack_require__.r(__webpack_exports__);
       selectedItem: {},
       inputValue: '',
       itemList: [],
-      invitado: false,
+      guest: false,
       loading: false,
       proveedores: [],
       pagination: {
@@ -3195,15 +3223,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/tiposession').then(function (res) {
+        var guest = res.data.guest;
         var invitado = res.data.invitado;
         var proveedor = res.data.proveedor;
 
         if (res.data.ciaminera == true) {
-          _this2.invitado = false;
+          _this2.guest = false;
         } else if (proveedor != null) {
-          _this2.invitado = false;
+          _this2.guest = false;
+        } else if (invitado == true) {
+          _this2.guest = false;
         } else {
-          _this2.invitado = true;
+          _this2.guest = true;
         }
       });
     },
@@ -21979,32 +22010,37 @@ var render = function() {
                         domProps: { textContent: _vm._s(p.descripcion) }
                       }),
                       _vm._v(" "),
-                      _vm.invitado
-                        ? _c(
-                            "a",
-                            {
-                              staticClass:
-                                "button button-sm button-default-outline button-winona ml-0",
-                              attrs: {
-                                "data-toggle": "modal",
-                                "data-target": "#exampleModalCenter"
-                              }
-                            },
-                            [_vm._v("Más Información")]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.invitado
-                        ? _c(
-                            "a",
-                            {
-                              staticClass:
-                                "button button-sm button-default-outline button-winona ml-0",
-                              attrs: { href: "/minera/perfil/" + p.url }
-                            },
-                            [_vm._v("Más Información")]
-                          )
-                        : _vm._e()
+                      _c("div", { staticClass: "text-md-left text-center" }, [
+                        _vm.invitado
+                          ? _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "button button-sm button-default-outline  ml-0  px-3 mt-1"
+                              },
+                              [_vm._m(1, true)]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.invitado
+                          ? _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "button button-sm button-default-outline  ml-0 px-3 mt-1"
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "/minera/perfil/" + p.url }
+                                  },
+                                  [_c("b", [_vm._v("Más Información")])]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ])
                     ])
                   ])
                 ])
@@ -22014,7 +22050,7 @@ var render = function() {
           2
         ),
     _vm._v(" "),
-    _vm._m(1),
+    _vm._m(2),
     _vm._v(" "),
     _c("nav", [
       _c(
@@ -22148,17 +22184,31 @@ var staticRenderFns = [
             ]
           ),
           _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "button button-sm button-winona ml-0 text-light bg-light"
-            },
-            [_vm._v("Más Información")]
-          )
+          _c("div", { staticClass: "text-md-left text-center" }, [
+            _c(
+              "a",
+              {
+                staticClass:
+                  "button button-sm button-winona ml-0 text-light bg-light"
+              },
+              [_vm._v("Más Información")]
+            )
+          ])
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        attrs: { "data-toggle": "modal", "data-target": "#exampleModalCenter" }
+      },
+      [_c("b", [_vm._v("Más Información")])]
+    )
   },
   function() {
     var _vm = this
@@ -22214,7 +22264,7 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _vm._v("\n        ...\n      ")
+                _vm._v("\n          ...\n        ")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -23213,6 +23263,126 @@ var render = function() {
                                   ]
                                 )
                               ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "card",
+                                staticStyle: { "border-radius": "0px" }
+                              },
+                              [
+                                _vm._m(8),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "collapse",
+                                    attrs: {
+                                      id: "collapseRegion",
+                                      "aria-labelledby": "headingRegion",
+                                      "data-parent": "#accordionExample"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "card-body text-left" },
+                                      [
+                                        _vm._l(_vm.regiones, function(
+                                          reg,
+                                          index_reg
+                                        ) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: "r" + index_reg,
+                                              staticClass:
+                                                "form-group form-check mb-0"
+                                            },
+                                            [
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.region,
+                                                    expression: "region"
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "form-check-input mb-0",
+                                                attrs: {
+                                                  type: "radio",
+                                                  id: "reg" + reg.id
+                                                },
+                                                domProps: {
+                                                  value: reg.nombre,
+                                                  checked: _vm._q(
+                                                    _vm.region,
+                                                    reg.nombre
+                                                  )
+                                                },
+                                                on: {
+                                                  change: function($event) {
+                                                    _vm.region = reg.nombre
+                                                  }
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "form-check-label",
+                                                  attrs: { for: "cat" + reg.id }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(reg.ordinal) +
+                                                      " - " +
+                                                      _vm._s(reg.nombre)
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "form-group form-check mb-0"
+                                          },
+                                          [
+                                            _c(
+                                              "a",
+                                              {
+                                                staticClass:
+                                                  "stretched-link text-primary",
+                                                attrs: { href: "#" },
+                                                on: {
+                                                  click: function($event) {
+                                                    $event.preventDefault()
+                                                    return _vm.rebobinar(3)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("u", [
+                                                  _vm._v("Quitar filtro")
+                                                ])
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
                             )
                           ]
                         )
@@ -23300,18 +23470,18 @@ var render = function() {
                               "div",
                               { staticClass: "text-center text-md-left" },
                               [
-                                _vm.invitado
+                                _vm.guest
                                   ? _c(
                                       "button",
                                       {
                                         staticClass:
                                           "button button-sm button-default-outline  ml-0  py-2 px-3 mt-0"
                                       },
-                                      [_vm._m(8, true)]
+                                      [_vm._m(9, true)]
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
-                                !_vm.invitado
+                                !_vm.guest
                                   ? _c(
                                       "button",
                                       {
@@ -23326,7 +23496,7 @@ var render = function() {
                                               href: "/proveedor/perfil/" + p.url
                                             }
                                           },
-                                          [_vm._m(9, true)]
+                                          [_vm._m(10, true)]
                                         )
                                       ]
                                     )
@@ -23446,7 +23616,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(10)
+    _vm._m(11)
   ])
 }
 var staticRenderFns = [
@@ -23722,6 +23892,33 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
+      "div",
+      { staticClass: "card-header p-0", attrs: { id: "headingRegion" } },
+      [
+        _c("h2", { staticClass: "mb-0" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-link",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#collapseRegion",
+                "aria-expanded": "true",
+                "aria-controls": "collapseRegion"
+              }
+            },
+            [_vm._v("Ubicación (región)")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
       "a",
       {
         attrs: { "data-toggle": "modal", "data-target": "#exampleModalCenter" }
@@ -23805,18 +24002,18 @@ var staticRenderFns = [
                   _c(
                     "button",
                     {
-                      staticClass: "button button-primary py-2 px-5",
+                      staticClass: "button button-primary py-2 px-md-5 px-4",
                       attrs: { type: "button", "data-dismiss": "modal" }
                     },
                     [_vm._v("Inicia Sesión")]
                   )
                 ]),
                 _vm._v(" "),
-                _c("a", { attrs: { href: "/proveedor/registrarse" } }, [
+                _c("a", { attrs: { href: "/choice" } }, [
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-secondary py-2 px-5",
+                      staticClass: "btn btn-secondary py-2 px-md-5 px-4",
                       attrs: { type: "button" }
                     },
                     [_vm._v("Regístrate")]
@@ -36477,6 +36674,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('proveedor-tags-component', __webpack_require__(/*! ./components/ProveedorTagsComponent.vue */ "./resources/js/components/ProveedorTagsComponent.vue")["default"]);
 Vue.component('proveedores-component', __webpack_require__(/*! ./components/ListaProveedorComponent.vue */ "./resources/js/components/ListaProveedorComponent.vue")["default"]);
 Vue.component('imagen-component', __webpack_require__(/*! ./components/ImagenComponent.vue */ "./resources/js/components/ImagenComponent.vue")["default"]);
 Vue.component('uf-component', __webpack_require__(/*! ./components/ufComponent.vue */ "./resources/js/components/ufComponent.vue")["default"]);
@@ -36485,7 +36683,6 @@ Vue.component('imagen-minera-component', __webpack_require__(/*! ./components/Im
 Vue.component('certificacion-component', __webpack_require__(/*! ./components/CertificacionComponent.vue */ "./resources/js/components/CertificacionComponent.vue")["default"]);
 Vue.component('provincia-component', __webpack_require__(/*! ./components/ProvinciaComponent.vue */ "./resources/js/components/ProvinciaComponent.vue")["default"]);
 Vue.component('ciudad-component', __webpack_require__(/*! ./components/CiudadComponent.vue */ "./resources/js/components/CiudadComponent.vue")["default"]);
-Vue.component('proveedor-tags-component', __webpack_require__(/*! ./components/ProveedorTagsComponent.vue */ "./resources/js/components/ProveedorTagsComponent.vue")["default"]);
 Vue.component('add-delete-proveedor-tags-component', __webpack_require__(/*! ./components/AddDeleteProveedorTagsComponent.vue */ "./resources/js/components/AddDeleteProveedorTagsComponent.vue")["default"]);
 Vue.component('mineras-component', __webpack_require__(/*! ./components/ListaMineraComponent.vue */ "./resources/js/components/ListaMineraComponent.vue")["default"]);
 /**
@@ -37398,8 +37595,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\espaciominero\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\espaciominero\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\EspacioMinero\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

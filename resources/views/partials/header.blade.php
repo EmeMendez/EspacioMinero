@@ -34,9 +34,10 @@
             </ul>
 
             <div class="rd-navbar-tel">
-
+                
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('minera.edit')}}"><img class="mr-2" src="/images/info-nose2.png" width="30px" height="30px"> <a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
+                    <li class="rd-nav-item ml-md-0 ml-3 mb-md-0 mb-2"><img class="mr-0 pr-0 " src="/images/info-nose2.png" width="30px" height="30px"></li>
+                    <li class="rd-nav-item {{setActive('minera.edit')}} ml-md-2 ml-0"> <a class="rd-nav-link" href="{{route('minera.edit', auth()->guard('admin')->user()->url )}}" >PERFIL</a> </li>
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>
@@ -64,7 +65,8 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item {{setActive('proveedor.edit')}}"> <img class="mr-2" src="/images/provider2.png" width="30px" height="30px"><a class="rd-nav-link" href="{{route('proveedor.edit', auth()->user()->url )}}" >PERFIL</a> </li>
+                    <li class="rd-nav-item ml-md-0 ml-3 mb-md-0 mb-2"><img class="mr-0 pr-0 " src="/images/provider2.png" width="30px" height="30px"></li>
+                    <li class="rd-nav-item {{setActive('proveedor.edit')}}  ml-md-2 ml-0"><a class="rd-nav-link" href="{{route('proveedor.edit', auth()->user()->url )}}" >PERFIL</a> </li>
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>
                 </ul>
@@ -91,7 +93,7 @@
             <div class="rd-navbar-tel">
 
                 <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item"><span class="mr-1" style="color: #f5a800"><i class="fa fa-users">   </i> </span> <a class="rd-nav-link" href="#" onclick="event.preventDefault()">INVITADO</a> </li>
+                    <li class="rd-nav-item"><span class="mr-1 pl-md-0 pl-3" style="color: #f5a800"><i class="fa fa-users">   </i> </span> <a class="rd-nav-link" href="#" onclick="event.preventDefault()">INVITADO</a> </li>
                     
                     <li class="rd-nav-item"><a href="#" class="rd-nav-link" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">CERRAR SESIÓN</a></li>

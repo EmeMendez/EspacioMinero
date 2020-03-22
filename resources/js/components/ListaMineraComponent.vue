@@ -15,47 +15,54 @@
 
      <!-- inicio de la lista -->
     <div v-if="!loading">      
-    <label id="results" class="lead pb-3">Resultados : </label>
-
+      <label id="results" class="lead pb-3">Resultados : </label>
       <div class="card mb-3" v-for="(p,pkey) in mineras" :key="'cia' +pkey">
-      <div class="row no-gutters">
-          <div class="col-md-2 col-12 text-center my-auto">
-              <img src="/images/carga.png" width="150" height="150">
+        <div class="row no-gutters">
+            <div class="col-md-2 col-12 text-center my-auto">
+                <img src="/images/carga.png" width="150" height="150">
+            </div>
+                <div>
+            </div>
+            <div class="col-md-8 col-12">
+              <div class="card-body">
+              <h5 class="card-title text-left text-light bg-light">&nbsp</h5>
+              <p class="card-text multine-ellipsis text-justify text-light bg-light py-auto">&nbsp<br>&nbsp<br>&nbsp<br></p>
+              <div class="text-md-left text-center">
+              <a class="button button-sm button-winona ml-0 text-light bg-light" >Más Información</a>     
+              </div>
+       
+            </div>
           </div>
-              <div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else>
+      <label id="results" class="lead pb-3">Resultados : {{pagination.total}}</label>
+      
+      <div class="card mb-3" v-for="p in mineras" v-bind:key="p.rut">
+        <div class="row no-gutters">
+          <div class="col-md-2 col-12 text-center my-auto">
+            <img :src="'/'+p.imagen" width="150" height="150">
           </div>
           <div class="col-md-8 col-12">
             <div class="card-body">
-            <h5 class="card-title text-left text-light bg-light">&nbsp</h5>
-            <p class="card-text multine-ellipsis text-justify text-light bg-light py-auto">&nbsp<br>&nbsp<br>&nbsp<br></p>
-            <a class="button button-sm button-winona ml-0 text-light bg-light" >Más Información</a>            
+              <h5 class="card-title text-uppercase" v-text="p.nombre_usuario"></h5>
+              <p class="card-text  multine-ellipsis text-justify"  v-text="p.descripcion"></p>
+              
+                <div class="text-md-left text-center">
+                  <button class="button button-sm button-default-outline  ml-0  px-3 mt-1" v-if="invitado"><a    data-toggle="modal" data-target="#exampleModalCenter"><b>Más Información</b></a></button>                      
+                  <button class="button button-sm button-default-outline  ml-0 px-3 mt-1" v-if="!invitado" ><a  :href="'/minera/perfil/' + p.url" ><b>Más Información</b></a></button>                      
+<!-- 
+                  <a v-if="invitado"  data-toggle="modal" data-target="#exampleModalCenter" class="button button-sm button-default-outline button-winona ml-0" >Más Información</a>                      
+                  <a v-if="!invitado" class="button button-sm button-default-outline button-winona ml-0" :href="'/minera/perfil/' + p.url" >Más Información</a>    -->
+                </div>
+                   
+
+              </div>
           </div>
         </div>
-      </div>
-      </div>
-
-    </div>
-    <div v-else>
-    <label id="results" class="lead pb-3">Resultados : {{pagination.total}}</label>
-    
-    <div class="card mb-3" v-for="p in mineras" v-bind:key="p.rut">
-      <div class="row no-gutters">
-        <div class="col-md-2 col-12 text-center my-auto">
-          <img :src="'/'+p.imagen" width="150" height="150">
-        </div>
-        <div class="col-md-8 col-12">
-          <div class="card-body">
-            <h5 class="card-title text-uppercase" v-text="p.nombre_usuario"></h5>
-            <p class="card-text  multine-ellipsis text-justify"  v-text="p.descripcion"></p>
-            
-          
-              <a v-if="invitado"  data-toggle="modal" data-target="#exampleModalCenter" class="button button-sm button-default-outline button-winona ml-0" >Más Información</a>                      
-              <a v-if="!invitado" class="button button-sm button-default-outline button-winona ml-0" :href="'/minera/perfil/' + p.url" >Más Información</a>                      
-
-            </div>
-        </div>
-      </div>
-    </div> 
+      </div> 
 
     </div>
 
@@ -65,25 +72,25 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
@@ -117,6 +124,7 @@
     <!-- end buttons -->
     </div>
 </template>
+
 <script>
 	
 	    export default {

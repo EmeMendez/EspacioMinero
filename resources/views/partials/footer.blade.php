@@ -23,7 +23,7 @@
             <div class="col-12 col-md-3 px-4 mt-3">
               <h4 class="footer-classic-title">Contáctanos</h4>
               <ul class="mt-3">
-                <li class="mb-2"><a href="mailto:proyectobpe@cidere.cl">proyectobp@cidere.cl</a></li>
+                <li class="mb-2"><a href="mailto:proyectobp@cidere.cl">proyectobp@cidere.cl</a></li>
                 <li class="mb-2"><a href="tel:51-2223090">51-2223090</a></li>
               </ul> 
             </div>{{-- end third col --}}

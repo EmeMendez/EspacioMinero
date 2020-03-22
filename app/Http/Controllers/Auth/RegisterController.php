@@ -9,6 +9,12 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Banner;
+use App\Match;
+use App\MatchProveedores;
+use App\Proveedor;
+use App\CiaMineraUsuario;
+
 class RegisterController extends Controller
 {
     /*
@@ -69,5 +75,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm(){
+        return redirect()->route('home');
     }
 }

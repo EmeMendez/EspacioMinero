@@ -96,7 +96,11 @@
                             <button id="button-addon1" onclick="event.preventDefault()" class=" button button-block button-primary px-2 py-2"  data-toggle="modal" data-target="#{{$oli.$contador}}">MATCH</button>
                           </div>
                         @endif
-
+                      
+                      @else
+                      <div class="col-4">
+                        <button id="button-addon1" onclick="event.preventDefault()" class=" button button-block button-primary px-2 py-2"  data-toggle="modal" data-target="#{{$oli.$contador}}">MATCH</button>
+                      </div>
                       @endif
 
 
