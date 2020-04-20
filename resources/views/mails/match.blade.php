@@ -1,131 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-
-
+	<meta charset="utf-8">
+	<title>holi</title>
 </head>
-<body>
+<body style="background-color: black ">
+
+<!--Copia desde aquí-->
+<table style="max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;">
+
+	<tr>
+		<td style="padding: 0">
+			<img style="padding: 0; display: block" src="https://espacioindustria.cl/recursos/images/correos.jpg" width="100%">
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="background-color: #ecf0f1">
+			<div style="color: #34495e; margin: 4% 10% 2%; text-align: justify;font-family: sans-serif">
+                <h2 style="color: #f5a800; margin: 0 0 7px; text-align: center;">¡Felicitaciones!</h2>
+                <h3 style="color: #f5a800; margin: 0 0 7px; text-align: center;">@if($tip == 1) Una Empresa Minera quiere contactarse contigo @else Un proveedor quiere contactarse contigo  @endif</h3>
+				<p style="margin: 2px; font-size: 15px">
+                    Hola {{$np}}, <br> 
+                    @if($tip == 1) la Empresa Minera <b>{{$fromnme}} </b> @else el Proveedor {{$fromnme}}  @endif quiere contactarse contigo. A continuacion la información necesaria de la empresa:                   </p>
+				<ul style="font-size: 15px;  margin: 10px 0">
+					<li>Correo Electronico: <a style= "color:#0033a0" href="mailto:{{$frm}}">{{$frm}}</a></li>
+					<li>Sitio Web: <a style= "color:#0033a0" href="http://{{$sw}}">{{$sw}}</a> </li>
+                </ul>
+                @if($msj!='')
+
+				<div style="width: 100%;margin:20px 0; display: inline-block;text-align: center">
+                    <h3 style="color:white">La Empresa ha querido añadir: </h3>
+                    <p style="color:white">{{$msj}}</p>
+				</div>
 
 
-        
-        <div class="fondo">
-            <img class="logo" src="https://espacioindustria.cl/recursos/images/logo_blanco.png">
-            <h1><span><b>¡Felicitaciones!</b> </span></h1>
-            <div class="sub-titulo">
-                <h2><span>@if($tip == 1) Una Empresa Minera quiere contactarse contigo @else Un proveedor quiere contactarse contigo  @endif </span> </h3>
-            </div>
+                @else
 
-            <div class="nombre">
-                <h3 class="name"><span><b> Hola {{$np}}, </b><br></span></h3>
-            </div>
-            
-            <div class="center">
-                <div class="contacto">
-                    <span style="color:white">@if($tip == 1) la Empresa Minera <b>{{$fromnme}} </b> @else el Proveedor {{$fromnme}}  @endif quiere contactarse contigo. A continuacion la información necesaria de la empresa:</span>
-                </div>
-                <div class="foot">
-                    <div class="correo">
-                        <h4><span>Correo Electronico: <a href="mailto:{{$frm}}">{{$frm}}</a></span></h4>
-                    </div>
-                    <div class="web">
-                        <h4><span>Sitio Web: <a href="http://{{$sw}}">{{$sw}}</a> </span></h4>
-                    </div>
+                <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center">
+				</div>
 
-                    @if($msj!='')
-
-                    <div class="mensaje">
-                        <h3 style="color:white">La Empresa ha querido añadir: </h3>
-                        <p style="color:white">{{$msj}}</p>
-
-                    </div>
+                @endif
 
 
-                    @else
-                        
 
-                    @endif
 
-                </div>
-            </div>
 
-        </div>
-
+				<div style="width: 100%; text-align: center">
+					<a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db" href="https://www.espacioindustria.cl">Ir a la página</a>	
+				</div>
+				<p style="color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0">Espacio Industrial Minero 2020</p>
+			</div>
+		</td>
+	</tr>
+</table>
+<!--hasta aquí-->
 
 </body>
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Lato:300&display=swap');
-    *{
-        font-family: 'Lato', sans-serif;
-    }
-    .fondo {
-        background-image: url(https://espacioindustria.cl/recursos/images/correo.jpg);
-        width: 620px;
-        height: auto + 10%;
-        margin: auto;
-    }
-    a{
-        color: #f5a800;
-    }
-    .logo{
-        width: 120px;
-        height: 100;
-        margin-left: 10%;
-        margin-top: 10%;
-    }
-    .center{
-        text-align: center;
-    }
-    h1{
-        font-weight: bold;
-        color: #f5a800; 
-        text-align: center;
-        margin-top: 10%;
-    }
-    h2{
-        color: #fff;
-        text-align: center;
-    }
-    h3{
-        color: #fff;
-    }
-    h4{
-        color: #fff;
-    }
-    .sub-titulo{
-        width: 350px;
-        margin: auto;
-    }
-    .nombre{
-        width: 350px;
-        margin: auto;
-    }
-    .con-n{
-        font-weight: bold;
-    }
-    .name{
-        text-align: center;
-    }
-    .contacto{
-        width: 350px;
-        margin: auto;
-    }
-    .mensaje{
-        width: 350px;
-        margin: auto;
-    }
-    .correo{
-        width: 350px;
-        margin: auto;
-    }
-    .web{
-        width: 350px;
-        margin: auto;
-    }
-    .foot{
-        margin-top: 50px;
-        padding-bottom: 5%;
-    }
-
-</style>
 </html>
+
+
+
