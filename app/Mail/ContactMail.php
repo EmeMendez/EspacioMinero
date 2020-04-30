@@ -21,14 +21,14 @@ class ContactMail extends Mailable
      public $ru;
      public $nom;
      public $cor;
-     public $men;
+     public $msj;
 
-    public function __construct($ru,$nom,$cor,$men)
+    public function __construct($ru,$nom,$cor,$msj)
     {
         $this->ru = $ru;
         $this->nom = $nom;
         $this->cor = $cor;
-        $this->men = $men;
+        $this->msj = $msj;
     }
 
     /**

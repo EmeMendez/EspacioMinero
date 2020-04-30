@@ -28,24 +28,25 @@
 
       <div class="col-12">
         <h3 class="d-none d-md-block" style="font-size: 35px">{{ $minera->nombre }} </h3>
+        <hr class="my-3 text-dark">     
+        <p class="h4 ">Correo</p>
       </div>
 
     <div class="col-12">
 
-      <hr class="my-3 text-dark">
         <div class="col-12 mt-5">
-          <p class="h4 ">Correo</p>
             <?php
                 $contador = 0;
                 $contador2 = 1;
                 $oli = 'chale';
                 $chale = 'oli';
             ?>
+                        <?php
+                        $contador = $contador + 1;
+                        $contador2 = $contador2 + 1;
+                      ?>
           @foreach($correosh  as $em)
-            <?php
-              $contador = $contador + 1;
-              $contador2 = $contador2 + 1;
-            ?>
+
           <div class="row my-0">
           <form style="width:100%" action="{{ route('sendminer') }}" method="POST">
               @csrf
@@ -105,10 +106,13 @@
               </div>
             </div>            
             @endif
-            </div> 
           </div> 
         </form>
         </div>
+
+
+
+
           @endforeach
         </div>
 
@@ -123,6 +127,15 @@
     </div>
 
     </div>
+
+
+
+
+
+
+
+
+
     <div class="col-md-3 col-12 ">
       <h5 class="text-md-left text-center">Datos de Minera</h5>
       <div class="row my-2 my-md-3">
