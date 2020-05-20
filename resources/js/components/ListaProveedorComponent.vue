@@ -2,11 +2,10 @@
   <div class="container">
     <!--Start search-->
     <div class="row py-0 align-items-center pb-3 mt-0">
-        <div class="col-3 d-none d-md-block"></div> <!-- end col-3 -->               
-        <div class="col-12 col-md-9">
+        <div class="col-12">
           <div class="form-wrap">
             <div class="row align-items-center">
-              <div class="col-md-8 col-10">
+              <div class="col-12 col-md-8 mx-md-auto">
                     <div class="dropdown" >
                         <input @keyup.enter="addArray()" v-if="Object.keys(selectedItem).length === 0" ref="dropdowninput" v-model.trim="inputValue" class="form-input" type="text" placeholder="Buscar por rubro o servicio" />
                         <div v-else @click="resetSelection" class="form-input" style="background-color:#f0f3f5">
@@ -20,12 +19,6 @@
                             </div><!--end dropdown-item-->
                         </div><!--end dropdown-list-->
                     </div><!--end dropdown-->              
-              </div>
-              <div class="col-1">
-                  <button  @click="addArray()" class="btn btn-success">+</button>
-              </div>
-              <div class="col-md-3 mt-md-0 col-12 mt-3">
-                  <button  @click="getProveedores(1)" class="button button-block button-primary ml-0 col-md-12 col-7 mx-auto py-md-3 py-2 ">Buscar</button>                        
               </div>
               </div>
           </div>
@@ -48,7 +41,7 @@
     <div class="row mt-3">
         <div class="col-3 px-0  d-none d-md-block">
           <label id="results" class="pb-1 mt-0">&nbsp</label>
-          <div class="card">
+          <div class="card" style="position: inherit">
             <div class="card-body">
               <div class="row mb-2">
                 <div class="col-6">
@@ -61,7 +54,7 @@
               <div class="accordion" id="accordionExample">
 
                 <!-- Category -->
-                <div class="card" style="border-radius:0px;">
+                <div class="card" style="border-radius:0px; position: inherit;">
                   <div class="card-header p-0" id="headingTipo">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTipo" aria-expanded="true" aria-controls="collapseTipo">Tipo de Servicio</button>
@@ -70,7 +63,7 @@
                   <div id="collapseTipo" class="collapse" aria-labelledby="headingTipo" data-parent="#accordionExample">
                     <div class="card-body">
                         <div v-for="(cat,index_categoria) in categorias" :key="'c'+index_categoria" class="form-group form-check mb-0">
-                            <input :value="cat.nombre" v-model="categoria" type="radio" class="form-check-input mb-0" :id="'cat'+cat.id">
+                            <input name="input_categoria" @change="getCategoria(cat.nombre)" type="radio" class="form-check-input mb-0" :id="'cat'+cat.id">
                             <label class="form-check-label" :for="'cat'+cat.id">{{cat.nombre}}</label>
                         </div>
                         <div class="form-group form-check mb-0">
@@ -83,7 +76,7 @@
 
 
                 <!-- Cities -->
-                <div class="card" style="border-radius:0px;">
+                <div class="card" style="border-radius:0px; position: inherit;">
                   <div class="card-header p-0" id="headingRegion">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseRegion" aria-expanded="true" aria-controls="collapseRegion">Ubicación (región)</button>
@@ -92,7 +85,7 @@
                   <div id="collapseRegion" class="collapse" aria-labelledby="headingRegion" data-parent="#accordionExample">
                     <div class="card-body">
                         <div v-for="(reg,index_reg) in regiones" :key="'r'+index_reg" class="form-group form-check mb-0">
-                            <input :value="reg.nombre" v-model="region" type="radio" class="form-check-input mb-0" :id="'reg'+reg.id">
+                            <input name="input_region"   @change="getRegion(reg.nombre)" type="radio" class="form-check-input mb-0" :id="'reg'+reg.id">
                             <label class="form-check-label" :for="'cat'+reg.id">{{reg.ordinal}} - {{reg.nombre}}</label>
                         </div>
                         <div class="form-group form-check mb-0">
@@ -105,7 +98,7 @@
 
 
                 <!-- start TamanioEmpresa -->                
-                <div class="card" style="border-radius:0px;">
+                <div class="card" style="border-radius:0px; position: inherit;">
                   <div class="card-header p-0" id="headingThree">
                     <h2 class="mb-0">
                       <button class="btn btn-link collapsed " type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -116,7 +109,7 @@
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                       <div v-for="(te,index_te) in tamanio_empresas" :key="'t'+index_te" class="form-group form-check mb-0">
-                            <input :value="te.nombre" v-model="tamanio_empresa" type="radio" class="form-check-input mb-0" :id="'te'+te.id">
+                            <input name="input_tamanio" @change="getTamanioEmpresa(te.nombre)" type="radio" class="form-check-input mb-0" :id="'te'+te.id">
                             <label class="form-check-label" :for="'te'+te.id">{{te.nombre}}</label>
                       </div> 
                       <div class="form-group form-check mb-0">
@@ -189,7 +182,7 @@
                   <div id="collapseTipo" class="collapse" aria-labelledby="headingTipo" data-parent="#accordionExample">
                     <div class="card-body text-left">
                         <div v-for="(cat,index_categoria) in categorias" :key="'c'+index_categoria" class="form-group form-check mb-0">
-                            <input :value="cat.nombre" v-model="categoria" type="radio" class="form-check-input mb-0" :id="'cat'+cat.id">
+                            <input name="input_categoria" type="radio" @change="getCategoria(cat.nombre)" class="form-check-input mb-0" :id="'cat'+cat.id">
                             <label class="form-check-label" :for="'cat'+cat.id">{{cat.nombre}}</label>
                         </div>
                         <div class="form-group form-check mb-0">
@@ -211,7 +204,7 @@
                   <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body text-left">
                       <div v-for="(te,index_te) in tamanio_empresas" :key="'t'+index_te" class="form-group form-check mb-0">
-                            <input :value="te.nombre" v-model="tamanio_empresa" type="radio" class="form-check-input mb-0" :id="'te'+te.id">
+                            <input name="input_tamanio" @change="getTamanioEmpresa(te.nombre)" type="radio" class="form-check-input mb-0" :id="'te'+te.id">
                             <label class="form-check-label" :for="'te'+te.id">{{te.nombre}}</label>
                       </div> 
                       <div class="form-group form-check mb-0">
@@ -231,7 +224,7 @@
                   <div id="collapseRegion" class="collapse" aria-labelledby="headingRegion" data-parent="#accordionExample">
                     <div class="card-body text-left">
                         <div v-for="(reg,index_reg) in regiones" :key="'r'+index_reg" class="form-group form-check mb-0">
-                            <input :value="reg.nombre" v-model="region" type="radio" class="form-check-input mb-0" :id="'reg'+reg.id">
+                            <input name="input_region"  @change="getRegion(reg.nombre)" type="radio" class="form-check-input mb-0" :id="'reg'+reg.id">
                             <label class="form-check-label" :for="'cat'+reg.id">{{reg.ordinal}} - {{reg.nombre}}</label>
                         </div>
                         <div class="form-group form-check mb-0">
@@ -260,7 +253,7 @@
                     <div class="card-body p-0">
                       <div class="row">
                         <div class="col-12 col-md-9 text-md-left text-center">
-                          <h5 class="card-title mb-0 text-uppercase" v-text="p.nombre"></h5>
+                          <h5 class="card-title mb-0 text-uppercase mt-md-0 mt-2" v-text="p.nombre"></h5>
                         </div>
                         <div class="col-12 col-md-3 text-md-right text-center">
                             <span class="small font-weight-bold d-inline" v-text="p.ciudad_nombre"></span>                        
@@ -271,8 +264,8 @@
                           <proveedor-tags-component :proveedor_rut="p.rut"/>
                       </div> 
                       <div class="text-center text-md-left">
-                          <button class="button button-sm button-default-outline  ml-0  py-2 px-3 mt-0" v-if="guest"><a    data-toggle="modal" data-target="#exampleModalCenter"><span class="small"><b>Más Información</b></span></a></button>                      
-                          <button class="button button-sm button-default-outline  ml-0 py-2 px-3 mt-0" v-if="!guest" ><a  :href="'/proveedor/perfil/' + p.url" ><span class="small"><b>Más Información</b></span></a></button>                      
+                          <a    data-toggle="modal" data-target="#exampleModalCenter"><button class="button button-sm button-default-outline  ml-0  py-2 px-3 mt-0" v-if="guest"><span class="small"><b>Más Información</b></span></button></a>                      
+                          <a  :href="'/proveedor/perfil/' + p.url" ><button class="button button-sm button-default-outline  ml-0 py-2 px-3 mt-0" v-if="!guest" ><span class="small"><b>Más Información</b></span></button></a>                      
                       </div>                     
                       
                     </div>
@@ -282,7 +275,7 @@
             </div>
           <!-- end Provider List --> 
           <!-- start paginate -->
-          <nav v-if="proveedores.lenght>10"  class="pt-2">
+          <nav v-if="pagination.total>10"  class="pt-2">
             <ul class="pagination">
               <li to="results" :class="{'page-item disabled' : pagination.current_page == 1, 'page-item' : pagination.current_page > 1}"  class="page-item">
                 <a  href="#" @click.prevent="changePage(pagination.current_page -1)" class="page-link"><span>&laquo;</span></a>
@@ -387,7 +380,9 @@
                 from++;
               }
               return pagesArray;
-            }
+            },
+
+            
 
         },
         methods:{
@@ -435,6 +430,7 @@
                 this.selectedItem = theItem 
                 this.inputValue = ''
                 this.$emit('on-item-selected', theItem)
+                this.addArray();
             },
             itemVisible (item) {
                 let currentName = item.nombre.toLowerCase()
@@ -458,6 +454,7 @@
                 this.selectedItem = {}
                 }
               }
+              this.getProveedores(1);
             },
             deleteItem(index){
               this.search_parameters.splice(index,1)
@@ -488,17 +485,45 @@
         },
         rebobinar(option){
           if(option==1){
+            var ele = document.getElementsByName("input_categoria");
+            for(var i=0;i<ele.length;i++){
+              ele[i].checked = false;
+            }
             this.categoria='';
           }
           else if(option==2){
+            var ele = document.getElementsByName("input_tamanio");
+            for(var i=0;i<ele.length;i++){
+              ele[i].checked = false;
+            }   
             this.tamanio_empresa='';
+         
           }
           else if(option==3){
+            var ele = document.getElementsByName("input_region");
+            for(var i=0;i<ele.length;i++){
+              ele[i].checked = false;
+            }            
             this.region='';
           }
           this.getProveedores(1);
 
-        }               
+        },
+        getRegion(nombre){
+          this.region = nombre;
+          this.getProveedores(1);
+                       
+        },
+        getTamanioEmpresa(nombre){
+          this.tamanio_empresa = nombre;
+          this.getProveedores(1);
+                       
+        },      
+        getCategoria(nombre){
+          this.categoria = nombre;
+          this.getProveedores(1);
+                       
+        }         
     }
 
 }

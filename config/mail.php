@@ -134,7 +134,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@espacioindustria.cl'),
+        'address' => env('MAIL_FROM_ADDRESS', 'proyectobp@cidere.cl'),
         'name' => env('MAIL_FROM_NAME', 'Espacio Industrial Minero'),
     ],
 

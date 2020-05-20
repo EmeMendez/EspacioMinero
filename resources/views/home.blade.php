@@ -90,7 +90,7 @@ text: 'Algo ha salido mal. Intentelo denuevo',
                 @else
                     
                     <h3>Sé parte de nosotros</h3>            
-                    <p>Registrate y sé parte de esta comunidad</p><a class="button button-primary button-winona" href="{{ route('proveedor.create') }}">Registrarse</a>
+                    <p>Registrate y sé parte de esta comunidad</p><a class="button button-primary button-winona" href="{{ route('options') }}">Registrarse</a>
   
                 @endif
             
