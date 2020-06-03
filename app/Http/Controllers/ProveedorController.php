@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Notification;
 
 use App\Proveedor;
 use App\Ciudad;
@@ -185,6 +187,8 @@ class ProveedorController extends Controller
                 $miCorreito->save();
             }
 
+        $this->notificacion(request('user-rut'),request('user-name'),request('user-email'));  
+            
         return redirect()->route('session')->with('success','¡Registro Existoso! Inicie Sesión para continuar');
 
                 
@@ -350,6 +354,15 @@ class ProveedorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function notificacion($rut,$nombre,$email){
+
+        $to = '';
+
+        Mail::to($to)->queue(new Notification($rut,$nombre,$email));
+
+
     }
 
     public function recursos(){

@@ -111,6 +111,36 @@ class CorreoController extends Controller
 
     }
 
+    public function notificacion(){
+
+
+        $m = new MatchMinera;
+        $url = request('prov-url');
+        $from =  auth()->guard('admin')->user()->email;
+        $fromname = auth()->guard('admin')->user()->nombre_usuario;
+        $sitio = auth()->guard('admin')->user()->sitio_web;
+        $mensaje = request('user-mensaje');
+        $to = request('user-correo');
+        $nombre = request('prov-nom');
+        $tipo = 1;
+        $m->minera_rut_emisor = auth()->guard('admin')->user()->rut;
+        $m->minera_rut_remitente = request('rut');
+        $m->minera_correo_emisor = $from;
+        $m->minera_correo_remitente = $to;
+        $m->save();
+
+
+
+        Mail::to($to)->queue(new MessageReceived($from,$fromname,$sitio,$nombre,$tipo,$mensaje));
+
+        return redirect()->back()->withSuccess('¡Correo Enviado!');
+        //return view('contact')->with('success','¡Correo Enviado!');
+
+
+
+
+    }
+
 
     public function contact(){
 
